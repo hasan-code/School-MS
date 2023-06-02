@@ -1,0 +1,147 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- ALERT MESSAGES -->
+<!-- Success Message -->
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<div class="alert success">
+  <p>{{ message }}</p>
+</div>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Error Message -->
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert error">
+  <p>{{ message }}</p>
+</div>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Profile Update -->
+<div class="profile-update">
+  <form
+    action="{% url 'profile_update' %}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+
+    <h3>My profile</h3>
+
+    <div class="header">
+      <div class="profile-photo">
+        {% if user.profile_pic == "" %}
+        <img
+          src="{% static 'assets/images/avatar.svg' %}"
+          alt="Profile photo"
+        />
+        {% else %}
+        <img src="/{{ user.profile_pic }}" alt="Profile photo" />
+        {% endif %}
+        <div class="pic-input">
+          <input type="file" name="profilePic" id="profilePic" />
+          <span class="material-symbols-rounded"> add_circle </span>
+        </div>
+      </div>
+
+      <div class="user-detail">
+        {% if user.user_type == "1" %}
+        <p class="userType">Admin</p>
+        {% elif user.user_type == "2" %}
+        <p class="userType">Teacher</p>
+        {% else %}
+        <p class="userType">Student</p>
+        {% endif %}
+        <p class="name">{{ user.first_name }} {{ user.last_name }}</p>
+        <p class="address">{{ user.city }}, {{ user.country }}</p>
+      </div>
+    </div>
+
+    <div class="form-input">
+      <div class="group">
+        <div class="input-group">
+          <label for="fname">Firstname</label>
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            value="{{ user.first_name }}"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="lname">Lastname</label>
+          <input
+            type="text"
+            name="lname"
+            id="lname"
+            value="{{ user.last_name }}"
+          />
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value="{{ user.username }}"
+            readonly
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="{{ user.email }}"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="input-group">
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" value="{{ user.city }}" />
+        </div>
+
+        <div class="input-group">
+          <label for="country">Country</label>
+          <input
+            type="text"
+            name="country"
+            id="country"
+            value="{{ user.country }}"
+          />
+        </div>
+      </div>
+    </div>
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+
+<script src="{% static 'js/home.js' %}" type="text/javascript"></script>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* EDIT STUDENT */
+.edit-student {
+  position: absolute;
+  top: 8%;
+  right: 0;
+  padding: 0.5rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.edit-student h3 {
+  font-size: 1.351rem;
+  font-weight: 500;
+  color: var(--dark-txt);
+}
+
+.edit-student form {
+  /* margin-top: 5rem; */
+  padding: 1rem 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.edit-student form .input-group {
+  position: relative;
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.edit-student form .input-group label {
+  position: absolute;
+  top: -10px;
+  left: 8px;
+  padding: 0px 5px;
+  font-size: 0.791rem;
+  font-weight: 500;
+  color: var(--light-txt);
+  background-color: #fff;
+}
+
+.edit-student form .input-group input,
+.edit-student form .input-group select {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #fff;
+  border: 1px solid var(--light);
+  border-radius: 0.3rem;
+  outline: none;
+}
+
+.edit-student form .input-group input:focus,
+.edit-student form .input-group select:focus {
+  border: 1px solid var(--dark);
+  caret-color: var(--dark);
+}
+
+.edit-student form button {
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.931rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.edit-student form button:hover {
+  background-color: var(--normal);
+  color: #000;
+  cursor: pointer;
+}

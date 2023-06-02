@@ -1,0 +1,138 @@
+{% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- SIDEBAR -->
+<nav>
+  <!-- App Logo -->
+  <div class="logo">
+    <div class="icon">
+      <span class="material-symbols-rounded"> nutrition </span>
+    </div>
+
+    <div class="name">
+      <h3>SchMgSoft</h3>
+      <p>
+        by
+        <a href="https://threedot.in/" target="_blank" rel="noopener noreferrer"
+          >ThreeDot.</a
+        >
+      </p>
+    </div>
+  </div>
+
+  <span class="divider"></span>
+
+  <!-- NAVBAR ITEMS -->
+  <div class="navbar">
+    <!-- Home section -->
+    <div class="navbar-group">
+      <p class="title">HOME</p>
+
+      <!-- Dashboard -->
+      <div class="links">
+        <a href="{% url 'admin_home' %}">
+          <span class="material-symbols-rounded"> dashboard </span>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <!-- Academics section -->
+    <div class="navbar-group">
+      <p class="title">ACADEMICS</p>
+
+      <!-- Students -->
+      <div class="links">
+        <a href="{% url 'students' %}">
+          <span class="material-symbols-rounded"> groups </span>
+          Students
+        </a>
+      </div>
+
+      <!-- Teachers -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> group </span>
+          Teachers
+        </a>
+      </div>
+    </div>
+
+    <!-- Staff section -->
+    <div class="navbar-group">
+      <p class="title">STAFF-MANAGEMENT</p>
+
+      <!-- Teaching Staff -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> engineering </span>
+          Teaching
+        </a>
+      </div>
+
+      <!-- Non-Teaching Staff -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> business_center </span>
+          Non-teaching
+        </a>
+      </div>
+    </div>
+
+    <!-- Finance section -->
+    <div class="navbar-group">
+      <p class="title">STAFF-MANAGEMENT</p>
+
+      <!-- Student's Fee -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> paid </span>
+          Fee
+        </a>
+      </div>
+
+      <!-- Salary -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> wallet </span>
+          Salary
+        </a>
+      </div>
+    </div>
+
+    <!-- Examination board section -->
+    <div class="navbar-group">
+      <p class="title">EXAM BOARD</p>
+
+      <!-- Results -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> assignment </span>
+          Results
+        </a>
+      </div>
+    </div>
+
+    <span class="divider"></span>
+
+    <!-- Others section -->
+    <div class="navbar-group">
+      <p class="title">OTHERS</p>
+
+      <!-- Settings -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> settings </span>
+          Settings
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{% endblock %}

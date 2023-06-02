@@ -1,0 +1,97 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<div class="dashboard">
+  <div class="card-container">
+    <!-- Graph -->
+    <div class="card" id="graph">
+      <p class="title">Admission trends</p>
+      <canvas id="myChart" style="width: 100%; height: 250px"></canvas>
+    </div>
+
+    <!-- Card - 1 -->
+    <div class="card" id="card1">
+      <div class="icon-container">
+        <div class="icon">
+          <span class="material-symbols-rounded"> face </span>
+        </div>
+
+        <div class="more">
+          <span class="material-symbols-rounded"> more_vert </span>
+        </div>
+      </div>
+
+      <p class="card-title">Students</p>
+      <p class="card-detail">500+</p>
+    </div>
+
+    <!-- Card - 2 -->
+    <div class="card" id="card2">
+      <div class="icon-container">
+        <div class="icon">
+          <span class="material-symbols-rounded"> person </span>
+        </div>
+
+        <div class="more">
+          <span class="material-symbols-rounded"> more_vert </span>
+        </div>
+      </div>
+
+      <p class="card-title">Teachers</p>
+      <p class="card-detail">50+</p>
+    </div>
+
+    <!-- Card - 3 -->
+    <div class="card" id="card3">
+      <div class="icon-container">
+        <div class="icon">
+          <span class="material-symbols-rounded"> savings </span>
+        </div>
+
+        <div class="more">
+          <span class="material-symbols-rounded"> more_vert </span>
+        </div>
+      </div>
+
+      <p class="card-title">Total Fee</p>
+      <p class="card-detail">500000+</p>
+    </div>
+
+    <!-- Card - 4 -->
+    <div class="card" id="card4">
+      <div class="icon-container">
+        <div class="icon">
+          <span class="material-symbols-rounded"> paid </span>
+        </div>
+
+        <div class="more">
+          <span class="material-symbols-rounded"> more_vert </span>
+        </div>
+      </div>
+
+      <p class="card-title">Total Expenditure</p>
+      <p class="card-detail">5000+</p>
+    </div>
+  </div>
+
+  <div class="aside">
+    <div class="achievement">Achievement</div>
+    <div class="time">Time</div>
+    <div class="calendar">Calendar</div>
+  </div>
+</div>
+
+<!-- Chart.JS - JAVASCRIPT CDN LINK -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- <script src="{% static 'js/main.js' %}" type="text/javascript"></script> -->
+<script src="{% static 'js/home.js' %}" type="text/javascript"></script>
+
+{% endblock %}

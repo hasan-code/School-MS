@@ -1,0 +1,67 @@
+{% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+
+{% endblock htmlhead %}
+
+
+<!-- Warning Alert Dialog -->
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'warning' %}
+<div class="alert" id="warningAlert">
+  <div class="left">
+    <span class="material-symbols-rounded"> warning </span>
+    <p>Student with this email already registered!</p>
+  </div>
+  <span class="material-symbols-rounded" id="closeWarning"> close </span>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+
+<!-- FORM SUBMIT SUCCESS MESSAGE -->
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<div class="form-submit-alert" id="successAlert">
+  <div class="cancel" id="successAlertCloseBtn">
+    <span class="material-symbols-rounded"> close </span>
+  </div>
+
+  <!-- Animated Tick-Mark : SUCCESS -->
+  <svg
+    class="checkmark"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      class="checkmark__circle"
+      cx="12"
+      cy="12"
+      r="8"
+      stroke="#1FDE00"
+      stroke-width="1.5"
+    />
+    <path
+      class="checkmark__tick"
+      d="M8 12L10.6128 14.6128C10.8207 14.8207 11.1623 14.8053 11.3505 14.5794L16 9"
+      stroke="#1FDE00"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  </svg>
+
+  <p>{{ message }}</p>
+
+  <!-- View Added Student Button -->
+  <!-- <a href="{% url 'students' %}">View</a> -->
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}

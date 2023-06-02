@@ -1,0 +1,81 @@
+{% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/header.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+<header>
+  <!-- Menu Icon -->
+  <div class="menu">
+    <span class="material-symbols-rounded" id="hamburger"> menu </span>
+    <!-- <span class="material-symbols-rounded" id="cross" style="display: none;"> close </span> -->
+  </div>
+
+  <!-- Page Title -->
+  <h3>Dashboard</h3>
+
+  <div class="right">
+    <!-- Notifications -->
+    <div class="notification">
+      <span class="material-symbols-rounded"> notifications </span>
+    </div>
+
+    <!-- User Icon -->
+    <div class="user" id="pofile">
+      {% if user.profile_pic == "" %}
+      <img
+        src="{% static 'assets/images/avatar.svg' %}"
+        alt="Profile picture"
+      />
+      {% else %}
+      <img
+        src="{{ user.profile_pic }}"
+        alt="Profile picture"
+      />
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<!-- Profile MODAL -->
+<div class="modal" id="ProfileModal">
+  <div class="UserProfile">
+    <div class="ProfilePicture">
+      {% if user.profile_pic == "" %}
+      <img src="{% static 'assets/images/avatar.svg' %}" alt="Profile picture">
+      {% else %}
+      <img src="{{ user.profile_pic }}" alt="Profile picture" />
+      {% endif %}
+    </div>
+
+    <div class="ProfileDetail">
+      <p class="greet">Good Morning!</p>
+      <p class="name">{{ user.first_name }} {{ user.last_name }}</p>
+      {% if user.user_type == '1' %}
+      <p class="UserType">Admin</p>
+      {% elif user.user_type == '2' %}
+      <p class="UserType">Teacher</p>
+      {% else %}
+      <p class="UserType">Student</p>
+      {% endif %}
+    </div>
+
+    <div id="cross">
+      <span class="material-symbols-rounded" id="cross"> close </span>
+    </div>
+
+  </div>
+
+  <div class="action">
+    <a href="{% url 'profile' %}" id="EditProfile">Edit profile</a>
+    <a href="{% url 'logout' %}" id="logout">Logout</a>
+  </div>
+</div>
+
+<!-- JAVASCRIPT LINK -->
+<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+
+{% endblock %}

@@ -1,0 +1,370 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+.alert {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* border: 1px solid #ff0000; */
+  border-radius: 0.3rem;
+  animation: alertAnim 0.3s ease-out;
+  -webkit-animation: alertAnim 0.3s ease-out;
+  -moz-animation: alertAnim 0.3s ease-out;
+  -o-animation: alertAnim 0.3s ease-out;
+  z-index: 99;
+}
+
+.success {
+  background-color: var(--light);
+}
+
+.error {
+  background-color: #ff0000;
+}
+
+.alert p {
+  font-size: 0.751rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.success p {
+  color: var(--dark-txt);
+}
+
+.error p {
+  color: #fff;
+}
+
+.profile-update {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-update form {
+  padding: 3rem 5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: start;
+  justify-content: center;
+
+  /* background-color: #e3f7ae; */
+
+  z-index: 1;
+}
+
+.profile-update form h3 {
+  font-size: 1.531rem;
+  font-weight: 500;
+  color: var(--dark-txt);
+}
+
+.profile-update form .header {
+  /* position: relative; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.profile-update form .header .profile-photo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lightest);
+  border-radius: 50%;
+  /* overflow: hidden; */
+}
+
+.profile-update form .header .profile-photo::after {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  padding: 0.5rem 1.5rem;
+  width: 90px;
+  height: 90px;
+  background-color: var(--dark);
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.profile-update form .header .profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-update form .header .profile-photo .pic-input {
+  position: absolute;
+  right: -10%;
+  bottom: 10%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #b9cf7c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* display: none; */
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  position: inherit;
+  right: 50%;
+  transform: translateX(50%);
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.profile-update form .header .profile-photo .pic-input span {
+  position: inherit;
+  color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile-update form .header .user-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  line-height: 1.3;
+}
+
+.profile-update form .header .user-detail .userType {
+  font-size: 0.791rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.profile-update form .header .user-detail .name {
+  font-size: 1.351rem;
+  font-weight: 600;
+  color: var(--darkest);
+}
+
+.profile-update form .header .user-detail .address {
+  font-size: 0.831rem;
+  font-weight: 400;
+  color: var(--light-txt);
+}
+
+.profile-update form .form-input {
+  /* padding: 3rem; */
+  width: 100%;
+  /* display: grid;
+    grid-template-columns: 50% 50%; */
+  gap: 1.5rem;
+  /* place-items: center; */
+  display: flex;
+  flex-direction: column;
+  /* background-color: #4545   */
+}
+
+.profile-update form .form-input .group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-update form .form-input .group .input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.profile-update form .form-input .group .input-group label {
+  padding-left: 0.5rem;
+  font-size: 0.791rem;
+  font-weight: 500;
+  color: var(--light-txt);
+}
+
+.profile-update form .form-input .group .input-group input {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #fafef4;
+  border: 1px solid var(--lighter);
+  border-radius: 0.3rem;
+}
+
+.profile-update form .form-input .group .input-group input:focus {
+  border: 1px solid #567306;
+  caret-color: #729907;
+}
+
+.profile-update form button {
+  position: relative;
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.931rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  /* z-index: 1; */
+}
+
+.profile-update form button::after {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  padding: 0.5rem 1.5rem;
+  width: 110px;
+  background-color: var(--dark);
+  filter: blur(16px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .profile-update {
+    padding: 0 1.5rem;
+  }
+
+  .profile-update form {
+    padding: 3rem 0;
+  }
+
+  .profile-update form .header .profile-photo {
+    width: 75px;
+    height: 75px;
+  }
+
+  .profile-update form .header .profile-photo::after {
+    top: 30%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-update form .form-input .group {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 992px) {
+  .profile-update {
+    padding: 0 3rem;
+  }
+
+  .profile-update form {
+    padding: 3rem 0;
+  }
+
+  .profile-update form .header .profile-photo {
+    width: 97px;
+    height: 97px;
+  }
+
+  .profile-update form .header .profile-photo::after {
+    top: 30%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-update form .form-input .group {
+    gap: 3rem;
+  }
+}
+
+/* ANIMATIONS */
+@keyframes alertAnim {
+  from {
+    opacity: 0;
+    right: 3%;
+  }
+
+  to {
+    opacity: 1;
+    right: 5%;
+  }
+}
+
+@-webkit-keyframes alertAnim {
+  from {
+    opacity: 0;
+    right: 3%;
+  }
+
+  to {
+    opacity: 1;
+    right: 5%;
+  }
+}
+
+@-moz-keyframes alertAnim {
+  from {
+    opacity: 0;
+    right: 3%;
+  }
+
+  to {
+    opacity: 1;
+    right: 5%;
+  }
+}
+
+@-o-keyframes alertAnim {
+  from {
+    opacity: 0;
+    right: 3%;
+  }
+
+  to {
+    opacity: 1;
+    right: 5%;
+  }
+}
