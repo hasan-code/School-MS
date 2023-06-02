@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/edit_class.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- EDIT CLASS -->
+<div class="edit-class">
+  <h3>Add Class</h3>
+  <form action="{% url 'update_class' %}" method="post">
+    {% csrf_token %}
+
+    <!-- This "id" is retrieved only for updating the Class name. It should be hidden. -->
+    <input type="text" name="class_id" id="class_id" value="{{ classes.id }}" hidden>
+
+    <div class="input-group">
+      <label for="edit_class">Class name</label>
+      <input type="text" name="edit_class" id="edit_class" value="{{ classes.class_name }}" />
+    </div>
+
+    <button type="submit">Save changes</button>
+  </form>
+</div>
+
+{% endblock %}

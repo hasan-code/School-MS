@@ -146,6 +146,16 @@ nav .navbar .navbar-group .links a:hover {
   border-radius: 0.3rem;
 }
 
+nav .navbar .navbar-group .links.active {
+  background-color: var(--dark);
+  border-radius: 0.3rem;
+}
+
+nav .navbar .navbar-group .links.active a {
+  color: #fff;
+  font-weight: 500;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
   body {

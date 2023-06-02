@@ -1,4 +1,5 @@
 {% load static %}
+{% load active_link_tags %}
 <!-- HTML HEAD CONTENTS -->
 {% block htmlhead %}
 
@@ -34,7 +35,7 @@
       <p class="title">HOME</p>
 
       <!-- Dashboard -->
-      <div class="links">
+      <div class="links {% active_link 'admin_home' 'active' %}">
         <a href="{% url 'admin_home' %}">
           <span class="material-symbols-rounded"> dashboard </span>
           Dashboard
@@ -47,7 +48,7 @@
       <p class="title">ACADEMICS</p>
 
       <!-- Students -->
-      <div class="links">
+      <div class="links {% active_link 'students' 'active' %}">
         <a href="{% url 'students' %}">
           <span class="material-symbols-rounded"> groups </span>
           Students
@@ -55,8 +56,8 @@
       </div>
 
       <!-- Teachers -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'teachers' 'active' %}">
+        <a href="{% url 'teachers' %}">
           <span class="material-symbols-rounded"> group </span>
           Teachers
         </a>

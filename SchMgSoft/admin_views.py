@@ -1,17 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, CustomUser, Student
+from app.models import Class, Session, CustomUser, Student, Teacher
 
 # Create your views here.
 
 
 @login_required(login_url='/')
 def home(request):
-    return render(request, 'admin/home.html')
+    student_count = Student.objects.all().count()
+    teacher_count = Teacher.objects.all().count()
+
+    context = {
+        'student_count': student_count,
+        'teacher_count': teacher_count
+    }
+    
+    return render(request, 'admin/home.html', context)
 
 
-
+# STUDENT'S MANAGEMENT
 @login_required(login_url='/')
 def STUDENTS(request):
     classes = Class.objects.all()
@@ -119,6 +127,7 @@ def STUDENTS(request):
 
 
 
+@login_required(login_url='/')
 def EDIT_STUDENT(request, id):
     classes = Class.objects.all()
     sessions = Session.objects.all()
@@ -132,6 +141,7 @@ def EDIT_STUDENT(request, id):
     return render(request, 'admin/edit_student.html', context)
 
 
+@login_required(login_url='/')
 def UPDATE_STUDENT(request):
     if request.method == 'POST':
         student_id = request.POST.get("student_id")
@@ -225,6 +235,7 @@ def UPDATE_STUDENT(request):
 
 
 
+@login_required(login_url='/')
 def DELETE_STUDENT(request, admin):
     student = CustomUser.objects.get(id=admin)
     student.delete()
@@ -234,7 +245,189 @@ def DELETE_STUDENT(request, admin):
 
 
 
+# TECAHER'S MANAGEMENT
+@login_required(login_url='/')
+def TEACHERS(request):
+    if request.method == 'POST':
+        first_name = request.POST.get("fname")
+        last_name = request.POST.get("lname")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        qualification = request.POST.get("qualification")
+        sex = request.POST.get("sex")
+        dob = request.POST.get("dob")
+        mobile_number = request.POST.get("mobilenumber")
+        pan = request.POST.get("pan")
+        aadhaar = request.POST.get("aadhaar")
+        vill_town = request.POST.get("villtown")
+        post_office = request.POST.get("postoffice")
+        police_station = request.POST.get("policestation")
+        district = request.POST.get("district")
+        state = request.POST.get("state")
+        country = request.POST.get("country")
+        pin = request.POST.get("pin")
+        bank_name = request.POST.get("bankname")
+        account_number = request.POST.get("accountnumber")
+        branch_name = request.POST.get("branchname")
+        ifsc = request.POST.get("ifsc")
+        photo = request.FILES.get("photo")
+        certificate = request.FILES.get("certificate")
+
+        if CustomUser.objects.filter(email=email).exists():
+            messages.warning(request, "Teacher with this email already appointed!")
+            return redirect('teachers')
+        
+        if CustomUser.objects.filter(username=username).exists():
+            messages.warning(request, "This username is already taken!")
+            return redirect('teachers')
+        
+        else:
+            user = CustomUser (
+                first_name = first_name,
+                last_name = last_name,
+                email = email,
+                username = username,
+                profile_pic = photo,
+                user_type = 2
+            )
+            user.set_password(password)
+            user.save()
+
+            teacher = Teacher (
+                admin = user,
+                qualification = qualification,
+                sex = sex,
+                dob = dob,
+                mobile_no = mobile_number,
+                pan_no = pan,
+                aadhaar_no = aadhaar,
+                vill_town = vill_town,
+                post_office = post_office,
+                police_station = police_station,
+                district = district,
+                state = state,
+                country = country,
+                pin = pin,
+                bank_name = bank_name,
+                account_no = account_number,
+                branch_name = branch_name,
+                ifsc = ifsc,
+                cv_resume = certificate
+            )
+            teacher.save()
+            messages.success(request, user.first_name + " " + user.last_name + " has been successfully appointed!")
+            return redirect('teachers')
+
+
+    teachers = Teacher.objects.all()
+    teacher_count = Teacher.objects.count()
+       
+    context = {
+        'teachers': teachers,
+        'teacher_count': teacher_count
+    }
+    return render(request, 'admin/teachers.html', context)
+
+
+
+@login_required(login_url='/')
+def EDIT_TEACHER(request, id):
+    teacher = Teacher.objects.filter(id=id)
+
+    context = {
+        'teacher': teacher
+    }
+    return render(request, 'admin/edit_teacher.html', context)
+
+
+
+@login_required(login_url='/')
+def UPDATE_TEACHER(request):
+    if request.method == 'POST':
+        teacher_id = request.POST.get("teacher_id")
+        first_name = request.POST.get("fname")
+        last_name = request.POST.get("lname")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        qualification = request.POST.get("qualification")
+        sex = request.POST.get("sex")
+        dob = request.POST.get("dob")
+        mobile_number = request.POST.get("mobilenumber")
+        pan = request.POST.get("pan")
+        aadhaar = request.POST.get("aadhaar")
+        vill_town = request.POST.get("villtown")
+        post_office = request.POST.get("postoffice")
+        police_station = request.POST.get("policestation")
+        district = request.POST.get("district")
+        state = request.POST.get("state")
+        country = request.POST.get("country")
+        pin = request.POST.get("pin")
+        bank_name = request.POST.get("bankname")
+        account_number = request.POST.get("accountnumber")
+        branch_name = request.POST.get("branchname")
+        ifsc = request.POST.get("ifsc")
+        photo = request.FILES.get("photo")
+        certificate = request.FILES.get("certificate")
+
+        user = CustomUser.objects.get(id=teacher_id)
+        
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.username = username
+
+        if password != None and password != "":
+            user.set_password(password)
+        if photo != None and photo != "":
+            user.profile_pic = photo
+
+        user.save()
+
+
+        teacher = Teacher.objects.get(admin=teacher_id)
+        teacher.qualification = qualification
+        teacher.sex = sex
+        teacher.dob = dob
+        teacher.mobile_no = mobile_number
+        teacher.pan_no = pan
+        teacher.aadhaar_no = aadhaar
+        teacher.vill_town = vill_town
+        teacher.post_office = post_office
+        teacher.police_station = police_station
+        teacher.district = district
+        teacher.state = state
+        teacher.country = country
+        teacher.pin = pin
+        teacher.bank_name = bank_name
+        teacher.account_no = account_number
+        teacher.branch_name = branch_name
+        teacher.ifsc = ifsc
+
+        if certificate != None and certificate != "":
+            teacher.cv_resume = certificate
+
+        teacher.save()
+        messages.success(request, user.first_name + " " + user.last_name + "'s data have been updated successfully!")
+        return redirect('teachers')
+    
+    return render(request, 'admin/edit_teacher.html')
+
+
+@login_required(login_url='/')
+def DELETE_TEACHER(request, admin):
+    teacher = CustomUser.objects.get(id=admin)
+    teacher.delete()
+
+    messages.success(request, teacher.first_name + " " + teacher.last_name + " has been successfully deleted!")
+    return redirect('teachers')
+
+
+
 # Admin's - MANAGEMENT
+# CLASS
+@login_required(login_url='/')
 def ADD_CLASS(request):
     if request.method == 'POST':
         add_class = request.POST.get("add_class")
@@ -253,3 +446,104 @@ def ADD_CLASS(request):
         'classes': classes
     }
     return render(request, 'admin/add_class.html', context)
+
+
+@login_required(login_url='/')
+def EDIT_CLASS(request, id):
+    classes = Class.objects.get(id=id)
+
+    context = {
+        'classes': classes
+    }
+    return render(request, 'admin/edit_class.html', context)
+
+
+
+@login_required(login_url='/')
+def UPDATE_CLASS(request):
+    if request.method == 'POST':
+        class_id = request.POST.get("class_id")
+        editted_class_name = request.POST.get("edit_class")
+
+
+        class_name_to_be_edited = Class.objects.get(id=class_id)
+        class_name_to_be_edited.class_name = editted_class_name
+        class_name_to_be_edited.save()
+        messages.success(request, "Class name has been updated successfully!")
+        return redirect('add_class')
+    
+    return render(request, 'admin/edit_class.html')
+
+
+
+@login_required(login_url='/')
+def DELETE_CLASS(request, id):
+    classes = Class.objects.get(id=id)
+    classes.delete()
+    messages.success(request, classes.class_name + " has been deleted successfully!")
+
+    return redirect('add_class')
+
+
+# SESSION
+@login_required(login_url='/')
+def ADD_SESSION(request):
+    if request.method == 'POST':
+        start_session = request.POST.get("start_session")
+        end_session = request.POST.get("end_session")
+
+        session = Session (
+            start_session = start_session,
+            end_session = end_session
+        )
+        
+        session.save()
+        messages.success(request, "Session is created successfully!")
+        return redirect('add_session')
+
+
+    sessions = Session.objects.all()
+    context = {
+        'sessions': sessions
+    }
+    return render(request, 'admin/add_session.html', context)
+
+
+
+@login_required(login_url='/')
+def EDIT_SESSION(request, id):
+    session = Session.objects.get(id=id)
+
+    context = {
+        'session': session
+    }
+    return render(request, 'admin/edit_session.html', context)
+
+
+
+@login_required(login_url='/')
+def UPDATE_SESSION(request):
+    if request.method == 'POST':
+        session_id = request.POST.get("session_id")
+        start_session = request.POST.get("start_session")
+        end_session = request.POST.get("end_session")
+
+
+        session = Session.objects.get(id=session_id)
+        session.start_session = start_session
+        session.end_session = end_session
+        session.save()
+        messages.success(request, "Session has been updated successfully!")
+        return redirect('add_session')
+    
+    return render(request, 'admin/edit_session.html')
+
+
+
+@login_required(login_url='/')
+def DELETE_SESSION(request, id):
+    session = Session.objects.get(id=id)
+    session.delete()
+    messages.success(request, "Session has been deleted successfully!")
+
+    return redirect('add_session')

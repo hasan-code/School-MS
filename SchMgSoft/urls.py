@@ -37,12 +37,27 @@ urlpatterns = [
 
     # Admin's Page
     path('home', admin_views.home, name='admin_home'),
+    # STUDENT'S LINKS
     path('students', admin_views.STUDENTS, name='students'),
     path('students/edit/<str:id>', admin_views.EDIT_STUDENT, name='edit_student'),
     path('students/update', admin_views.UPDATE_STUDENT, name='update_student'),
     path('students/detete/<str:admin>', admin_views.DELETE_STUDENT, name='delete_student'),
+    # TEACHER'S LINKS
+    path('teachers', admin_views.TEACHERS, name='teachers'),
+    path('teachers/edit/<str:id>', admin_views.EDIT_TEACHER, name='edit_teacher'),
+    path('teachers/update', admin_views.UPDATE_TEACHER, name='update_teacher'),
+    path('teachers/detete/<str:admin>', admin_views.DELETE_TEACHER, name='delete_teacher'),
 
     # Admin's - MANAGEMENT
-    path('management/add_class', admin_views.ADD_CLASS, name='add_class'),
+    # CLASS
+    path('management/class/add', admin_views.ADD_CLASS, name='add_class'),
+    path('management/class/edit/<str:id>', admin_views.EDIT_CLASS, name='edit_class'),
+    path('management/class/update', admin_views.UPDATE_CLASS, name='update_class'),
+    path('management/class/delete/<str:id>', admin_views.DELETE_CLASS, name='delete_class'),
+    # SESSION
+    path('management/session/add', admin_views.ADD_SESSION, name='add_session'),
+    path('management/session/edit/<str:id>', admin_views.EDIT_SESSION, name='edit_session'),
+    path('management/session/update', admin_views.UPDATE_SESSION, name='update_session'),
+    path('management/session/delete/<str:id>', admin_views.DELETE_SESSION, name='delete_session'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -43,11 +43,12 @@
     </thead>
 
     <tbody>
+        {% for i in classes %}
       <tr>
-        <td style="text-align: center">1</td>
-        <td>Class 1</td>
-        <td>9 dec</td>
-        <td>9 Dec</td>
+        <td style="text-align: center">{{ forloop.counter }}</td>
+        <td>{{ i.class_name }}</td>
+        <td>{{ i.created_at }}</td>
+        <td>{{ i.updated_at }}</td>
         <td
           style="
             display: flex;
@@ -57,14 +58,16 @@
             justify-content: center;
           "
         >
-          <a href="">
+          <a href="{% url 'edit_class' i.id %}">
             <span class="material-symbols-rounded"> edit </span>
           </a>
-          <a href="">
+          <a href="{% url 'delete_class' i.id %}">
             <span class="material-symbols-rounded"> delete </span>
           </a>
         </td>
       </tr>
+
+      {% endfor %}
     </tbody>
   </table>
 </div>

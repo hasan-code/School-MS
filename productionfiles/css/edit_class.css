@@ -1,0 +1,99 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* EDIT CLASS */
+.edit-class {
+  padding: 0.5rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.edit-class h3 {
+  font-size: 1.351rem;
+  font-weight: 500;
+  color: var(--dark-txt);
+}
+
+.edit-class form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1.5rem;
+  border: 1px solid var(--light-bg);
+  border-radius: 0.3rem;
+}
+
+.edit-class form .input-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.edit-class form .input-group label {
+  position: absolute;
+  top: -10px;
+  left: 8px;
+  padding: 0px 5px;
+  font-size: 0.791rem;
+  font-weight: 500;
+  color: var(--light-txt);
+  background-color: #fff;
+}
+
+.edit-class form .input-group input,
+.edit-class form .input-group select {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #fff;
+  border: 1px solid var(--light);
+  border-radius: 0.3rem;
+  outline: none;
+}
+
+.edit-class form .input-group input:focus,
+.edit-class form .input-group select:focus {
+  border: 1px solid var(--dark);
+  caret-color: var(--dark);
+}
+
+.edit-class form button {
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.931rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.edit-class form button:hover {
+  background-color: var(--normal);
+  color: #000;
+  cursor: pointer;
+}

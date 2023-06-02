@@ -34,11 +34,11 @@ class Session(models.Model):
     end_session = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.start_session + " - " + self.end_session
+        return self.start_session + " to " + self.end_session
     
 
 
-
+# STUDENT MODEL
 class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     # first_name = models.CharField(max_length=200)
@@ -69,6 +69,37 @@ class Student(models.Model):
     ifsc = models.CharField(max_length=100)
     student_photo = models.ImageField(upload_to='media/profile_pic')
     dob_certificate = models.FileField(upload_to='media/students/certificates')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return self.admin.first_name + " " + self.admin.last_name
+    
+
+
+# TEACHER MODEL
+class Teacher(models.Model):
+    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    qualification = models.TextField()
+    sex = models.CharField(max_length=20)
+    dob = models.DateField()
+    mobile_no = models.PositiveIntegerField()
+    pan_no = models.CharField(max_length=10)
+    aadhaar_no = models.PositiveBigIntegerField()
+    vill_town = models.CharField(max_length=200)
+    post_office = models.CharField(max_length=200)
+    police_station = models.CharField(max_length=200)
+    district = models.CharField(max_length=200)
+    state = models.CharField(max_length=200)
+    country = models.CharField(max_length=200)
+    pin = models.PositiveIntegerField()
+    bank_name = models.CharField(max_length=350)
+    account_no = models.PositiveIntegerField()
+    branch_name = models.CharField(max_length=350)
+    ifsc = models.CharField(max_length=100)
+    teacher_photo = models.ImageField(upload_to='media/profile_pic')
+    cv_resume = models.FileField(upload_to='media/teachers/certificates')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

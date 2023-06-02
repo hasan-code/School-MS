@@ -1,0 +1,380 @@
+{% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/appoint_teacher.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Appoint Teacher Form -->
+<div class="appoint-teacher" id="AppointTeacher">
+  <form
+    id="appointTeacherForm"
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <!-- TABS for each step of registration in the form -->
+    <!-- TEACHER'S DETAILS TAB -->
+    <div class="tab">
+      <div class="title">
+        <p>Teacher's Details</p>
+      </div>
+
+      <br />
+
+      <div class="form-content">
+        <div class="input-group">
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="fname" class="placeholder">Firstname</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="lname"
+            id="lname"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="lname" class="placeholder">Lastname</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="username" class="placeholder">Username</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="password" class="placeholder">Password</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="email" class="placeholder">Email</label>
+        </div>
+
+        <div class="input-group">
+          <select name="sex" id="sex" class="input" placeholder=" " required>
+            <option value="hidden" selected disabled hidden>Choose sex</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="None">Prefer not to say</option>
+          </select>
+          <label for="sex" class="placeholder">Sex</label>
+        </div>
+
+        <div class="input-group" style="width: 100%;">
+          <textarea
+            name="qualification"
+            id="qualification"
+            cols="10"
+            rows="1"
+            class="input"
+            placeholder=" "
+            required
+          ></textarea>
+
+          <label for="qualification" class="placeholder">Qualification</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="date"
+            name="dob"
+            id="dob"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="dob" class="placeholder">Date of Birth</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="tel"
+            name="mobilenumber"
+            id="mobilenumber"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="mobilenumber" class="placeholder">Mobile Number</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="pan"
+            id="pan"
+            class="input"
+            placeholder=" "
+          />
+          <label for="pan" class="placeholder">PAN Number</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="number"
+            name="aadhaar"
+            id="aadhaar"
+            class="input"
+            placeholder=" "
+          />
+          <label for="aadhaar" class="placeholder">AADHAAR Number</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHER'S ADDRESS TAB -->
+    <div class="tab">
+      <div class="title">
+        <p>Teacher's Address</p>
+      </div>
+
+      <br />
+
+      <div class="form-content">
+        <div class="input-group">
+          <input
+            type="text"
+            name="villtown"
+            id="villtown"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="villtown" class="placeholder">Vill/Town</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="postoffice"
+            id="postoffice"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="postoffice" class="placeholder">Post Office</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="policestation"
+            id="policestation"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="policestation" class="placeholder">Police Station</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="district"
+            id="district"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="district" class="placeholder">District</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="state"
+            id="state"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="state" class="placeholder">State</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="country"
+            id="country"
+            class="input"
+            placeholder=" "
+          />
+          <label for="country" class="placeholder">Country</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="number"
+            name="pin"
+            id="pin"
+            class="input"
+            placeholder=" "
+            required
+          />
+          <label for="pin" class="placeholder">PIN</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK DETAILS -->
+    <div class="tab">
+      <div class="title">
+        <p>Bank Details</p>
+      </div>
+
+      <br />
+
+      <div class="form-content">
+        <div class="input-group">
+          <input
+            type="text"
+            name="bankname"
+            id="bankname"
+            class="input"
+            placeholder=" "
+          />
+          <label for="bankname" class="placeholder">Name of the Bank</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="number"
+            name="accountnumber"
+            id="accountnumber"
+            class="input"
+            placeholder=" "
+          />
+          <label for="accountnumber" class="placeholder">Account Number</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="branchname"
+            id="branchname"
+            class="input"
+            placeholder=" "
+          />
+          <label for="branchname" class="placeholder">Bank Branch Name</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="ifsc"
+            id="ifsc"
+            class="input"
+            placeholder=" "
+            pattern="[A-Za-z][0-9]"
+          />
+          <label for="ifsc" class="placeholder">IFSC Code</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHER DETAILS -->
+    <div class="tab">
+      <div class="title">
+        <p>Other Details</p>
+      </div>
+
+      <br />
+
+      <div class="form-content">
+        <div class="input-group">
+          <input
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/jpg, image/jpeg"
+            class="input"
+            placeholder=" "
+          />
+          <label for="photo" class="placeholder">Upload Teacher's Photo</label>
+          <small
+            style="
+              padding-top: 0.3rem;
+              font-size: 0.671rem;
+              color: red;
+              text-align: left;
+            "
+            >Note: JPG/JPEG only (50KB - 100KB)</small
+          >
+        </div>
+
+        <div class="input-group">
+          <input
+            type="file"
+            name="certificate"
+            id="certificate"
+            accept=".pdf, .docx"
+            class="input"
+            placeholder=" "
+          />
+          <label for="certificate" class="placeholder">Upload CV/Resume</label>
+          <small
+            style="
+              padding-top: 0.3rem;
+              font-size: 0.671rem;
+              color: red;
+              text-align: left;
+            "
+            >Note: PDF/DOCX only (50KB - 100KB)</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Previous - Next Button -->
+    <div class="action">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+        Previous
+      </button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </form>
+</div>
+
+<script
+  src="{% static 'js/appoint_teacher.js' %}"
+  type="text/javascript"
+></script>
+
+{% endblock %}

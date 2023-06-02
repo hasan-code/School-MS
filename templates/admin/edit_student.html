@@ -81,6 +81,7 @@
         name="username"
         id="username"
         value="{% for i in student %}{{ i.admin.username }}{% endfor %}"
+        readonly
       />
     </div>
 
@@ -101,6 +102,7 @@
         name="email"
         id="email"
         value="{% for i in student %}{{ i.admin.email }}{% endfor %}"
+        readonly
       />
     </div>
 

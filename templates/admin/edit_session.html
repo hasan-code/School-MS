@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/edit_session.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- EDIT SESSION -->
+<div class="edit-session">
+  <h3>Add Session</h3>
+  <form action="{% url 'update_session' %}" method="post">
+    {% csrf_token %}
+
+    <!-- This "id" is retrieved only for updating the Session. It should be hidden. -->
+    <input type="text" name="session_id" id="session_id" value="{{ sessions.id }}" hidden>
+
+    <div class="input-group">
+      <label for="start_session">Start session</label>
+      <input type="date" name="start_session" id="start_session" value="{{ session.start_session }}" required/>
+    </div>
+
+    <div class="input-group">
+        <label for="end_session">End session</label>
+        <input type="date" name="end_session" id="end_session" value="{{ session.end_session }}" required/>
+      </div>
+
+    <button type="submit">Save changes</button>
+  </form>
+</div>
+
+{% endblock %}

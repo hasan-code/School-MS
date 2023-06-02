@@ -1,0 +1,96 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/teachers.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- Actions -->
+<div class="action-bar">
+  <!-- Filter Form -->
+  <form action="" class="filter-form">
+    <!-- {% csrf_token %} -->
+    <div class="input-group">
+      <input
+        type="text"
+        name="filter"
+        id="filter"
+        placeholder="Search teacher"
+      />
+      <div class="icon">
+        <span class="material-symbols-rounded"> page_info </span>
+      </div>
+    </div>
+  </form>
+
+  <!-- Appoint Teacher Button -->
+  <div class="btn" id="appointTeacherBtn">
+    <p>Appoint teacher</p>
+  </div>
+</div>
+
+<!-- TEACHER'S DATA TABLE -->
+<div class="teacher-data">
+  <h3>Teacher's List</h3>
+
+  <!-- DATA TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>Employment ID.</th>
+        <th>Name of the teacher</th>
+        <th>Qualification</th>
+        <th style="text-align: center">Sex</th>
+        <th style="text-align: center">Salary status</th>
+        <th style="text-align: center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for i in teachers %}
+      <tr>
+        <td>1111</td>
+        <td>{{ i.admin.first_name }}&nbsp;{{ i.admin.last_name }}</td>
+        <td>{{ i.qualification }}</td>
+        {% if i.sex == 'Male' %}
+        <td style="text-align: center">M</td>
+        {% elif i.sex == 'Female' %}
+        <td style="text-align: center">F</td>
+        {% else %}
+        <td style="text-align: center">NA</td>
+        {% endif %}
+        <td style="text-align: center">Fully paid</td>
+        <td
+          style="
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <a href="{% url 'edit_teacher' i.id %}">
+            <span class="material-symbols-rounded"> edit </span>
+          </a>
+          <a href="{% url 'delete_teacher' i.admin.id %}">
+            <span class="material-symbols-rounded"> delete </span>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="indicator">
+    Showing {{ teacher_count }} of {{ teacher_count }} teachers.
+  </p>
+</div>
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- APPOINT TEACHER FORM -->
+{% include 'admin/appoint_teacher.html' %} {% endblock %}
