@@ -84,7 +84,7 @@ header .right .user {
 header .right .user img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 0.2rem;
   overflow: hidden;
 }

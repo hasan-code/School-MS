@@ -1,5 +1,4 @@
-{% load static %}
-{% load active_link_tags %}
+{% load static %} {% load active_link_tags %}
 <!-- HTML HEAD CONTENTS -->
 {% block htmlhead %}
 
@@ -29,6 +28,7 @@
   <span class="divider"></span>
 
   <!-- NAVBAR ITEMS -->
+  {% if user.user_type == '1' %}
   <div class="navbar">
     <!-- Home section -->
     <div class="navbar-group">
@@ -87,7 +87,7 @@
 
     <!-- Finance section -->
     <div class="navbar-group">
-      <p class="title">STAFF-MANAGEMENT</p>
+      <p class="title">FINANCE</p>
 
       <!-- Student's Fee -->
       <div class="links">
@@ -134,6 +134,178 @@
       </div>
     </div>
   </div>
+
+  {% elif user.user_type == '2' %}
+  <div class="navbar">
+    <!-- Home section -->
+    <div class="navbar-group">
+      <p class="title">HOME</p>
+
+      <!-- Dashboard -->
+      <div class="links {% active_link 'teacher_home' 'active' %}">
+        <a href="{% url 'teacher_home' %}">
+          <span class="material-symbols-rounded"> dashboard </span>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <!-- Academics section -->
+    <div class="navbar-group">
+      <p class="title">ACADEMICS</p>
+
+      <!-- Attendance -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> ballot </span>
+          Attendance
+        </a>
+      </div>
+
+      <!-- Assignment -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> assignment_add </span>
+          Assignment
+        </a>
+      </div>
+
+      <!-- Upload Study Materials -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> file_present </span>
+          Study Materials
+        </a>
+      </div>
+    </div>
+
+    <!-- Examination board section -->
+    <div class="navbar-group">
+      <p class="title">EXAM BOARD</p>
+
+      <!-- Upload Marks -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> fact_check </span>
+          Upload Marks
+        </a>
+      </div>
+    </div>
+
+    <!-- Management section -->
+    <div class="navbar-group">
+      <p class="title">MANAGEMENT</p>
+
+      <!-- Leave Apply -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> history_edu </span>
+          Leave Apply
+        </a>
+      </div>
+    </div>
+
+    <span class="divider"></span>
+
+    <!-- Others section -->
+    <div class="navbar-group">
+      <p class="title">OTHERS</p>
+
+      <!-- Settings -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> settings </span>
+          Settings
+        </a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="navbar">
+    <!-- Home section -->
+    <div class="navbar-group">
+      <p class="title">HOME</p>
+
+      <!-- Dashboard -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> dashboard </span>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <!-- Academics section -->
+    <div class="navbar-group">
+      <p class="title">ACADEMICS</p>
+
+      <!-- Attendance -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> ballot </span>
+          Attendance
+        </a>
+      </div>
+
+      <!-- Assignment -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> assignment </span>
+          Assignment
+        </a>
+      </div>
+
+      <!-- Study Materials -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> book </span>
+          Study Materials
+        </a>
+      </div>
+    </div>
+
+    <!-- Examination board section -->
+    <div class="navbar-group">
+      <p class="title">EXAM BOARD</p>
+
+      <!-- View Marks -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> fact_check </span>
+          View Marks
+        </a>
+      </div>
+    </div>
+
+    <!-- Management section -->
+    <div class="navbar-group">
+      <p class="title">MANAGEMENT</p>
+
+      <!-- Leave Apply -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> history_edu </span>
+          Leave Apply
+        </a>
+      </div>
+    </div>
+
+    <span class="divider"></span>
+
+    <!-- Others section -->
+    <div class="navbar-group">
+      <p class="title">OTHERS</p>
+
+      <!-- Settings -->
+      <div class="links">
+        <a href="">
+          <span class="material-symbols-rounded"> settings </span>
+          Settings
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </nav>
 
 {% endblock %}

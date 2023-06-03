@@ -146,11 +146,14 @@ nav .navbar .navbar-group .links a:hover {
   border-radius: 0.3rem;
 }
 
-nav .navbar .navbar-group .links a:active .links {
+nav .navbar .navbar-group .links.active {
   background-color: var(--dark);
+  border-radius: 0.3rem;
+}
+
+nav .navbar .navbar-group .links.active a {
   color: #fff;
   font-weight: 500;
-  border-radius: 0.3rem;
 }
 
 /* Small devices (landscape phones, 576px and up) */

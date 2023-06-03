@@ -1,0 +1,64 @@
+{% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- CALENDAR : HOMEPAGE - DASHBOARD -->
+<div class="calendar">
+  <div class="head">
+    <p id="month"></p>
+    <p id="year"></p>
+  </div>
+
+  <div class="week-day">
+    <div class="day">
+      <p style="color: #ff0000">S</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>M</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>T</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>W</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>T</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>F</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+    <div class="day">
+      <p>S</p>
+      <div class="date-div">
+        <p class="date"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/calendar.js' %}" type="text/javascript"></script>
+
+{% endblock %}

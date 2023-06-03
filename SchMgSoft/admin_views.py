@@ -7,7 +7,7 @@ from app.models import Class, Session, CustomUser, Student, Teacher
 
 
 @login_required(login_url='/')
-def home(request):
+def HOME(request):
     student_count = Student.objects.all().count()
     teacher_count = Teacher.objects.all().count()
 
@@ -15,7 +15,7 @@ def home(request):
         'student_count': student_count,
         'teacher_count': teacher_count
     }
-    
+
     return render(request, 'admin/home.html', context)
 
 

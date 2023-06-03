@@ -35,8 +35,8 @@ urlpatterns = [
     path('profile', views.PROFILE, name='profile'),
     path('profile/update', views.PROFILE_UPDATE, name='profile_update'),
 
-    # Admin's Page
-    path('home', admin_views.home, name='admin_home'),
+    # Admin's Page Links
+    path('home', admin_views.HOME, name='admin_home'),
     # STUDENT'S LINKS
     path('students', admin_views.STUDENTS, name='students'),
     path('students/edit/<str:id>', admin_views.EDIT_STUDENT, name='edit_student'),
@@ -47,6 +47,10 @@ urlpatterns = [
     path('teachers/edit/<str:id>', admin_views.EDIT_TEACHER, name='edit_teacher'),
     path('teachers/update', admin_views.UPDATE_TEACHER, name='update_teacher'),
     path('teachers/detete/<str:admin>', admin_views.DELETE_TEACHER, name='delete_teacher'),
+
+
+    # Teacher's Page Links
+    path('home', teacher_views.HOME, name='teacher_home'),
 
     # Admin's - MANAGEMENT
     # CLASS

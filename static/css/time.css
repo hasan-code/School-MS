@@ -1,0 +1,52 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* HOMEPAGE : TIME */
+#time-container {
+  padding: 0 1rem;
+  width: 100%;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--lightest);
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+#time-container .time {
+  width: 20%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.931rem;
+  color: var(--dark-txt);
+  text-align: center;
+  /* background-color: black; */
+}
+
+#time-container .time p {
+  font-size: 1.931rem;
+  color: var(--dark-txt);
+  text-align: center;
+}
+
+#time-container .time img {
+  height: 24px;
+  object-fit: contain;
+}
