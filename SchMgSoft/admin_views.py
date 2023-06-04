@@ -427,8 +427,15 @@ def DELETE_TEACHER(request, admin):
 
 # STAFF MANAGEMENT - ADMIN
 @login_required(login_url='/')
-def SEND_NOTIFICATION(request):
-    return render(request, 'admin/send_notification.html')
+def SEND_NOTIFICATIONS(request):
+    teachers = Teacher.objects.all()
+    students = Student.objects.all()
+
+    context = {
+        'teachers': teachers,
+        'students': students
+    }
+    return render(request, 'admin/send_notifications.html', context)
 
 
 

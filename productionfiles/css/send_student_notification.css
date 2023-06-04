@@ -1,0 +1,454 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+.send-notification-container {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.send-notification-container h3 {
+  font-size: 1.351rem;
+  font-weight: 500;
+  color: var(--dark-txt);
+}
+
+.send-notification-container form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: center;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+.send-notification-container form .notification-to {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.send-notification-container form .notification-to input {
+  /* position: relative; */
+  padding: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  /* border-bottom: 2px solid #e8e8e8; */
+  outline: none;
+}
+
+.send-notification-container form .notification-to .suggestions-modal {
+  position: absolute;
+  top: 130%;
+  left: 1%;
+  padding: 1rem 0.5rem;
+  width: 400px;
+  max-height: 250px;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 0.3rem;
+  display: none;
+  z-index: 1;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content
+  #suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content
+  #suggestions-list
+  .names {
+  padding: 0.3rem 1rem;
+  width: 100%;
+  font-size: 0.931rem;
+  font-weight: 400;
+  text-align: left;
+  /* display: none; */
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content
+  #suggestions-list
+  .names:hover {
+  border-radius: 0.3rem;
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.send-notification-container form .input-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border: 2px solid #e8e8e8;
+  border-radius: 0.3rem;
+}
+
+.send-notification-container form .input-group .input-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification-container form .input-group .input-field textarea {
+  padding: 0.5rem;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #e8e8e8;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  font-family: "Poppins", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.bold-text-active {
+  font-weight: 600;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.italic-text-active {
+  font-style: italic;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.underline-text-active {
+  text-decoration: underline;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.left-align-text-active {
+  text-align: left;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.center-align-text-active {
+  text-align: center;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.right-align-text-active {
+  text-align: right;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  textarea.justify-align-text-active {
+  text-align: justify;
+}
+
+.send-notification-container form .input-group .input-field .toolbar {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification-container form .input-group .input-field .toolbar .left,
+.send-notification-container form .input-group .input-field .toolbar .right {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.send-notification-container form .input-group .input-field .toolbar .left {
+  justify-content: left;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container {
+  position: absolute;
+  top: -75px;
+  padding: 1.5rem;
+  width: fit-content;
+  height: fit-content;
+  display: none;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  /* background-color: rgba(0, 0, 0, 0.37);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px); */
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container.toggle-color-container {
+  display: flex;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  .color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  .color:hover {
+  cursor: pointer;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #red {
+  background-color: #ff0000;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #green {
+  background-color: #00d300;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #yellow {
+  background-color: #fff200;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #blue {
+  background-color: #6969ff;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #orange {
+  background-color: #ffbb00;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .icon,
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right
+  .icon {
+  font-size: 1.131rem;
+  color: #808080;
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .icon:hover,
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right
+  .icon:hover {
+  cursor: pointer;
+  color: var(--darker);
+}
+
+.send-notification-container
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .separator {
+  width: 2px;
+  height: 20px;
+  background-color: #cbcbcb;
+}
+
+.send-notification-container form .input-group .input-field .toolbar .right {
+  justify-content: center;
+}
+
+.send-notification-container form button {
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.931rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification-container form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}

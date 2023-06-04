@@ -22,7 +22,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  /* background-color: #fff; */
   border-bottom: 1px solid #f1f1f1;
 }
 

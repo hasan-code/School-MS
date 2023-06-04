@@ -1,0 +1,523 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* -----Resetting default html----- */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* background-color: #fff; */
+  overflow: hidden;
+}
+
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.material-symbols-rounded {
+  font-size: 1.31rem;
+}
+
+/* SEND NOTIFICATION MODAL */
+.send-notification-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification-container.active {
+  display: flex;
+}
+
+.send-notification-container .send-notification-modal {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%; */
+  padding: 1rem 1.5rem;
+  width: 70%;
+  min-height: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.send-notification-container .send-notification-modal h3 {
+  padding: 0 1.5rem;
+  font-size: 1.351rem;
+  font-weight: 500;
+  color: var(--darker);
+  border: 1px solid var(--dark);
+  border-radius: 0.3rem;
+}
+
+.send-notification-container .send-notification-modal form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: center;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+.send-notification-container .send-notification-modal form .notification-to {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .notification-to
+  input {
+  padding: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.send-notification-container .send-notification-modal form .input-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border: 2px solid #e8e8e8;
+  border-radius: 0.3rem;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea {
+  padding: 0.5rem;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #e8e8e8;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  font-family: "Poppins", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.bold-text-active {
+  font-weight: 600;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.italic-text-active {
+  font-style: italic;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.underline-text-active {
+  text-decoration: underline;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.left-align-text-active {
+  text-align: left;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.center-align-text-active {
+  text-align: center;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.right-align-text-active {
+  text-align: right;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  textarea.justify-align-text-active {
+  text-align: justify;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left,
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left {
+  justify-content: left;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container {
+  position: absolute;
+  top: -75px;
+  padding: 1.5rem;
+  width: fit-content;
+  height: fit-content;
+  display: none;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  /* background-color: rgba(0, 0, 0, 0.37);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px); */
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container.toggle-color-container {
+  display: flex;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  .color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  .color:hover {
+  cursor: pointer;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #red {
+  background-color: #ff0000;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #green {
+  background-color: #00d300;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #yellow {
+  background-color: #fff200;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #blue {
+  background-color: #6969ff;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .text-color-container
+  .color-container
+  #orange {
+  background-color: #ffbb00;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .icon,
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right
+  .icon {
+  font-size: 1.131rem;
+  color: #808080;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .icon:hover,
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right
+  .icon:hover {
+  cursor: pointer;
+  color: var(--darker);
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .left
+  .separator {
+  width: 2px;
+  height: 20px;
+  background-color: #cbcbcb;
+}
+
+.send-notification-container
+  .send-notification-modal
+  form
+  .input-group
+  .input-field
+  .toolbar
+  .right {
+  justify-content: center;
+}
+
+.send-notification-container .send-notification-modal form button {
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.931rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification-container .send-notification-modal form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}

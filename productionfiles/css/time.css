@@ -22,7 +22,7 @@
   border-radius: 0.3rem;
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--lightest);
+  /* border: 1px solid var(--lightest); */
   align-items: center;
   justify-content: space-between;
   vertical-align: middle;

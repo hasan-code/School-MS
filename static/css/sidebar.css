@@ -25,6 +25,9 @@ nav {
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+  /* background-color: rgba(255, 255, 255, 0.37);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px); */
   border-right: 1px solid #f1f1f1;
   overflow-x: hidden;
   overflow-y: auto;
@@ -159,7 +162,7 @@ nav .navbar .navbar-group .links.active a {
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
   body {
-    background-color: var(--dark-bg);
+    /* background-color: var(--dark-bg); */
     transition: all 0.3s;
   }
 

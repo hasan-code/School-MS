@@ -69,8 +69,8 @@
       <p class="title">STAFF-MANAGEMENT</p>
 
       <!-- Teaching Staff -->
-      <div class="links">
-        <a href="{% url 'send_notification' %}">
+      <div class="links {% active_link 'send_notifications' 'active' %}">
+        <a href="{% url 'send_notifications' %}">
           <span class="material-symbols-rounded"> notification_add </span>
           Send Notification
         </a>

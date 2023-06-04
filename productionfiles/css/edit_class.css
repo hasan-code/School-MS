@@ -94,6 +94,6 @@
 
 .edit-class form button:hover {
   background-color: var(--normal);
-  color: #000;
+  color: var(--dark-txt);
   cursor: pointer;
 }
