@@ -22,6 +22,7 @@ const blueColor = document.getElementById("blue");
 const orangeColor = document.getElementById("orange");
 
 const textArea = document.querySelector("textarea");
+const deleteMessageIcon = document.getElementById("delete-message");
 
 boldText.addEventListener("click", () => {
   textArea.classList.toggle("bold-text-active");
@@ -55,6 +56,12 @@ justifyAlign.addEventListener("click", () => {
 textColor.addEventListener("click", () => {
   colorContainer.classList.toggle("toggle-color-container");
 });
+
+// window.addEventListener("click", (event) => {
+//     if (event.target == colorContainer) {
+//         colorContainer.classList.toggle("toggle-color-container");
+//     }
+// });
 
 redColor.addEventListener("click", () => {
   textArea.style.color = "#ff0000";
@@ -107,4 +114,54 @@ function handleFileLoad(event) {
   // Perform any operations with the file content
   console.log(fileContent);
   // ...rest of your code
+}
+
+
+// Delete message on clicking the delete message icon
+deleteMessageIcon.addEventListener("click", () => {
+    textArea.value = '';
+});
+
+// EMAIL SUGGESTIONS MODAL
+const emailInput = document.getElementById("receiever");
+const suggestionsModal = document.getElementById("email-suggestions-modal");
+const suggestionsList = document.getElementById("suggestions-list");
+
+emailInput.addEventListener("input", showSuggestions);
+
+function showSuggestions() {
+  const initials = emailInput.value.trim().toLowerCase();
+
+  // Clear existing suggestions
+  suggestionsList.innerHTML = "";
+
+  if (initials.length > 1) {
+    // Make an API call or perform any logic to get email suggestions based on initials
+
+    // Dummy email suggestions for demonstration
+    const suggestions = [
+      "john.doe@example.com",
+      "jane.smith@example.com",
+      "james.brown@example.com",
+      "jennifer.jones@example.com",
+    ];
+
+    // Filter suggestions based on initials
+    const filteredSuggestions = suggestions.filter((email) =>
+      email.startsWith(initials)
+    );
+
+    // Generate suggestion list items
+    filteredSuggestions.forEach((email) => {
+      const li = document.createElement("li");
+      li.textContent = email;
+      suggestionsList.appendChild(li);
+    });
+
+    // Show the suggestions modal
+    suggestionsModal.style.display = "block";
+  } else {
+    // Hide the suggestions modal
+    suggestionsModal.style.display = "none";
+  }
 }

@@ -18,34 +18,94 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.send-notification-container form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   gap: 1.5rem;
   align-items: start;
   justify-content: center;
 }
 
-.send-notification-container form .notification-to {
+.send-notification-container form {
+  padding: 1.5rem;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: start;
+  justify-content: center;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+.send-notification-container form .notification-to {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   align-items: center;
   justify-content: left;
+  border-bottom: 2px solid #e8e8e8;
 }
 
 .send-notification-container form .notification-to input {
+  /* position: relative; */
   padding: 0.5rem;
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 1px solid #222e02;
+  outline: none;
+}
+
+.send-notification-container form .notification-to .suggestions-modal {
+  position: absolute;
+  top: 130%;
+  left: 1%;
+  padding: 1rem 1.5rem;
+  width: 400px;
+  max-height: 250px;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 0.3rem;
+  display: none;
+  z-index: 1;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content
+  ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: start;
+  justify-content: center;
+}
+
+.send-notification-container
+  form
+  .notification-to
+  .suggestions-modal
+  .modal-content
+  ul
+  li {
+  font-size: 0.931rem;
+  font-weight: 400;
+  text-align: left;
 }
 
 .send-notification-container form .input-group {
@@ -55,8 +115,8 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  border: 2px solid var(--light);
-  border-radius: 0.9rem;
+  border: 2px solid #e8e8e8;
+  border-radius: 0.3rem;
 }
 
 .send-notification-container form .input-group .input-field {
@@ -65,6 +125,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+.send-notification-container form .input-group .input-field textarea {
+  padding: 0.5rem;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #e8e8e8;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  font-family: "Poppins", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .send-notification-container
