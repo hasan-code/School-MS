@@ -18,7 +18,7 @@
   padding: 1rem;
   width: 100%;
   height: fit-content;
-  background-color: var(--dark);
+  /* background-color: var(--dark); */
   border-radius: 0.7rem;
   display: flex;
   flex-direction: column;

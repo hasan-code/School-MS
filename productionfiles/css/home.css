@@ -134,7 +134,7 @@
 }
 
 .dashboard .aside .achievement,
-.dashboard .aside .time,
+.dashboard .aside .time-container,
 .dashboard .aside .calendar-container {
   height: fit-content;
   background-color: #fff;

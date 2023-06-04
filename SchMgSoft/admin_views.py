@@ -425,6 +425,14 @@ def DELETE_TEACHER(request, admin):
 
 
 
+# STAFF MANAGEMENT - ADMIN
+@login_required(login_url='/')
+def SEND_NOTIFICATION(request):
+    return render(request, 'admin/send_notification.html')
+
+
+
+
 # Admin's - MANAGEMENT
 # CLASS
 @login_required(login_url='/')
