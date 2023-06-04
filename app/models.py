@@ -106,3 +106,14 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.admin.first_name + " " + self.admin.last_name
+    
+
+# NOTIFICATIONS SEND TO TEACHERS BY ADMIN
+class Teacher_Notification(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+
+    def __str__(self):
+        return self.teacher_id.admin.first_name + " " + self.teacher_id.admin.last_name
