@@ -26,30 +26,37 @@ const deleteMessageIcon = document.getElementById("delete-message");
 
 boldText.addEventListener("click", () => {
   textArea.classList.toggle("bold-text-active");
+  boldText.classList.toggle("active");
 });
 
 italicText.addEventListener("click", () => {
   textArea.classList.toggle("italic-text-active");
+  italicText.classList.toggle("active");
 });
 
 underlineText.addEventListener("click", () => {
   textArea.classList.toggle("underline-text-active");
+  underlineText.classList.toggle("active");
 });
 
 leftAlign.addEventListener("click", () => {
   textArea.classList.toggle("left-align-text-active");
+  leftAlign.classList.toggle("active");
 });
 
 centerAlign.addEventListener("click", () => {
   textArea.classList.toggle("center-align-text-active");
+  centerAlign.classList.toggle("active");
 });
 
 rightAlign.addEventListener("click", () => {
   textArea.classList.toggle("right-align-text-active");
+  rightAlign.classList.toggle("active");
 });
 
 justifyAlign.addEventListener("click", () => {
   textArea.classList.toggle("justify-align-text-active");
+  justifyAlign.classList.toggle("active");
 });
 
 // Add a click event listener to the change Color of the TextArea
@@ -65,26 +72,32 @@ textColor.addEventListener("click", () => {
 
 redColor.addEventListener("click", () => {
   textArea.style.color = "#ff0000";
+  textColor.classList.toggle("active");
 });
 
 greenColor.addEventListener("click", () => {
   textArea.style.color = "#00d300";
+  textColor.classList.toggle("active");
 });
 
 yellowColor.addEventListener("click", () => {
   textArea.style.color = "#fff200";
+  textColor.classList.toggle("active");
 });
 
 blueColor.addEventListener("click", () => {
   textArea.style.color = "#6969ff";
+  textColor.classList.toggle("active");
 });
 
 orangeColor.addEventListener("click", () => {
   textArea.style.color = "#ffbb00";
+  textColor.classList.toggle("active");
 });
 
 // Add a click event listener to the button
 attachFile.addEventListener("click", () => {
+  attachFile.classList.toggle("active");
   fileInput.click(); // Simulate a click on the file input element
 });
 

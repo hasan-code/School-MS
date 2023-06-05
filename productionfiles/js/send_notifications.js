@@ -40,17 +40,25 @@ function searchStudent() {
   }
 }
 
-// OPEN AND CLOSE "SEND NOTIFICATION MODAL"
-const openNotificationModal = document.querySelectorAll(".open-notification-modal");
-const sendNotificationModal = document.getElementById("sendNotificationModal");
-openNotificationModal.forEach((modal) => {
-  modal.addEventListener("click", () => {
-    sendNotificationModal.classList.toggle("active");
-  });
+// OPEN & CLOSE "VIEW ALL SENT NOTIFICATIONS" MODAL OF TEACHERS & STUDENTS
+const viewAllTeacherNotificationsBtn = document.getElementById(
+  "viewAllTeacherNotifications"
+);
+const viewAllTeacherNotificationsModal = document.getElementById(
+  "all-notifications-teacher-modal"
+);
+
+const viewAllStudentNotificationsBtn = document.getElementById(
+  "viewAllStudentNotifications"
+);
+const viewAllStudentNotificationsModal = document.getElementById(
+  "all-notifications-student-modal"
+);
+
+viewAllTeacherNotificationsBtn.addEventListener("click", () => {
+  viewAllTeacherNotificationsModal.classList.toggle("active");
 });
 
-window.addEventListener("click", (e) => {
-  if (e.target == sendNotificationModal) {
-    sendNotificationModal.classList.toggle("active");
-  }
+viewAllStudentNotificationsBtn.addEventListener("click", () => {
+  viewAllStudentNotificationsModal.classList.toggle("active");
 });

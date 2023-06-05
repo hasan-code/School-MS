@@ -188,3 +188,19 @@ table tbody tr td a:hover {
   color: var(--light-txt);
   text-align: left;
 }
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  table {
+    overflow-x: auto;
+  }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 992px) {
+  table {
+    overflow-x: auto;
+  }
+}

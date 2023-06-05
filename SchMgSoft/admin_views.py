@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, CustomUser, Student, Teacher
+from app.models import Class, Session, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification
 
 # Create your views here.
 
@@ -427,15 +427,73 @@ def DELETE_TEACHER(request, admin):
 
 # STAFF MANAGEMENT - ADMIN
 @login_required(login_url='/')
-def SEND_NOTIFICATIONS(request):
+def NOTIFY_TEACHERS(request):
     teachers = Teacher.objects.all()
-    students = Student.objects.all()
+    teachers_notifications = Teacher_Notification.objects.all()
 
     context = {
         'teachers': teachers,
-        'students': students
+        'teachers_notifications': teachers_notifications
     }
-    return render(request, 'admin/send_notifications.html', context)
+    return render(request, 'admin/notify_teachers.html', context)
+
+
+@login_required(login_url='/')
+def SEND_NOTIFICATIONS_TEACHERS(request, id):
+    recepient_id = Teacher.objects.get(id=id)
+
+    if request.method == "POST":
+        receiver = request.POST.get("receiver")
+        message = request.POST.get("message")
+
+        notification = Teacher_Notification (
+            teacher_id = recepient_id,
+            message = message
+        )
+        notification.save()
+        messages.success(request, "Notification sent to " + receiver + " successfully!")
+        redirect('notify_teachers')
+
+    context = {
+        'recepient_id': recepient_id
+    }
+
+    return render(request, 'admin/notifications.html', context)
+
+
+@login_required(login_url='/')
+def NOTIFY_STUDENTS(request):
+    students = Student.objects.all()
+    students_notifications = Student_Notification.objects.all()
+
+    context = {
+        'students': students,
+        'students_notifications': students_notifications
+    }
+    return render(request, 'admin/notify_students.html', context)
+
+
+@login_required(login_url='/')
+def SEND_NOTIFICATIONS_STUDENTS(request, id):
+    recepient_id = Student.objects.get(id=id)
+
+    if request.method == "POST":
+        receiver = request.POST.get("receiver")
+        message = request.POST.get("message")
+
+        notification = Student_Notification (
+            student_id = recepient_id,
+            message = message
+        )
+        notification.save()
+        messages.success(request, "Notification sent to " + receiver + " successfully!")
+        redirect('notify_students')
+
+    context = {
+        'recepient_id': recepient_id
+    }
+
+    return render(request, 'admin/notifications.html', context)
 
 
 

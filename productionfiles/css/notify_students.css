@@ -70,7 +70,6 @@
 }
 
 /* ----------------- */
-.send-notification .teacher-table,
 .send-notification .student-table {
   padding: 1rem;
   width: 100%;
@@ -84,20 +83,7 @@
   border-radius: 0.3rem;
 }
 
-.send-notification .teacher-table p,
-.send-notification .student-table p {
-  padding: 0.3rem 1rem;
-  width: fit-content;
-  font-size: 0.931rem;
-  font-weight: 400;
-  text-align: left;
-  color: var(--darkest);
-  /* background-color: var(--normal); */
-  border: 1px solid var(--normal);
-  border-radius: 0.3rem;
-}
 
-.send-notification .teacher-table .action,
 .send-notification .student-table .action {
   width: 100%;
   display: flex;
@@ -106,7 +92,6 @@
   justify-content: space-between;
 }
 
-.send-notification .teacher-table .action .search-bar,
 .send-notification .student-table .action .search-bar {
   width: 30%;
   height: 35px;
@@ -116,7 +101,6 @@
   justify-content: space-between;
 }
 
-.send-notification .teacher-table .action .search-bar form,
 .send-notification .student-table .action .search-bar form {
   width: 100%;
   height: 100%;
@@ -126,7 +110,6 @@
   justify-content: center;
 }
 
-.send-notification .teacher-table .action .search-bar form .input-field,
 .send-notification .student-table .action .search-bar form .input-field {
   width: 100%;
   height: 100%;
@@ -136,7 +119,6 @@
   justify-content: center;
 }
 
-.send-notification .teacher-table .action .search-bar form .input-field input,
 .send-notification .student-table .action .search-bar form .input-field input {
   padding: 0.5rem;
   width: 85%;
@@ -150,13 +132,6 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .search-bar
-  form
-  .input-field
-  input:focus,
-.send-notification
   .student-table
   .action
   .search-bar
@@ -166,7 +141,6 @@
   caret-color: var(--dark);
 }
 
-.send-notification .teacher-table .action .search-bar form .input-field button,
 .send-notification .student-table .action .search-bar form .input-field button {
   width: 15%;
   height: 100%;
@@ -180,14 +154,6 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .search-bar
-  form
-  .input-field
-  button
-  span,
-.send-notification
   .student-table
   .action
   .search-bar
@@ -199,16 +165,11 @@
   object-fit: contain;
 }
 
-.send-notification .teacher-table .action .view-all-notifications,
-.send-notification .student-table .action .view-all-notifications {
-  position: relative;
-}
+/* .send-notification .teacher-table .action .view-all-notifications,
+  .send-notification .student-table .action .view-all-notifications {
+    position: relative;
+  } */
 
-.send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .view-notification-btn,
 .send-notification
   .student-table
   .action
@@ -228,11 +189,6 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .view-notification-btn:hover,
-.send-notification
   .student-table
   .action
   .view-all-notifications
@@ -242,49 +198,48 @@
   cursor: pointer;
 }
 
-.send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal::after,
+/* View All Sent Notifications - MODAL CONTAINER : STYLES */
 .send-notification
   .student-table
-  .action
   .view-all-notifications
-  .all-notifications-modal::after {
-    position: absolute;
-    content: '';
-    top: 29%;
-    left: 100%;
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-left: 14px solid var(--light-bg);
-  border-bottom: 7px solid transparent;
+  .all-notifications-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: none;
 }
 
 .send-notification
-  .teacher-table
-  .action
+  .student-table
   .view-all-notifications
-  .all-notifications-modal,
+  .all-notifications-modal-container.active {
+  display: block;
+}
+
 .send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal {
   position: absolute;
-  top: -103%;
-  right: 110%;
-  padding: 1rem;
-  width: 300px;
-  max-height: 500px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  padding: 1.5rem;
+  width: 50%;
+  max-height: 50%;
   display: none;
   flex-direction: column;
   gap: 0.3rem;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  /* background-color: #f2f2f2; */
   background: radial-gradient(
         35.36% 35.36% at 100% 25%,
         #0000 66%,
@@ -319,65 +274,56 @@
       24px 24px #f8ffe6;
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-  border-radius: 0.3rem;
-  overflow: auto;
-  overflow: visible;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  overflow-x: hidden;
+  overflow-y: auto;
   white-space: nowrap;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
 }
 
-
-.send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal.active,
 .send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal.active {
- display: flex;
+  display: flex;
+  animation: slideModalUp 0.3s ease-out;
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a {
-  padding: 0.3rem 0;
+  padding: 0.5rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 0.3rem;
   text-decoration: none;
+  background-color: #fff;
+  border-radius: 0.3rem;
 }
 
 .send-notification
-  .teacher-table
-  .action
+  .student-table
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
-  a
-  .notifications,
+  a:hover {
+  cursor: pointer;
+}
+
 .send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
   .notifications {
-    padding: 0.1rem 0.5rem;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -386,41 +332,30 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left {
+  .notifications
+  .left {
   width: fit-content;
   display: flex;
   flex-direction: row;
-  /* gap: 0.3rem; */
+  gap: 0.5rem;
   align-items: center;
   justify-content: left;
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left .status,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left .status {
+  .notifications
+  .left
+  .status {
   width: 20px;
   height: 20px;
   display: flex;
@@ -430,104 +365,76 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left .status span,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left .status span {
+  .notifications
+  .left
+  .status
+  span {
   font-size: 0.951rem;
 }
 
-
-.send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left .message-box,
 .send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left .message-box {
+  .notifications
+  .left
+  .message-box {
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: left;
-  line-height: 7px;
+  line-height: 16px;
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left .message-box
-  .recepient,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left .message-box
+  .notifications
+  .left
+  .message-box
   .recepient {
+  padding: 0;
   font-size: 0.751rem;
   text-align: left;
   font-weight: 400;
   color: var(--dark-txt);
-  border: none;
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .left .message-box
-  .message,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .left .message-box
+  .notifications
+  .left
+  .message-box
   .message {
+  padding: 0;
   font-size: 0.713rem;
   text-align: left;
   font-weight: 300;
   color: var(--light-txt);
-  border: none;
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .time,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .time {
+  .notifications
+  .time {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -535,20 +442,15 @@
 }
 
 .send-notification
-  .teacher-table
-  .action
-  .view-all-notifications
-  .all-notifications-modal
-  a
-  .notifications .time p,
-.send-notification
   .student-table
-  .action
   .view-all-notifications
+  .all-notifications-modal-container
   .all-notifications-modal
   a
-  .notifications .time p {
-    padding: 0;
+  .notifications
+  .time
+  p {
+  padding: 0;
   font-size: 0.593rem;
   text-align: center;
   font-weight: 300;
@@ -610,10 +512,10 @@ table tbody tr td button {
   padding: 0.3rem 1rem;
   width: fit-content;
   /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; */
   background-color: var(--dark);
   color: #fff;
   font-size: 0.891rem;
@@ -635,10 +537,10 @@ table tbody tr td a {
   padding: 0.3rem 1rem;
   width: fit-content;
   /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; */
   font-size: 0.891rem;
   font-weight: 500;
   text-align: center;
@@ -658,4 +560,16 @@ table tbody tr td a:visited {
 table tbody tr td a:hover {
   background-color: var(--normal);
   color: var(--dark-txt);
+}
+
+/* ANIMATIONS */
+@keyframes slideModalUp {
+  from {
+    opacity: 0;
+    bottom: -100%;
+  }
+  to {
+    opacity: 1;
+    bottom: 0%;
+  }
 }

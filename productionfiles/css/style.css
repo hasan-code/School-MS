@@ -95,7 +95,7 @@ a {
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
   body {
-    /* background-color: #222e02; */
+    background-color: #222e02;
     transition: all 0.3s;
   }
 

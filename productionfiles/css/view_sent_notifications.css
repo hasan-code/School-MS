@@ -1,0 +1,190 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* -----Resetting default html----- */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* background-color: #fff; */
+  overflow: hidden;
+}
+
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* View All Sent Notifications - MODAL : STYLES */
+.all-notifications-modal {
+  padding: 1.5rem;
+  width: 50%;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: start;
+  justify-content: center;
+  background: radial-gradient(
+        35.36% 35.36% at 100% 25%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      24px 24px / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 0 75%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      24px 24px / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 100% 25%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      0 0 / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 0 75%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      0 0 / calc(2 * 24px) calc(2 * 24px),
+    repeating-conic-gradient(#f8ffe6 0 25%, #0000 0 50%) 0 0 / calc(2 * 24px)
+      calc(2 * 24px),
+    radial-gradient(#0000 66%, #e3f7ae 68% 70%, #0000 72%) 0 calc(24px / 2) /
+      24px 24px #f8ffe6;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+}
+
+.all-notifications-modal a {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.all-notifications-modal a:hover {
+  cursor: pointer;
+}
+
+.all-notifications-modal a .notifications {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all-notifications-modal a .notifications .left {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.all-notifications-modal a .notifications .left .status {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-notifications-modal a .notifications .left .status span {
+  font-size: 0.951rem;
+}
+
+.all-notifications-modal a .notifications .left .message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: left;
+  line-height: 7px;
+}
+
+.all-notifications-modal a .notifications .left .message-box .recepient {
+  font-size: 0.751rem;
+  text-align: left;
+  font-weight: 400;
+  color: var(--dark-txt);
+}
+
+.all-notifications-modal a .notifications .left .message-box .message {
+  font-size: 0.713rem;
+  text-align: left;
+  font-weight: 300;
+  color: var(--light-txt);
+}
+
+.all-notifications-modal a .notifications .time {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-notifications-modal a .notifications .time p {
+  font-size: 0.593rem;
+  text-align: center;
+  font-weight: 300;
+  color: var(--light-txt);
+}

@@ -68,11 +68,19 @@
     <div class="navbar-group">
       <p class="title">STAFF-MANAGEMENT</p>
 
-      <!-- Teaching Staff -->
-      <div class="links {% active_link 'send_notifications' 'active' %}">
-        <a href="{% url 'send_notifications' %}">
+      <!-- Notify Teachers -->
+      <div class="links {% active_link 'notify_teachers' 'active' %}">
+        <a href="{% url 'notify_teachers' %}">
           <span class="material-symbols-rounded"> notification_add </span>
-          Send Notification
+          Notify Teachers
+        </a>
+      </div>
+
+      <!-- Notify Students -->
+      <div class="links {% active_link 'notify_students' 'active' %}">
+        <a href="{% url 'notify_students' %}">
+          <span class="material-symbols-rounded"> notification_add </span>
+          Notify Students
         </a>
       </div>
 

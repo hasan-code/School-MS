@@ -112,8 +112,21 @@ class Teacher(models.Model):
 class Teacher_Notification(models.Model):
     teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(null=True, default=0)
+    created_at = models.TimeField(auto_now_add=True)
     
 
     def __str__(self):
         return self.teacher_id.admin.first_name + " " + self.teacher_id.admin.last_name
+    
+
+# NOTIFICATIONS SEND TO STUDENTS BY ADMIN
+class Student_Notification(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    message = models.TextField()
+    status = models.IntegerField(null=True, default=0)
+    created_at = models.TimeField(auto_now_add=True)
+    
+
+    def __str__(self):
+        return self.student_id.admin.first_name + " " + self.student_id.admin.last_name

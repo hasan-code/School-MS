@@ -162,7 +162,7 @@ nav .navbar .navbar-group .links.active a {
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
   body {
-    /* background-color: var(--dark-bg); */
+    background-color: var(--dark-bg);
     transition: all 0.3s;
   }
 

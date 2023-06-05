@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>View Sent Notifications</title>
+
+    <!-- GOOGLE Icons CDN -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+
+    <!-- CSS STYLESHEET -->
+    <link
+      rel="stylesheet"
+      href="{% static 'css/view_sent_notifications.css' %}"
+    />
+  </head>
+  <body>
+    <!-- View All Sent Notifications - MODAL -->
+    <div class="all-notifications-modal" id="all-notifications-teacher-modal">
+      {% for i in teachers_notifications %}
+      <a href="">
+        <div class="notifications">
+          <div class="left">
+            <div class="status">
+              {% if i.status == 0 %}
+              <span class="material-symbols-rounded" style="color: #7a7a7a">
+                done_all
+              </span>
+              {% else %}
+              <span class="material-symbols-rounded" style="color: #00b7ff">
+                done_all
+              </span>
+              {% endif %}
+            </div>
+            <div class="message-box">
+              <p class="recepient">{{ i.teacher_id }}</p>
+              <p class="message">{{ i.message }}</p>
+            </div>
+          </div>
+
+          <div class="time">
+            <p>{{ i.created_at }}</p>
+          </div>
+        </div>
+      </a>
+
+      {% endfor %}
+    </div>
+
+    <!-- JAVASCRIPT LINK -->
+    <script
+      src="{% static 'js/send_notifications.js' %}"
+      type="text/javascript"
+    ></script>
+  </body>
+</html>

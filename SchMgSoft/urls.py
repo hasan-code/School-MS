@@ -48,7 +48,10 @@ urlpatterns = [
     path('teachers/update', admin_views.UPDATE_TEACHER, name='update_teacher'),
     path('teachers/detete/<str:admin>', admin_views.DELETE_TEACHER, name='delete_teacher'),
     # STAFF MANAGEMENT LINKS
-    path('send_notifications/', admin_views.SEND_NOTIFICATIONS, name="send_notifications"),
+    path('notify_teachers/', admin_views.NOTIFY_TEACHERS, name="notify_teachers"),
+    path('notify_teachers/<str:id>', admin_views.SEND_NOTIFICATIONS_TEACHERS, name="send_notifications_teachers"),
+    path('notify_students/', admin_views.NOTIFY_STUDENTS, name="notify_students"),
+    path('notify_students/<str:id>', admin_views.SEND_NOTIFICATIONS_STUDENTS, name="send_notifications_students"),
 
 
     # Teacher's Page Links
