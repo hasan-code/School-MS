@@ -425,7 +425,7 @@ def DELETE_TEACHER(request, admin):
 
 
 
-# STAFF MANAGEMENT - ADMIN
+# STAFF MANAGEMENT - ADMIN : SEND NOTIFICATIONS to TEACHERS & STUDENTS
 @login_required(login_url='/')
 def NOTIFY_TEACHERS(request):
     teachers = Teacher.objects.all()

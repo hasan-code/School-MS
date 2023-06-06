@@ -1,4 +1,3 @@
-
 // This function filters out the student when the user types in the search input field.
 function searchStudent() {
   let searchInputField, filter, table, tr, td, inputTxt;

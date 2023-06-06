@@ -1,0 +1,133 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/teacher/view_notifications.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- VIEW NOTIFICATIONS -->
+<div class="notifications-container">
+  <!-- VIEW NOTIFICATIONS -->
+  <div class="view-notifications">
+    <div class="left">
+      <!-- SEARCH FILTER -->
+      <form>
+        {% csrf_token %}
+        <div class="input-group">
+          <input
+            type="text"
+            name="inputTxt"
+            id="inputTxt"
+            placeholder="Search"
+            onkeyup="searchNotification()"
+          />
+          <button type="submit">
+            <span class="material-symbols-rounded"> page_info </span>
+          </button>
+        </div>
+      </form>
+      <!-- NOTIFICATIONS BUBBLES -->
+      <a href="">
+        <div class="notifications active">
+          <div class="float-left">
+            <div class="profile-pic">
+              <img
+                src="{% static 'assets/images/hasan.png' %}"
+                alt="Sender's profile pic"
+              />
+            </div>
+            <div class="message-box">
+              <p class="sender-name">Hasan Al Saeed</p>
+              <p class="message">Hi! This is a test message...</p>
+            </div>
+          </div>
+          <div class="time">
+            <p>11:11 pm</p>
+            <span class="material-symbols-rounded" style="color: #7a7a7a">
+              done_all
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="">
+        <div class="notifications">
+          <div class="float-left">
+            <div class="profile-pic">
+              <img
+                src="{% static 'assets/images/hasan.png' %}"
+                alt="Sender's profile pic"
+              />
+            </div>
+            <div class="message-box">
+              <p class="sender-name">Rakibul Islam</p>
+              <p class="message">Hi! This is a test message...</p>
+            </div>
+          </div>
+          <div class="time">
+            <p>11:11 pm</p>
+            <span class="material-symbols-rounded" style="color: #7a7a7a">
+              done_all
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="">
+        <div class="notifications">
+          <div class="float-left">
+            <div class="profile-pic">
+              <img
+                src="{% static 'assets/images/hasan.png' %}"
+                alt="Sender's profile pic"
+              />
+            </div>
+            <div class="message-box">
+              <p class="sender-name">Mahbubur Rahman</p>
+              <p class="message">Hi! This is a test message...</p>
+            </div>
+          </div>
+          <div class="time">
+            <p>11:11 pm</p>
+            <span class="material-symbols-rounded" style="color: #7a7a7a">
+              done_all
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="right">
+      <p class="from">From</p>
+      <div class="notification-panel">
+        <div class="sender">
+          <div class="left">
+            <div class="profile-pic">
+              <img
+                src="{% static 'assets/images/hasan.png' %}"
+                alt="Sender's profile pic"
+              />
+            </div>
+            <p class="sender-name">Hasan Al Saeed</p>
+          </div>
+          <div class="time">
+            <p>11:11 pm</p>
+          </div>
+        </div>
+        <p class="message">This is a test message...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT LINK -->
+<script
+  src="{% static 'js/teacher/view_notifications.js' %}"
+  type="text/javascript"
+></script>
+
+{% endblock %}

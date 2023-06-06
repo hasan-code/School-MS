@@ -1,0 +1,574 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+.send-notification {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: left;
+  /* background-color: #8ec009; */
+}
+
+.send-notification h3 {
+  font-size: 1.351rem;
+  font-weight: 500;
+  color: var(--dark-txt);
+}
+
+.send-notification .notification-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.send-notification .notification-links a {
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.931rem;
+  font-weight: 400;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification .notification-links a:link,
+.send-notification .notification-links a:active,
+.send-notification .notification-links a:visited {
+  color: var(--dark-txt);
+  background-color: var(--normal);
+}
+
+.send-notification .notification-links a:hover {
+  color: #fff;
+  background-color: var(--dark);
+  cursor: pointer;
+}
+
+/* ----------------- */
+.send-notification .teacher-table {
+  padding: 1rem;
+  width: 100%;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: left;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+.send-notification .teacher-table .action {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification .teacher-table .action .search-bar {
+  width: 30%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification .teacher-table .action .search-bar form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification .teacher-table .action .search-bar form .input-field {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification .teacher-table .action .search-bar form .input-field input {
+  padding: 0.5rem;
+  width: 85%;
+  height: 100%;
+  background: none;
+  border: 1px solid var(--dark);
+  border-right: none;
+  outline: none;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.send-notification
+  .teacher-table
+  .action
+  .search-bar
+  form
+  .input-field
+  input:focus {
+  caret-color: var(--dark);
+}
+
+.send-notification .teacher-table .action .search-bar form .input-field button {
+  width: 15%;
+  height: 100%;
+  background-color: var(--dark);
+  border: none;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification
+  .teacher-table
+  .action
+  .search-bar
+  form
+  .input-field
+  button
+  span {
+  color: #fff;
+  object-fit: contain;
+}
+
+/* .send-notification .teacher-table .action .view-all-notifications,
+.send-notification .student-table .action .view-all-notifications {
+  position: relative;
+} */
+
+.send-notification
+  .teacher-table
+  .action
+  .view-all-notifications
+  .view-notification-btn {
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  height: 35px;
+  font-size: 0.931rem;
+  font-weight: 400;
+  color: var(--dark-txt);
+  background-color: var(--normal);
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.send-notification
+  .teacher-table
+  .action
+  .view-all-notifications
+  .view-notification-btn:hover {
+  color: #fff;
+  background-color: var(--dark);
+  cursor: pointer;
+}
+
+/* View All Sent Notifications - MODAL CONTAINER : STYLES */
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: none;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container.active {
+  display: block;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  padding: 1.5rem;
+  width: 50%;
+  max-height: 50%;
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: start;
+  justify-content: center;
+  background: radial-gradient(
+        35.36% 35.36% at 100% 25%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      24px 24px / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 0 75%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      24px 24px / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 100% 25%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      0 0 / calc(2 * 24px) calc(2 * 24px),
+    radial-gradient(
+        35.36% 35.36% at 0 75%,
+        #0000 66%,
+        #e3f7ae 68% 70%,
+        #0000 72%
+      )
+      0 0 / calc(2 * 24px) calc(2 * 24px),
+    repeating-conic-gradient(#f8ffe6 0 25%, #0000 0 50%) 0 0 / calc(2 * 24px)
+      calc(2 * 24px),
+    radial-gradient(#0000 66%, #e3f7ae 68% 70%, #0000 72%) 0 calc(24px / 2) /
+      24px 24px #f8ffe6;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal.active {
+  display: flex;
+  animation: slideModalUp 0.3s ease-out;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a:hover {
+  cursor: pointer;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left
+  .status {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left
+  .status
+  span {
+  font-size: 0.951rem;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left
+  .message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: left;
+  line-height: 16px;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left
+  .message-box
+  .recepient {
+  padding: 0;
+  font-size: 0.751rem;
+  text-align: left;
+  font-weight: 400;
+  color: var(--dark-txt);
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .left
+  .message-box
+  .message {
+  padding: 0;
+  font-size: 0.713rem;
+  text-align: left;
+  font-weight: 300;
+  color: var(--light-txt);
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .time {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-notification
+  .teacher-table
+  .view-all-notifications
+  .all-notifications-modal-container
+  .all-notifications-modal
+  a
+  .notifications
+  .time
+  p {
+  padding: 0;
+  font-size: 0.593rem;
+  text-align: center;
+  font-weight: 300;
+  color: var(--light-txt);
+  border: none;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+table thead {
+  background-color: var(--lighter);
+}
+
+table thead th {
+  padding: 0.5rem;
+  font-size: 0.931rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 0.3rem;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 0.3rem;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: var(--light-bg);
+}
+
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.3rem;
+}
+
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.3rem;
+}
+
+table tbody tr td {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.891rem;
+}
+
+table tbody tr td:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table tbody tr td button {
+  padding: 0.3rem 1rem;
+  width: fit-content;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; */
+  background-color: var(--dark);
+  color: #fff;
+  font-size: 0.891rem;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+table tbody tr td button:hover {
+  color: #000;
+  background-color: var(--normal);
+  cursor: pointer;
+}
+
+table tbody tr td a {
+  padding: 0.3rem 1rem;
+  width: fit-content;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; */
+  font-size: 0.891rem;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+table tbody tr td a:link,
+table tbody tr td a:active,
+table tbody tr td a:visited {
+  background-color: var(--dark);
+  color: #fff;
+}
+
+table tbody tr td a:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+}
+
+/* ANIMATIONS */
+@keyframes slideModalUp {
+  from {
+    opacity: 0;
+    bottom: -100%;
+  }
+  to {
+    opacity: 1;
+    bottom: 0%;
+  }
+}
