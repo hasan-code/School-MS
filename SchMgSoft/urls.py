@@ -56,7 +56,8 @@ urlpatterns = [
 
     # Teacher's Page Links
     path('home', teacher_views.HOME, name='teacher_home'),
-    path('view_notifications', teacher_views.VIEW_NOTIFICATIONS, name='view_notifications'),
+    path('notifications', teacher_views.NOTIFICATIONS, name='notifications'),
+    path('notifications/view/<str:id>', teacher_views.VIEW_NOTIFICATION, name='view_notification'),
 
     # Admin's - MANAGEMENT
     # CLASS

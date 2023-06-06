@@ -83,7 +83,6 @@
   border-radius: 0.3rem;
 }
 
-
 .send-notification .student-table .action {
   width: 100%;
   display: flex;
@@ -339,12 +338,15 @@
   a
   .notifications
   .left {
-  width: fit-content;
+  width: 90%;
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
   align-items: center;
   justify-content: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .send-notification
