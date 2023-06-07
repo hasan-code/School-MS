@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification
+from app.models import Class, Session, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply
 
 # Create your views here.
 
@@ -494,6 +494,49 @@ def SEND_NOTIFICATIONS_STUDENTS(request, id):
     }
 
     return render(request, 'admin/notifications.html', context)
+
+
+
+@login_required(login_url='/')
+def TEACHER_LEAVE(request):
+    teacher_leave_applications = Teacher_Leave_Apply.objects.all()
+
+    context = {
+        'teacher_leave_applications': teacher_leave_applications
+    }
+    return render(request, 'admin/teacher_leave.html', context)
+
+
+
+@login_required(login_url='/')
+def VIEW_TEACHER_LEAVE_APPLICATION(request,id):
+    leave_application = Teacher_Leave_Apply.objects.get(id=id)
+
+    context = {
+        'leave_application': leave_application
+    }
+    return render(request, 'admin/view_teacher_leave_application.html', context)
+
+
+
+@login_required(login_url='/')
+def TEACHER_LEAVE_APPLICATION_APPROVE(request,id):
+    leave_application = Teacher_Leave_Apply.objects.get(id=id)
+    leave_application.status = 1
+    leave_application.save()
+
+    return redirect('teacher_leave')
+
+
+
+@login_required(login_url='/')
+def TEACHER_LEAVE_APPLICATION_DISAPPROVE(request,id):
+    leave_application = Teacher_Leave_Apply.objects.get(id=id)
+    leave_application.status = 2
+    leave_application.save()
+
+    return redirect('teacher_leave')
+
 
 
 

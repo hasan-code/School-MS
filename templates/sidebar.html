@@ -84,11 +84,19 @@
         </a>
       </div>
 
-      <!-- Non-Teaching Staff -->
+      <!-- Teacher Leave Applications -->
+      <div class="links {% active_link 'teacher_leave' 'active' %}">
+        <a href="{% url 'teacher_leave' %}">
+          <span class="material-symbols-rounded"> feed </span>
+          Teacher's Leave
+        </a>
+      </div>
+
+      <!-- Student Leave Applications -->
       <div class="links">
         <a href="">
           <span class="material-symbols-rounded"> feed </span>
-          Leave Applications
+          Student's Leave
         </a>
       </div>
     </div>
@@ -213,8 +221,8 @@
       </div>
 
       <!-- Leave Apply -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'leave_application || leave_apply' 'active' %}">
+        <a href="{% url 'leave_application' %}">
           <span class="material-symbols-rounded"> history_edu </span>
           Leave Apply
         </a>

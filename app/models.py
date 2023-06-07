@@ -130,3 +130,19 @@ class Student_Notification(models.Model):
 
     def __str__(self):
         return self.student_id.admin.first_name + " " + self.student_id.admin.last_name
+    
+
+
+
+# LEAVE APPLY - TEACHER
+class Teacher_Leave_Apply(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    leave_date = models.DateField()
+    subject = models.CharField(max_length=1000)
+    message = models.TextField()
+    status = models.IntegerField(null=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.teacher_id.admin.first_name + " " + self.teacher_id.admin.last_name
