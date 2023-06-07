@@ -146,3 +146,18 @@ class Teacher_Leave_Apply(models.Model):
 
     def __str__(self):
         return self.teacher_id.admin.first_name + " " + self.teacher_id.admin.last_name
+    
+
+
+# LEAVE APPLY - STUDENT
+class Student_Leave_Apply(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    leave_date = models.DateField()
+    subject = models.CharField(max_length=1000)
+    message = models.TextField()
+    status = models.IntegerField(null=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.student_id.admin.first_name + " " + self.student_id.admin.last_name

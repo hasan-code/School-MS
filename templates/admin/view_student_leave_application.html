@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link
+  rel="stylesheet"
+  href="{% static 'css/admin/view_student_leave_application.css' %}"
+/>
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- VIEW LEAVE APPLICATIONS PAGE -->
+<div class="view-leave-application-conatiner">
+    <div class="applicant-details">
+        <p class="applied-by">Student</p>
+        <p class="date-applied">{{ leave_application.created_at }}</p>
+    </div>
+    <p class="applicant-name">Application by : <span>{{ leave_application.student_id.admin.first_name }}&nbsp;{{ leave_application.student_id.admin.last_name }}</span></p>
+    <p class="leave-date">Seeking leave on : <span>{{ leave_application.leave_date }}</span></p>
+    <p class="subject">Subject: <span>{{ leave_application.subject }}</span></p>
+    <p class="message">{{ leave_application.message }}</p>
+    <div class="btn-container">
+        {% if leave_application.status == 0 %}
+        <a href="{% url 'student_leave_application_approve' leave_application.id %}">Approve</a>
+        <a href="{% url 'student_leave_application_disapprove' leave_application.id %}">Disapprove</a>
+        {% elif leave_application.status == 1 %}
+        <button disabled>Approved</button>
+        {% else %}
+        <button disabled>Disapproved</button>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
