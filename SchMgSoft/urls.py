@@ -57,6 +57,11 @@ urlpatterns = [
     path('teacher_leave/view/approve/<str:id>', admin_views.TEACHER_LEAVE_APPLICATION_APPROVE, name="teacher_leave_application_approve"),
     path('teacher_leave/view/disapprove/<str:id>', admin_views.TEACHER_LEAVE_APPLICATION_DISAPPROVE, name="teacher_leave_application_disapprove"),
 
+    path('student_leave', admin_views.STUDENT_LEAVE, name="student_leave"),
+    path('student_leave/view/<str:id>', admin_views.VIEW_STUDENT_LEAVE_APPLICATION, name="view_student_leave_application"),
+    path('student_leave/view/approve/<str:id>', admin_views.STUDENT_LEAVE_APPLICATION_APPROVE, name="student_leave_application_approve"),
+    path('student_leave/view/disapprove/<str:id>', admin_views.STUDENT_LEAVE_APPLICATION_DISAPPROVE, name="student_leave_application_disapprove"),
+
 
     # Teacher's Page Links
     path('home', teacher_views.HOME, name='teacher_home'),
