@@ -52,6 +52,7 @@ urlpatterns = [
     path('notify_teachers/<str:id>', admin_views.SEND_NOTIFICATIONS_TEACHERS, name="send_notifications_teachers"),
     path('notify_students/', admin_views.NOTIFY_STUDENTS, name="notify_students"),
     path('notify_students/<str:id>', admin_views.SEND_NOTIFICATIONS_STUDENTS, name="send_notifications_students"),
+    
     path('teacher_leave', admin_views.TEACHER_LEAVE, name="teacher_leave"),
     path('teacher_leave/view/<str:id>', admin_views.VIEW_TEACHER_LEAVE_APPLICATION, name="view_teacher_leave_application"),
     path('teacher_leave/view/approve/<str:id>', admin_views.TEACHER_LEAVE_APPLICATION_APPROVE, name="teacher_leave_application_approve"),
