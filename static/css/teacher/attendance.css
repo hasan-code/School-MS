@@ -20,25 +20,34 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .attendance-container .selection-form {
   width: 100%;
 }
 
+.attendance-container .selection-form form {
+  padding: 1.5rem;
+  width: 100%;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
 .attendance-container .selection-form form .actions {
   width: 100%;
-  height: 36px;
+  /* height: 36px; */
   display: flex;
   flex-direction: row;
+  row-gap: 1.5rem;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .attendance-container .selection-form form .actions .input-group {
-  min-width: 25%;
-  height: 100%;
+  min-width: 23%;
+  height: 36px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -63,7 +72,7 @@
 .attendance-container .selection-form form .actions button {
   padding: 0.5rem 1.5rem;
   width: fit-content;
-  height: 100%;
+  height: 36px;
   font-size: 0.931rem;
   font-weight: 500;
   background-color: var(--dark);
@@ -80,6 +89,26 @@
     color: var(--dark-txt);
     cursor: pointer;
 }
+
+.attendance-container h3 {
+  padding-bottom: 0.5rem;
+  font-size: 1.131rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: left;
+}
+
+.attendance-container form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+
 
 .attendance-container .students-container {
   width: 100%;
@@ -208,4 +237,24 @@
   + label {
   background-color: #f15e64;
   border-color: #d15155;
+}
+
+.attendance-container form button {
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  font-size: 0.931rem;
+  font-weight: 500;
+  background-color: var(--dark);
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.attendance-container form button:hover {
+  background-color: var(--normal);
+    color: var(--dark-txt);
+    cursor: pointer;
 }

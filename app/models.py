@@ -121,7 +121,7 @@ class Teacher(models.Model):
 
 # TEACHER + SUBJECT + CLASS + SESSION - ALLOTMENT MODEL
 class Teacher_Allotment(models.Model):
-    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
     subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
     session_id = models.ForeignKey(Session, on_delete=models.DO_NOTHING)
@@ -182,6 +182,28 @@ class Student_Leave_Apply(models.Model):
     status = models.IntegerField(null=True, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.student_id.admin.first_name + " " + self.student_id.admin.last_name
+    
+
+
+# STUDENT'S ATTENDANCE
+class Attendance(models.Model):
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+    subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
+    attendance_date = models.DateField()
+    session_id = models.ForeignKey(Session, on_delete=models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject_id.subject_name
+    
+
+class Attendance_Save(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
+    attendance_status = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.student_id.admin.first_name + " " + self.student_id.admin.last_name

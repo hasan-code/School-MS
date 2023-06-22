@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session
+from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session, Subject, Teacher_Allotment, Attendance, Attendance_Save
 
 # Create your views here.
 
@@ -83,13 +83,83 @@ def TEACHER_LEAVE_APPLY(request):
 
 @login_required(login_url='/')
 def ATTENDANCE(request):
-    students = Student.objects.all()
-    classes = Class.objects.all()
+    teacher_id = Teacher.objects.get(admin=request.user.id)
+    teacher_allotments = Teacher_Allotment.objects.filter(teacher_id=teacher_id)
+    
+
+    action = request.GET.get('action')
+    get_class = None
+    get_subject = None
+    get_session = None
+    subjects = []
+    classes = []
+
+    for allotment in teacher_allotments:
+        subject = allotment.subject_id
+        if subject not in subjects:
+            subjects.append(subject)
+        
+        class_ = allotment.class_id
+        if class_ not in classes:
+            classes.append(class_)
+
+    if action is not None:
+        if request.method == 'POST':
+            class_id = request.POST.get("class")
+            subject_id = request.POST.get("subject")
+            date = request.POST.get("date")
+            session_id = request.POST.get("session")
+
+            get_class = Class.objects.get(id=class_id)
+            get_subject = Subject.objects.get(id=subject_id)
+            get_session = Session.objects.get(id=session_id)
+            # print(session_id)
+
+            attendance = Attendance (
+                class_id = get_class,
+                subject_id = get_subject,
+                attendance_date = date,
+                session_id = get_session
+            )
+
+            attendance.save()
+            
+
+    
     sessions = Session.objects.all()
+    students = Student.objects.filter(class_id=get_class)
 
     context = {
+        'action': action,
         'students': students,
+        'subjects': subjects,
         'classes': classes,
-        'sessions': sessions
+        'get_class': get_class,
+        'get_subject': get_subject,
+        'sessions': sessions,
+        'get_session': get_session
     }
     return render(request, 'teacher/attendance.html', context)
+
+
+
+
+@login_required(login_url='/')
+def SAVE_ATTENDANCE(request):
+    if request.method == 'POST':
+        student_ids = request.POST.getlist("student_id[]")
+        attendance_status_list = []
+
+        for i, student_id in enumerate(student_ids):
+            student = Student.objects.get(id=student_id)
+            attendance_status = int(request.POST.get(f"attendance{i+1}"))
+            attendance_status_list.append(attendance_status)
+
+            attendance_save = Attendance_Save(
+                student_id=student,
+                attendance_status=attendance_status
+            )
+            attendance_save.save()
+            
+    messages.success(request, "Attendances saved successfully!")
+    return redirect('attendance')

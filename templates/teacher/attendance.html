@@ -9,11 +9,16 @@
 <!-- HEADER -->
 {% include "header.html" %}
 
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
 <!-- ATTENDANCE -->
 <div class="attendance-container">
   <!-- SELECTION FORM -->
+  {% if action is None %}
   <div class="selection-form">
-    <form action="" method="post">
+    <form action="?action=get_students" method="post">
       {% csrf_token %}
       <div class="actions">
         <!-- Select Class -->
@@ -22,8 +27,20 @@
             <option value="hidden" selected disabled hidden>
               Select Class
             </option>
-            {% for class in classes %}
-            <option value="{{ class.id }}">{{ class.class_name }}</option>
+            {% for i in classes %}
+            <option value="{{ i.id }}">{{ i.class_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Select Subject -->
+        <div class="input-group">
+          <select name="subject" id="subject">
+            <option value="hidden" selected disabled hidden>
+              Select Subject
+            </option>
+            {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
             {% endfor %}
           </select>
         </div>
@@ -49,33 +66,43 @@
       </div>
     </form>
   </div>
+  
+  {% else %}
 
   <!-- MARK ATTENDANCE FORM -->
-  <form action="" method="post" enctype="multipart/form-data">
+  <h3>Students</h3>
+  <form action="{% url 'save_attendance' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="students-container">
       {% for student in students %}
       <div class="students-card">
+        <!-- <input type="text" name="student_id" id="student_id" value="{{ student.id }}" hidden> -->
+        <input type="hidden" name="student_id[]" value="{{ student.id }}">
         <div class="profile-photo">
           <img src="{{ student.admin.profile_pic.url }}" alt="Student's profile photo" />
         </div>
         <p class="student-name">{{ student.admin.first_name }}&nbsp;{{ student.admin.last_name }}</p>
         <div class="attendance-mark">
           <div class="radio-group">
-            <input type="radio" id="present-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="present" />
+            <!-- <input type="text" name="status" id="status" value="1" hidden> -->
+            <input type="radio" id="present-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="present" value="1" />
             <label for="present-{{ student.admin.id }}">P</label>
           </div>
   
           <div class="radio-group">
-            <input type="radio" id="absent-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="absent" />
+            <!-- <input type="text" name="status" id="status" value="0" hidden> -->
+            <input type="radio" id="absent-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="absent" value="0" />
             <label for="absent-{{ student.admin.id }}">A</label>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
+    
+    <button type="submit">Save Attendance</button>
+
   </form>
-  
+  {% endif %}
 </div>
 
 {% endblock %}

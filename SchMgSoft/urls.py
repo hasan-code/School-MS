@@ -71,6 +71,7 @@ urlpatterns = [
     path('teacher/leave_application', teacher_views.TEACHER_LEAVE_APPLICATION, name='teacher_leave_application'),
     path('teacher/leave_apply', teacher_views.TEACHER_LEAVE_APPLY, name='teacher_leave_apply'),
     path('teacher/attendance', teacher_views.ATTENDANCE, name='attendance'),
+    path('teacher/save_attendance', teacher_views.SAVE_ATTENDANCE, name='save_attendance'),
 
 
 
