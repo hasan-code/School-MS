@@ -97,5 +97,7 @@ urlpatterns = [
     path('management/subject/edit/<str:id>', admin_views.EDIT_SUBJECT, name='edit_subject'),
     path('management/subject/update', admin_views.UPDATE_SUBJECT, name='update_subject'),
     path('management/subject/delete/<str:id>', admin_views.DELETE_SUBJECT, name='delete_subject'),
+    # TEACHER ALLOTMENT
+    path('management/teacher_allotment', admin_views.TEACHER_ALLOTMENT, name='teacher_allotment'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

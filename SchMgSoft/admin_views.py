@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment
 
 # Create your views here.
 
@@ -424,6 +424,48 @@ def DELETE_TEACHER(request, admin):
     return redirect('teachers')
 
 
+# ALLOT CLASS, SUBJECT, SESSION TO TEACHERS
+@login_required(login_url='/')
+def TEACHER_ALLOTMENT(request):
+    if request.method == "POST":
+        teacher_id = request.POST.get("teacher")
+        class_id = request.POST.get("class")
+        subject_id = request.POST.get("subject")
+        session_id = request.POST.get("session")
+
+        teacher_selected = Teacher.objects.get(id=teacher_id)
+        class_selected = Class.objects.get(id=class_id)
+        subject_selected = Subject.objects.get(id=subject_id)
+        session_selected = Session.objects.get(id=session_id)
+
+        teacher_allotment = Teacher_Allotment (
+            teacher_id = teacher_selected,
+            class_id = class_selected,
+            subject_id = subject_selected,
+            session_id = session_selected
+        )
+        teacher_allotment.save()
+        messages.success(request, subject_selected.subject_name + " has been alloted to " + teacher_selected.admin.first_name + " " + teacher_selected.admin.last_name + " successfully!")
+        return redirect('teacher_allotment')
+    
+    teachers = Teacher.objects.all()
+    classes = Class.objects.all()
+    subjects = Subject.objects.all()
+    sessions = Session.objects.all()
+    allotted_teachers = Teacher_Allotment.objects.all()
+
+    context = {
+        'teachers': teachers,
+        'classes': classes,
+        'subjects': subjects,
+        'sessions': sessions,
+        'allotted_teachers': allotted_teachers
+    }
+
+    return render(request, 'admin/teacher_allotment.html', context)
+
+
+
 
 # STAFF MANAGEMENT - ADMIN : SEND NOTIFICATIONS to TEACHERS & STUDENTS
 @login_required(login_url='/')
@@ -452,7 +494,7 @@ def SEND_NOTIFICATIONS_TEACHERS(request, id):
         )
         notification.save()
         messages.success(request, "Notification sent to " + receiver + " successfully!")
-        redirect('notify_teachers')
+        return redirect('notify_teachers')
 
     context = {
         'recepient_id': recepient_id
@@ -487,7 +529,7 @@ def SEND_NOTIFICATIONS_STUDENTS(request, id):
         )
         notification.save()
         messages.success(request, "Notification sent to " + receiver + " successfully!")
-        redirect('notify_students')
+        return redirect('notify_students')
 
     context = {
         'recepient_id': recepient_id

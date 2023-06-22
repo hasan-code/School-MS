@@ -61,6 +61,14 @@
 
   <!-- View Added Student Button -->
   <!-- <a href="{% url 'students' %}">View</a> -->
+  <script>
+    const successAlertModal = document.getElementById("successAlert");
+    const successAlertCloseBtn = document.getElementById("successAlertCloseBtn");
+
+    successAlertCloseBtn.addEventListener("click", () => {
+      successAlertModal.style.display = "none";
+    });
+  </script>
 </div>
 {% endif %}
 {% endfor %}

@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/teacher_allotment.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- TEACHER ALLOTMENT -->
+<div class="teacher-allotment">
+  <h3>Teacher Allotment</h3>
+  <form action="{% url 'teacher_allotment' %}" method="post">
+    {% csrf_token %}
+
+    <div class="selections">
+        <div class="input-group">
+            <select name="teacher" id="teacher">
+              <option value="hidden" selected disabled hidden>Select teacher</option>
+              {% for i in teachers %}
+              <option value="{{ i.id }}">{{ i.admin.first_name }}&nbsp;{{ i.admin.last_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+      
+          <div class="input-group">
+              <select name="class" id="class">
+                <option value="hidden" selected disabled hidden>Select class</option>
+                {% for i in classes %}
+                <option value="{{ i.id }}">{{ i.class_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+      
+            <div class="input-group">
+              <select name="subject" id="subject">
+                <option value="hidden" selected disabled hidden>Select subject</option>
+                {% for i in subjects %}
+                <option value="{{ i.id }}">{{ i.subject_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+      
+            <div class="input-group">
+              <select name="session" id="session">
+                <option value="hidden" selected disabled hidden>Select session</option>
+                {% for i in sessions %}
+                <option value="{{ i.id }}">{{ i.start_session }} to {{ i.end_session }}</option>
+                {% endfor %}
+              </select>
+            </div>
+    </div>
+
+    <button type="submit">Allot Teacher</button>
+  </form>
+</div>
+
+<!-- ALLOTTED TEACHERS LIST -->
+<div class="teacher-allotted-list">
+  <h3>Alloted teachers list</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Sl. no.</th>
+        <th>Name of the teacher</th>
+        <th>Class</th>
+        <th>Subject</th>
+        <th>Session</th>
+        <th style="text-align: center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for i in allotted_teachers %}
+      <tr>
+        <td style="text-align: center">{{ forloop.counter }}</td>
+        <td>{{ i.teacher_id.admin.first_name }}&nbsp;{{ i.teacher_id.admin.last_name }}</td>
+        <td>{{ i.class_id.class_name }}</td>
+        <td>{{ i.subject_id.subject_name }}</td>
+        <td>{{ i.session_id.start_session }} to {{ i.session_id.end_session }}</td>
+        <td
+          style="
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <a href="">
+            <span class="material-symbols-rounded"> edit </span>
+          </a>
+          <a href="">
+            <span class="material-symbols-rounded"> delete </span>
+          </a>
+        </td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

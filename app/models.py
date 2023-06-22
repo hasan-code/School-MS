@@ -119,6 +119,19 @@ class Teacher(models.Model):
         return self.admin.first_name + " " + self.admin.last_name
     
 
+# TEACHER + SUBJECT + CLASS + SESSION - ALLOTMENT MODEL
+class Teacher_Allotment(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+    subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
+    session_id = models.ForeignKey(Session, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.teacher_id.admin.first_name + '-' + self.subject_id.subject_name + "," + self.class_id.class_name
+
+
+
+
 # NOTIFICATIONS SEND TO TEACHERS BY ADMIN
 class Teacher_Notification(models.Model):
     teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
