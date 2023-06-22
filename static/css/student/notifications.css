@@ -1,0 +1,402 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* VIEW NOTIFICATIONS */
+.notifications-container {
+  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: left;
+}
+
+.notifications-container .view-notifications {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.notifications-container .view-notifications .left {
+  padding: 1rem;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: start;
+  background-color: #f6f6f6;
+  border-radius: 0.3rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.notifications-container .view-notifications .left form {
+  padding-bottom: 1rem;
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid #efefef;
+}
+
+.notifications-container .view-notifications .left form .input-group {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e9e9e9;
+  border-radius: 0.3rem;
+}
+
+.notifications-container .view-notifications .left form .input-group input {
+  padding: 0.5rem;
+  width: 85%;
+  height: 100%;
+  outline: none;
+  background: none;
+  border: none;
+  font-size: 0.791rem;
+  color: #cacaca;
+  /* background-color: #efefef; */
+  /* border: 1px solid var(--lightest); */
+  /* border-right: none;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem; */
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  form
+  .input-group
+  input:focus {
+  color: var(--dark-txt);
+  caret-color: var(--dark-txt);
+}
+
+.notifications-container .view-notifications .left form .input-group button {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark);
+  background: none;
+  border: none;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  form
+  .input-group
+  button
+  span {
+  font-size: 1rem;
+  color: #8d8d8d;
+}
+
+.notifications-container .view-notifications .left a {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.notifications-container .view-notifications .left a .notifications {
+  padding: 0.7rem 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #fff; */
+  border-radius: 0.3rem;
+}
+
+.notifications-container .view-notifications .left a .notifications.active {
+  background-color: #fff;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left
+  .profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left
+  .profile-pic
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left
+  .message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left
+  .message-box
+  .sender-name {
+  font-size: 0.731rem;
+  font-weight: 400;
+  text-align: left;
+  color: var(--dark-txt);
+}
+
+.notifications-container
+  .view-notifications
+  .left
+  a
+  .notifications
+  .float-left
+  .message-box
+  .message {
+  font-size: 0.573rem;
+  font-weight: 300;
+  text-align: left;
+  color: var(--light-txt);
+}
+
+.notifications-container .view-notifications .left a .notifications .time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-container .view-notifications .left a .notifications .time p {
+  font-size: 0.531rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--light-txt);
+}
+
+.notifications-container .view-notifications .left a .notifications .time span {
+  font-size: 0.731rem;
+  color: var(--light-txt);
+}
+
+.notifications-container .view-notifications .right {
+  padding: 1rem 3rem;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: start;
+  justify-content: left;
+  background-color: #ffffff;
+}
+
+.notifications-container .view-notifications .right .from {
+  position: relative;
+  font-size: 1.131rem;
+  font-weight: 500;
+  text-align: left;
+  color: #efefef;
+}
+
+.notifications-container .view-notifications .right .from::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "";
+  margin-left: 0.5rem;
+  width: 50px;
+  height: 1px;
+  background-color: #efefef;
+}
+
+.notifications-container .view-notifications .right .notification-panel {
+  padding: 1rem 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: left;
+  /* background-color: #d3d2d2; */
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender {
+  padding: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #efefef;
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .left {
+  padding: 0;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+  background: none;
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .left
+  .profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .left
+  .profile-pic
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .left
+  .sender-name {
+  font-size: 0.951rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--dark-txt);
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .sender
+  .time
+  p {
+  font-size: 0.731rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--light-txt);
+}
+
+.notifications-container
+  .view-notifications
+  .right
+  .notification-panel
+  .message {
+  padding: 3rem 0;
+  width: 100%;
+  font-size: 0.931rem;
+  font-weight: 300;
+  text-align: left;
+  color: var(--dark-txt);
+}

@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/teacher/attendance.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- ATTENDANCE -->
+<div class="attendance-container">
+  <!-- SELECTION FORM -->
+  <div class="selection-form">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="actions">
+        <!-- Select Class -->
+        <div class="input-group">
+          <select name="class" id="class">
+            <option value="hidden" selected disabled hidden>
+              Select Class
+            </option>
+            {% for class in classes %}
+            <option value="{{ class.id }}">{{ class.class_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Select Date -->
+        <div class="input-group">
+          <input type="date" name="date" id="date" />
+        </div>
+
+        <!-- Select Session -->
+        <div class="input-group">
+          <select name="session" id="session">
+            <option value="hidden" selected disabled hidden>
+              Select Session
+            </option>
+            {% for session in sessions %}
+            <option value="{{ session.id }}">{{ session.start_session }} to {{ session.end_session }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit">Take Attendance</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- MARK ATTENDANCE FORM -->
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="students-container">
+      {% for student in students %}
+      <div class="students-card">
+        <div class="profile-photo">
+          <img src="{{ student.admin.profile_pic.url }}" alt="Student's profile photo" />
+        </div>
+        <p class="student-name">{{ student.admin.first_name }}&nbsp;{{ student.admin.last_name }}</p>
+        <div class="attendance-mark">
+          <div class="radio-group">
+            <input type="radio" id="present-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="present" />
+            <label for="present-{{ student.admin.id }}">P</label>
+          </div>
+  
+          <div class="radio-group">
+            <input type="radio" id="absent-{{ student.admin.id }}" name="attendance{{ forloop.counter }}" class="absent" />
+            <label for="absent-{{ student.admin.id }}">A</label>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </form>
+  
+</div>
+
+{% endblock %}

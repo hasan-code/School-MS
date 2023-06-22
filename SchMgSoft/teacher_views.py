@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply
+from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session
 
 # Create your views here.
 
@@ -12,7 +12,7 @@ def HOME(request):
 
 
 @login_required(login_url='/')
-def NOTIFICATIONS(request):
+def TEACHER_NOTIFICATIONS(request):
     teacher = Teacher.objects.filter(admin=request.user.id)
 
     for i in teacher:
@@ -28,7 +28,7 @@ def NOTIFICATIONS(request):
 
 
 @login_required(login_url='/')
-def VIEW_NOTIFICATION(request, id):
+def TEACHER_VIEW_NOTIFICATION(request, id):
     notification = Teacher_Notification.objects.get(id=id)
     teacher = Teacher.objects.filter(admin=request.user.id)
 
@@ -49,7 +49,7 @@ def VIEW_NOTIFICATION(request, id):
 
 
 @login_required(login_url='/')
-def LEAVE_APPLICATION(request):
+def TEACHER_LEAVE_APPLICATION(request):
     leave_applications = Teacher_Leave_Apply.objects.all()
 
     context = {
@@ -60,7 +60,7 @@ def LEAVE_APPLICATION(request):
 
 
 @login_required(login_url='/')
-def LEAVE_APPLY(request):
+def TEACHER_LEAVE_APPLY(request):
     if request.method == "POST":
         leave_date = request.POST.get("leave_date")
         subject = request.POST.get("subject")
@@ -75,6 +75,21 @@ def LEAVE_APPLY(request):
         )
         leave_application.save()
         messages.success(request, "Your leave application has been submitted successfully!")
-        return redirect('leave_application')
+        return redirect('teacher_leave_application')
         
     return render(request, 'teacher/leave_apply.html')
+
+
+
+@login_required(login_url='/')
+def ATTENDANCE(request):
+    students = Student.objects.all()
+    classes = Class.objects.all()
+    sessions = Session.objects.all()
+
+    context = {
+        'students': students,
+        'classes': classes,
+        'sessions': sessions
+    }
+    return render(request, 'teacher/attendance.html', context)

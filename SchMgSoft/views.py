@@ -28,7 +28,7 @@ def doLogin(request):
             elif user_type == '2':
                 return redirect('teacher_home')
             elif user_type == '3':
-                return HttpResponse("This is Student's panel.")
+                return redirect('student_home')
             else:
                 # Error message
                 messages.error(request, "The email or password you've entered may be incorrect. Please try again!")

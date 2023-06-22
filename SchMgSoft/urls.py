@@ -66,10 +66,20 @@ urlpatterns = [
 
     # Teacher's Page Links
     path('home', teacher_views.HOME, name='teacher_home'),
-    path('notifications', teacher_views.NOTIFICATIONS, name='notifications'),
-    path('notifications/view/<str:id>', teacher_views.VIEW_NOTIFICATION, name='view_notification'),
-    path('leave_application', teacher_views.LEAVE_APPLICATION, name='leave_application'),
-    path('leave_apply', teacher_views.LEAVE_APPLY, name='leave_apply'),
+    path('teacher/notifications', teacher_views.TEACHER_NOTIFICATIONS, name='teacher_notifications'),
+    path('teacher/notifications/view/<str:id>', teacher_views.TEACHER_VIEW_NOTIFICATION, name='teacher_view_notification'),
+    path('teacher/leave_application', teacher_views.TEACHER_LEAVE_APPLICATION, name='teacher_leave_application'),
+    path('teacher/leave_apply', teacher_views.TEACHER_LEAVE_APPLY, name='teacher_leave_apply'),
+    path('teacher/attendance', teacher_views.ATTENDANCE, name='attendance'),
+
+
+
+    # Student's Page Links
+    path('home', student_views.HOME, name='student_home'),
+    path('student/notifications', student_views.STUDENT_NOTIFICATIONS, name='student_notifications'),
+    path('student/notifications/view/<str:id>', student_views.STUDENT_VIEW_NOTIFICATION, name='student_view_notification'),
+    path('student/leave_application', student_views.STUDENT_LEAVE_APPLICATION, name='student_leave_application'),
+    path('student/leave_apply', student_views.STUDENT_LEAVE_APPLY, name='student_leave_apply'),
 
     # Admin's - MANAGEMENT
     # CLASS
@@ -82,5 +92,10 @@ urlpatterns = [
     path('management/session/edit/<str:id>', admin_views.EDIT_SESSION, name='edit_session'),
     path('management/session/update', admin_views.UPDATE_SESSION, name='update_session'),
     path('management/session/delete/<str:id>', admin_views.DELETE_SESSION, name='delete_session'),
+    # SUBJECT
+    path('management/subject/add', admin_views.ADD_SUBJECT, name='add_subject'),
+    path('management/subject/edit/<str:id>', admin_views.EDIT_SUBJECT, name='edit_subject'),
+    path('management/subject/update', admin_views.UPDATE_SUBJECT, name='update_subject'),
+    path('management/subject/delete/<str:id>', admin_views.DELETE_SUBJECT, name='delete_subject'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

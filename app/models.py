@@ -38,6 +38,17 @@ class Session(models.Model):
     
 
 
+class Subject(models.Model):
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+    subject_name = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.class_id.class_name + '-' + self.subject_name
+    
+
+
 # STUDENT MODEL
 class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)

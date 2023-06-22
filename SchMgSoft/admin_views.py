@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply
 
 # Create your views here.
 
@@ -703,3 +703,74 @@ def DELETE_SESSION(request, id):
     messages.success(request, "Session has been deleted successfully!")
 
     return redirect('add_session')
+
+
+# SUBJECT
+@login_required(login_url='/')
+def ADD_SUBJECT(request):
+    if request.method == 'POST':
+        class_id = request.POST.get("class")
+        add_subject = request.POST.get("add_subject")
+
+        class_selected = Class.objects.get(id=class_id)
+
+        subject = Subject (
+            class_id = class_selected,
+            subject_name = add_subject
+        )
+        
+        subject.save()
+        messages.success(request, subject.subject_name + " is added successfully!")
+        return redirect('add_subject')
+
+
+    classes = Class.objects.all()
+    subjects = Subject.objects.all()
+    context = {
+        'classes': classes,
+        'subjects': subjects
+    }
+    return render(request, 'admin/add_subject.html', context)
+
+
+
+@login_required(login_url='/')
+def EDIT_SUBJECT(request, id):
+    subject = Subject.objects.get(id=id)
+    classes = Class.objects.all()
+
+    context = {
+        'subject': subject,
+        'classes': classes
+    }
+    return render(request, 'admin/edit_subject.html', context)
+
+
+
+@login_required(login_url='/')
+def UPDATE_SUBJECT(request):
+    if request.method == 'POST':
+        subject_id = request.POST.get("subject_id")
+        class_id = request.POST.get("class")
+        subject_name = request.POST.get("edit_subject")
+
+        class_selected = Class.objects.get(id=class_id)
+        subject = Subject.objects.get(id=subject_id)
+
+        subject.class_id = class_selected
+        subject.subject_name = subject_name
+        subject.save()
+        messages.success(request, "Subject has been updated successfully!")
+        return redirect('add_subject')
+    
+    return render(request, 'admin/edit_subject.html')
+
+
+
+@login_required(login_url='/')
+def DELETE_SUBJECT(request, id):
+    subject = Subject.objects.get(id=id)
+    subject.delete()
+    messages.success(request, "Subject has been deleted successfully!")
+
+    return redirect('add_subject')

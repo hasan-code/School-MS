@@ -64,9 +64,9 @@
       </div>
     </div>
 
-    <!-- Staff section -->
+    <!-- Management section -->
     <div class="navbar-group">
-      <p class="title">STAFF-MANAGEMENT</p>
+      <p class="title">MANAGEMENT</p>
 
       <!-- Notify Teachers -->
       <div class="links {% active_link 'notify_teachers' 'active' %}">
@@ -171,8 +171,8 @@
       <p class="title">ACADEMICS</p>
 
       <!-- Attendance -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'attendance' 'active' %}">
+        <a href="{% url 'attendance' %}">
           <span class="material-symbols-rounded"> ballot </span>
           Attendance
         </a>
@@ -213,16 +213,16 @@
       <p class="title">MANAGEMENT</p>
 
       <!-- View Notifications -->
-      <div class="links {% active_link 'notifications' 'active' %}">
-        <a href="{% url 'notifications' %}">
+      <div class="links {% active_link 'teacher_notifications' 'active' %}">
+        <a href="{% url 'teacher_notifications' %}">
           <span class="material-symbols-rounded"> notifications </span>
           View Notifications
         </a>
       </div>
 
       <!-- Leave Apply -->
-      <div class="links {% active_link 'leave_application || leave_apply' 'active' %}">
-        <a href="{% url 'leave_application' %}">
+      <div class="links {% active_link 'teacher_leave_application || teacher_leave_apply' 'active' %}">
+        <a href="{% url 'teacher_leave_application' %}">
           <span class="material-symbols-rounded"> history_edu </span>
           Leave Apply
         </a>
@@ -244,6 +244,7 @@
       </div>
     </div>
   </div>
+
   {% else %}
   <div class="navbar">
     <!-- Home section -->
@@ -251,8 +252,8 @@
       <p class="title">HOME</p>
 
       <!-- Dashboard -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'student_home' 'active' %}">
+        <a href="{% url 'student_home' %}">
           <span class="material-symbols-rounded"> dashboard </span>
           Dashboard
         </a>
@@ -267,7 +268,7 @@
       <div class="links">
         <a href="">
           <span class="material-symbols-rounded"> ballot </span>
-          Attendance
+          View Attendance
         </a>
       </div>
 
@@ -275,7 +276,7 @@
       <div class="links">
         <a href="">
           <span class="material-symbols-rounded"> assignment </span>
-          Assignment
+          View Assignment
         </a>
       </div>
 
@@ -305,9 +306,17 @@
     <div class="navbar-group">
       <p class="title">MANAGEMENT</p>
 
+      <!-- View Notifications -->
+      <div class="links {% active_link 'student_notifications' 'active' %}">
+        <a href="{% url 'student_notifications' %}">
+          <span class="material-symbols-rounded"> notifications </span>
+          View Notifications
+        </a>
+      </div>
+
       <!-- Leave Apply -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'student_leave_application || student_leave_apply' 'active' %}">
+        <a href="{% url 'student_leave_application' %}">
           <span class="material-symbols-rounded"> history_edu </span>
           Leave Apply
         </a>

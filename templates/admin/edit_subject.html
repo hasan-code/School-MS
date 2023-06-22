@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/edit_subject.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- EDIT SUBJECT -->
+<div class="edit-subject">
+  <h3>Edit Subject</h3>
+  <form action="{% url 'update_subject' %}" method="post">
+    {% csrf_token %}
+
+    <!-- This "id" is retrieved only for updating the Subject name. It should be hidden. -->
+    <input type="text" name="subject_id" id="subject_id" value="{{ subject.id }}" hidden>
+
+    <div class="input-group">
+        <select name="class" id="class">
+            <option value="hidden" selected disabled hidden>Select class</option>
+            {% for i in classes %}
+            <option value="{{ i.id }}">{{ i.class_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-group">
+      <label for="edit_subject">Subject name</label>
+      <input type="text" name="edit_subject" id="edit_subject" value="{{ subject.subject_name }}" />
+    </div>
+
+    <button type="submit">Save changes</button>
+  </form>
+</div>
+
+{% endblock %}

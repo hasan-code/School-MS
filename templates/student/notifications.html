@@ -2,7 +2,7 @@
 <!-- HTML HEAD CONTENTS -->
 {% block htmlhead %}
 
-<link rel="stylesheet" href="{% static 'css/teacher/notifications.css' %}" />
+<link rel="stylesheet" href="{% static 'css/student/notifications.css' %}" />
 
 {% endblock htmlhead %} {% block content %}
 
@@ -32,9 +32,9 @@
       </form>
       <!-- NOTIFICATIONS BUBBLES -->
       {% for i in notifications %}
-      <a href="{% url 'teacher_view_notification' i.id %}">
+      <a href="{% url 'student_view_notification' i.id %}">
         <div
-          class="notifications {% active_link 'teacher_view_notification' 'active' %}"
+          class="notifications {% active_link 'student_view_notification' 'active' %}"
         >
           <div class="float-left">
             <div class="profile-pic">
@@ -91,7 +91,7 @@
 
 <!-- JAVASCRIPT LINK -->
 <script
-  src="{% static 'js/teacher/notifications.js' %}"
+  src="{% static 'js/student/notifications.js' %}"
   type="text/javascript"
 ></script>
 

@@ -10,6 +10,7 @@ class UserModel(UserAdmin):
 admin.site.register(CustomUser, UserModel)
 admin.site.register(Class)
 admin.site.register(Session)
+admin.site.register(Subject)
 admin.site.register(Student)
 admin.site.register(Teacher)
 admin.site.register(Teacher_Notification)
