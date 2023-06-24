@@ -1,0 +1,291 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<!-- GOOGLE ICONS -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+
+<link rel="stylesheet" href="{% static 'css/teacher/take_attendance.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+{% if action is None %}
+<!-- TAKE ATTENDANCE CONTAINER -->
+<div class="take-attendance-container">
+  <!-- SELECTION FORM -->
+  <div class="selection-form">
+    <form action="?action=get_students" method="post">
+      {% csrf_token %}
+
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="hidden" selected disabled hidden>Select Class</option>
+          {% for class in classes %}
+          <option value="{{ class.id }}">{{ class.class_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Subject -->
+      <div class="input-group">
+        <select name="subject" id="subject" required>
+          <option value="hidden" selected disabled hidden>
+            Select Subject
+          </option>
+          {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Date -->
+      <!-- <div class="input-group">
+        <input type="date" name="date" id="date" required />
+      </div> -->
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Take Attendance</button>
+    </form>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="calendar-container">
+    <div class="navigation">
+      <div id="prev-btn">
+        <span class="material-symbols-outlined"> arrow_circle_left </span>
+      </div>
+      <div id="next-btn">
+        <span class="material-symbols-outlined"> arrow_circle_right </span>
+      </div>
+    </div>
+    <div id="calendar"></div>
+  </div>
+</div>
+
+{% else %}
+<!-- STUDENTS ATTENDANCE -->
+<div class="students-attendance-container">
+  <!-- MARK ATTENDANCE FORM -->
+  <form action="{% url 'save_attendance' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="actions">
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="{{ get_class.id }}">{{ get_class }}</option>
+        </select>
+      </div>
+
+      <!-- Select Subject -->
+      <div class="input-group">
+        <select name="subject" id="subject" required>
+          <option value="{{ get_subject.id }}">{{ get_subject }}</option>
+        </select>
+      </div>
+
+      <!-- Select Date -->
+      <div class="input-group">
+        <input type="date" name="date" id="date" required />
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="{{ get_session.id }}">{{ get_session }}</option>
+        </select>
+      </div>
+
+    </div>
+
+    <h3>Students</h3>
+
+    <div class="students-container">
+      {% for student in students %}
+      <div class="students-card">
+        <!-- <input type="text" name="student_id" id="student_id" value="{{ student.id }}" hidden> -->
+        <input type="hidden" name="student_id[]" value="{{ student.id }}" />
+        <div class="profile-photo">
+          <img
+            src="{{ student.admin.profile_pic.url }}"
+            alt="Student's profile photo"
+          />
+        </div>
+        <p class="student-name">
+          {{ student.admin.first_name }}&nbsp;{{ student.admin.last_name }}
+        </p>
+        <div class="attendance-mark">
+          <div class="radio-group">
+            <!-- <input type="text" name="status" id="status" value="1" hidden> -->
+            <input
+              type="radio"
+              id="present-{{ student.admin.id }}"
+              name="attendance{{ forloop.counter }}"
+              class="present"
+              value="1"
+            />
+            <label for="present-{{ student.admin.id }}">P</label>
+          </div>
+
+          <div class="radio-group">
+            <!-- <input type="text" name="status" id="status" value="0" hidden> -->
+            <input
+              type="radio"
+              id="absent-{{ student.admin.id }}"
+              name="attendance{{ forloop.counter }}"
+              class="absent"
+              value="0"
+            />
+            <label for="absent-{{ student.admin.id }}">A</label>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <button type="submit">Save Attendance</button>
+  </form>
+</div>
+{% endif %}
+
+<!-- JAVASCRIPT -->
+<script>
+  // Get the current date
+  var currentDate = new Date();
+
+  // Store the currently displayed year and month
+  var currentYear = currentDate.getFullYear();
+  var currentMonth = currentDate.getMonth();
+
+  // Function to generate the calendar
+  function generateCalendar(year, month) {
+    // Create a new Date object for the specified year and month
+    var date = new Date(year, month, 1);
+
+    // Get the table element
+    var calendarTable = document.createElement("table");
+
+    // Create the table header
+    var tableHeader = document.createElement("thead");
+    var headerRow = document.createElement("tr");
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    var monthCell = document.createElement("th");
+
+    monthCell.setAttribute("colspan", "7");
+    monthCell.textContent = months[month] + " " + year;
+    headerRow.appendChild(monthCell);
+    tableHeader.appendChild(headerRow);
+    calendarTable.appendChild(tableHeader);
+
+    // Create the table body
+    var tableBody = document.createElement("tbody");
+
+    // Create the days of the week header
+    var daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+    var daysRow = document.createElement("tr");
+    for (var i = 0; i < daysOfWeek.length; i++) {
+      var dayCell = document.createElement("th");
+      dayCell.textContent = daysOfWeek[i];
+      daysRow.appendChild(dayCell);
+    }
+    tableBody.appendChild(daysRow);
+
+    // Get the first day of the week (0-6, where 0 is Sunday)
+    var firstDayOfWeek = date.getDay();
+
+    // Get the number of days in the month
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Create the calendar cells
+    var currentDate = 1;
+    for (var row = 0; row < 6; row++) {
+      var calendarRow = document.createElement("tr");
+      for (var col = 0; col < 7; col++) {
+        if (row === 0 && col < firstDayOfWeek) {
+          // Create empty cells before the first day of the month
+          var emptyCell = document.createElement("td");
+          calendarRow.appendChild(emptyCell);
+        } else if (currentDate > daysInMonth) {
+          // Stop creating cells if we've reached the end of the month
+          break;
+        } else {
+          // Create a cell for each day of the month
+          var dayCell = document.createElement("td");
+          dayCell.textContent = currentDate;
+          calendarRow.appendChild(dayCell);
+          currentDate++;
+        }
+      }
+      tableBody.appendChild(calendarRow);
+    }
+
+    calendarTable.appendChild(tableBody);
+
+    // Add the calendar table to the DOM
+    var calendarDiv = document.getElementById("calendar");
+    calendarDiv.innerHTML = "";
+    calendarDiv.appendChild(calendarTable);
+  }
+
+  // Function to navigate to the previous month
+  function previousMonth() {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    generateCalendar(currentYear, currentMonth);
+  }
+
+  // Function to navigate to the next month
+  function nextMonth() {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    generateCalendar(currentYear, currentMonth);
+  }
+
+  // Generate the calendar for the current month
+  generateCalendar(currentYear, currentMonth);
+
+  // Add event listeners to the navigation buttons
+  document.getElementById("prev-btn").addEventListener("click", previousMonth);
+  document.getElementById("next-btn").addEventListener("click", nextMonth);
+</script>
+
+{% endblock %}

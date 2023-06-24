@@ -201,9 +201,12 @@ class Attendance(models.Model):
         return self.subject_id.subject_name
     
 
-class Attendance_Save(models.Model):
+class Attendance_Report(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
+    attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
     attendance_status = models.IntegerField(null=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.student_id.admin.first_name + " " + self.student_id.admin.last_name

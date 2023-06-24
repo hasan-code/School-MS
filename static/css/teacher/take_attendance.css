@@ -1,0 +1,387 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 900, "GRAD" 0, "opsz" 48;
+  color: var(--lightest);
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.material-symbols-outlined:hover {
+  color: var(--lighter);
+}
+
+/* TAKE ATTENDANCE CONATINER */
+.take-attendance-container {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+/* SELECTION FORM */
+.take-attendance-container .selection-form {
+  padding: 1.5rem;
+  width: 75%;
+  border: 1px solid var(--dark);
+  border-radius: 0.3rem;
+}
+
+.take-attendance-container .selection-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  row-gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.take-attendance-container .selection-form form .input-group {
+  min-width: 30%;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.take-attendance-container .selection-form form .input-group input,
+.take-attendance-container .selection-form form .input-group select {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #eee; */
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.take-attendance-container .selection-form form button {
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  height: 36px;
+  font-size: 0.931rem;
+  font-weight: 500;
+
+  color: #fff;
+  text-align: center;
+  background-color: var(--dark);
+
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.take-attendance-container .selection-form form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}
+
+/* CALENDAR */
+.take-attendance-container .calendar-container {
+  position: relative;
+  padding: 0.5rem;
+  width: 25%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dark);
+  border-radius: 0.3rem;
+}
+
+.take-attendance-container .calendar-container .navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.3rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.take-attendance-container .calendar-container .navigation #prev-btn,
+.take-attendance-container .calendar-container .navigation #next-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.take-attendance-container .calendar-container .navigation #prev-btn:hover,
+.take-attendance-container .calendar-container .navigation #next-btn:hover {
+  cursor: pointer;
+}
+
+.take-attendance-container .calendar-container #calendar {
+  width: 100%;
+}
+
+.take-attendance-container .calendar-container #calendar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.take-attendance-container .calendar-container #calendar th,
+.take-attendance-container .calendar-container #calendar td {
+  text-align: center;
+}
+
+.take-attendance-container .calendar-container #calendar th {
+  padding: 0 0.5rem 0.5rem;
+  font-size: 0.931rem;
+  font-weight: 600;
+}
+
+.take-attendance-container .calendar-container #calendar td {
+  padding: 0.5rem;
+  font-size: 0.831rem;
+  font-weight: 400;
+  color: var(--dark-txt);
+}
+
+.take-attendance-container .calendar-container #calendar td:hover {
+  background-color: var(--lightest);
+  cursor: pointer;
+}
+
+/* STUDENTS ATTENDANCE CONTAINER */
+.students-attendance-container {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.students-attendance-container h3 {
+  font-size: 1.131rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: left;
+}
+
+.students-attendance-container form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--lightest);
+  border-radius: 0.3rem;
+}
+
+.students-attendance-container form .actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  row-gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.students-attendance-container form .actions .input-group {
+  min-width: 23%;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.students-attendance-container form .actions .input-group input,
+.students-attendance-container form .actions .input-group select {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  /* border: none; */
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: #fff;
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+}
+
+.students-attendance-container .students-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  /* overflow-x: hidden;
+      overflow-y: auto;
+      white-space: nowrap; */
+}
+
+.students-attendance-container .students-container .students-card {
+  padding: 1.5rem 0.7rem;
+  min-width: 14%;
+  max-width: 14%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  border: 1px solid #eee;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .profile-photo {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--lightest);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .profile-photo
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .student-name {
+  font-size: 0.753rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group {
+  display: flex;
+  align-items: center;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group
+  input[type="radio"] {
+  display: none;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group
+  label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.931rem;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group
+  input[type="radio"]:checked
+  + label {
+  color: #fff;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group
+  .present:checked
+  + label {
+  background-color: #65edb7;
+  border-color: #5fd9a8;
+}
+
+.students-attendance-container
+  .students-container
+  .students-card
+  .attendance-mark
+  .radio-group
+  .absent:checked
+  + label {
+  background-color: #f15e64;
+  border-color: #d15155;
+}
+
+.students-attendance-container form button {
+  padding: 0.7rem 1.5rem;
+  width: fit-content;
+  font-size: 0.931rem;
+  font-weight: 500;
+  background-color: var(--dark);
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.students-attendance-container form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}
