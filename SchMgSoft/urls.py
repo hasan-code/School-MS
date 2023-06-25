@@ -82,6 +82,7 @@ urlpatterns = [
     path('student/notifications/view/<str:id>', student_views.STUDENT_VIEW_NOTIFICATION, name='student_view_notification'),
     path('student/leave_application', student_views.STUDENT_LEAVE_APPLICATION, name='student_leave_application'),
     path('student/leave_apply', student_views.STUDENT_LEAVE_APPLY, name='student_leave_apply'),
+    path('student/attendance', student_views.ATTENDANCE, name='attendance'),
 
     # Admin's - MANAGEMENT
     # CLASS

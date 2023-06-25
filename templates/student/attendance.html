@@ -1,0 +1,114 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/student/attendance.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- ATTENDANCE CONTAINER -->
+<div class="attendance-container">
+  {% if action is None %}
+  <!-- SELECTION FORM -->
+  <form action="?action=show_attendance" method="post">
+    {% csrf_token %}
+    <h3>Select categories</h3>
+    <div class="selection">
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="hidden" selected disabled hidden>Select Class</option>
+          {% for class in classes %}
+          <option value="{{ class.id }}">{{ class.class_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <button type="submit">Show Attendance</button>
+  </form>
+
+  {% else %}
+
+  <!-- ATTENDANCE -->
+  <div class="attendance">
+    <h3>Attendances</h3>
+
+    <form>
+      {% csrf_token %}
+
+      <!-- Select Class -->
+      <div class="input-group">
+        <label for="class">Selected class:</label>
+        <select name="class" id="class" disabled>
+          <option>{{ get_class }}</option>
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <label for="session">Selected session:</label>
+        <select name="session" id="session" disabled>
+          <option>{{ get_session }}</option>
+        </select>
+      </div>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No.</th>
+          <th>Subject</th>
+          <th>Total Days</th>
+          <th>Total Present</th>
+          <th>Total Absent</th>
+          <th>Present (%)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for stats in subject_statistics %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ stats.subject.subject_name }}</td>
+          <td>{{ stats.total_days }}</td>
+          <td>{{ stats.present_days }}</td>
+          <td>{{ stats.absent_days }}</td>
+          <td>{{ stats.present_percentage|floatformat:2 }} %</td>
+          <td
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <a href="">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
