@@ -171,16 +171,16 @@
       <p class="title">ACADEMICS</p>
 
       <!-- Take Attendance -->
-      <div class="links {% active_link 'take_attendance' 'active' %}">
-        <a href="{% url 'take_attendance' %}">
+      <div class="links {% active_link 'teacher_take_attendance' 'active' %}">
+        <a href="{% url 'teacher_take_attendance' %}">
           <span class="material-symbols-rounded"> ballot </span>
           Take Attendance
         </a>
       </div>
 
       <!-- View Attendance -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'teacher_view_attendance' 'active' %}">
+        <a href="{% url 'teacher_view_attendance' %}">
           <span class="material-symbols-rounded"> ballot </span>
           View Attendance
         </a>

@@ -81,7 +81,7 @@ def TEACHER_LEAVE_APPLY(request):
 
 
 @login_required(login_url='/')
-def TAKE_ATTENDANCE(request):
+def TEACHER_TAKE_ATTENDANCE(request):
     teacher_id = Teacher.objects.get(admin=request.user.id)
     teacher_allotments = Teacher_Allotment.objects.filter(teacher_id=teacher_id)
 
@@ -211,7 +211,7 @@ def TAKE_ATTENDANCE(request):
 
 
 @login_required(login_url='/')
-def SAVE_ATTENDANCE(request):
+def TEACHER_SAVE_ATTENDANCE(request):
     if request.method == 'POST':
         class_id = request.POST.get("class")
         subject_id = request.POST.get("subject")
@@ -246,4 +246,73 @@ def SAVE_ATTENDANCE(request):
             attendance_report.save()
             
     messages.success(request, "Attendances saved successfully!")
-    return redirect('take_attendance')
+    return redirect('teacher_take_attendance')
+
+
+
+@login_required(login_url='/')
+def TEACHER_VIEW_ATTENDANCE(request):
+    teacher_id = Teacher.objects.get(admin=request.user.id)
+    teacher_allotments = Teacher_Allotment.objects.filter(teacher_id=teacher_id)
+
+    action = request.GET.get('action')
+    get_class = None
+    get_subject = None
+    get_session = None
+    attendance_report = None
+    
+    subjects = []
+    classes = []
+    sessions = []
+
+    for allotment in teacher_allotments:
+        subject = allotment.subject_id
+        if subject not in subjects:
+            subjects.append(subject)
+        
+        class_ = allotment.class_id
+        if class_ not in classes:
+            classes.append(class_)
+
+        session = allotment.session_id
+        if session not in sessions:
+            sessions.append(session)
+
+
+        
+    if action is not None:
+        if request.method == 'POST':
+            class_id = request.POST.get("class")
+            subject_id = request.POST.get("subject")
+            date = request.POST.get("date")
+            session_id = request.POST.get("session")
+
+            get_class = Class.objects.get(id=class_id)
+            get_subject = Subject.objects.get(id=subject_id)
+            get_session = Session.objects.get(id=session_id)
+
+            attendance = Attendance.objects.filter(
+                class_id=get_class,
+                subject_id=get_subject,
+                attendance_date=date,
+                session_id=get_session
+                )
+            
+            for i in attendance:
+                attendance_id = i.id
+                attendance_report = Attendance_Report.objects.filter(attendance_id=attendance_id)
+
+    students = Student.objects.filter(class_id=get_class)
+
+    context = {
+        'action': action,
+        'subjects': subjects,
+        'classes': classes,
+        'sessions': sessions,
+        'students': students,
+        'attendance_report': attendance_report
+    }
+
+
+
+    return render(request, 'teacher/view_attendance.html', context)

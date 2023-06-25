@@ -8,19 +8,17 @@
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 />
 
-<link rel="stylesheet" href="{% static 'css/teacher/take_attendance.css' %}" />
+<link rel="stylesheet" href="{% static 'css/teacher/view_attendance.css' %}" />
 
 {% endblock htmlhead %} {% block content %}
 
 <!-- HEADER -->
-{% include "header.html" %}
-
-{% if action is None %}
-<!-- TAKE ATTENDANCE CONTAINER -->
-<div class="take-attendance-container">
+{% include "header.html" %} {% if action is None %}
+<!-- VIEW ATTENDANCE CONTAINER -->
+<div class="view-attendance-container">
   <!-- SELECTION FORM -->
   <div class="selection-form">
-    <form action="?action=get_students" method="post">
+    <form action="?action=view_attendance" method="post">
       {% csrf_token %}
 
       <!-- Select Class -->
@@ -46,9 +44,9 @@
       </div>
 
       <!-- Select Date -->
-      <!-- <div class="input-group">
+      <div class="input-group">
         <input type="date" name="date" id="date" required />
-      </div> -->
+      </div>
 
       <!-- Select Session -->
       <div class="input-group">
@@ -64,7 +62,7 @@
         </select>
       </div>
 
-      <button type="submit">Take Attendance</button>
+      <button type="submit">View Attendance</button>
     </form>
   </div>
 
@@ -85,86 +83,36 @@
 {% else %}
 <!-- STUDENTS ATTENDANCE -->
 <div class="students-attendance-container">
-  <!-- MARK ATTENDANCE FORM -->
-  <form action="{% url 'teacher_save_attendance' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <div class="students-attendance">
+  <h3>Attendance</h3>
 
-    <div class="actions">
-      <!-- Select Class -->
-      <div class="input-group">
-        <select name="class" id="class" required>
-          <option value="{{ get_class.id }}">{{ get_class }}</option>
-        </select>
+  <div class="students-container">
+    {% for i in attendance_report %}
+    <div class="students-card">
+      <div class="profile-photo">
+        <img
+          src="{{ i.student_id.admin.profile_pic.url }}"
+          alt="Student's profile photo"
+        />
       </div>
-
-      <!-- Select Subject -->
-      <div class="input-group">
-        <select name="subject" id="subject" required>
-          <option value="{{ get_subject.id }}">{{ get_subject }}</option>
-        </select>
-      </div>
-
-      <!-- Select Date -->
-      <div class="input-group">
-        <input type="date" name="date" id="date" required />
-      </div>
-
-      <!-- Select Session -->
-      <div class="input-group">
-        <select name="session" id="session" required>
-          <option value="{{ get_session.id }}">{{ get_session }}</option>
-        </select>
-      </div>
-
-    </div>
-
-    <h3>Students</h3>
-
-    <div class="students-container">
-      {% for student in students %}
-      <div class="students-card">
-        <!-- <input type="text" name="student_id" id="student_id" value="{{ student.id }}" hidden> -->
-        <input type="hidden" name="student_id[]" value="{{ student.id }}" />
-        <div class="profile-photo">
-          <img
-            src="{{ student.admin.profile_pic.url }}"
-            alt="Student's profile photo"
-          />
+      <p class="student-name">
+        {{ i.student_id.admin.first_name }}&nbsp;{{ i.student_id.admin.last_name }}
+      </p>
+      <div class="attendance-mark">
+        {% if i.attendance_status == 1 %}
+        <div class="present active">
+          <p>P</p>
         </div>
-        <p class="student-name">
-          {{ student.admin.first_name }}&nbsp;{{ student.admin.last_name }}
-        </p>
-        <div class="attendance-mark">
-          <div class="radio-group">
-            <!-- <input type="text" name="status" id="status" value="1" hidden> -->
-            <input
-              type="radio"
-              id="present-{{ student.admin.id }}"
-              name="attendance{{ forloop.counter }}"
-              class="present"
-              value="1"
-            />
-            <label for="present-{{ student.admin.id }}">P</label>
-          </div>
-
-          <div class="radio-group">
-            <!-- <input type="text" name="status" id="status" value="0" hidden> -->
-            <input
-              type="radio"
-              id="absent-{{ student.admin.id }}"
-              name="attendance{{ forloop.counter }}"
-              class="absent"
-              value="0"
-            />
-            <label for="absent-{{ student.admin.id }}">A</label>
-          </div>
+        {% else %}
+        <div class="absent active">
+          <p>A</p>
         </div>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
-
-    <button type="submit">Save Attendance</button>
-  </form>
+    {% endfor %}
+  </div>
+</div>
 </div>
 {% endif %}
 

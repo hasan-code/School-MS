@@ -70,8 +70,9 @@ urlpatterns = [
     path('teacher/notifications/view/<str:id>', teacher_views.TEACHER_VIEW_NOTIFICATION, name='teacher_view_notification'),
     path('teacher/leave_application', teacher_views.TEACHER_LEAVE_APPLICATION, name='teacher_leave_application'),
     path('teacher/leave_apply', teacher_views.TEACHER_LEAVE_APPLY, name='teacher_leave_apply'),
-    path('teacher/take_attendance', teacher_views.TAKE_ATTENDANCE, name='take_attendance'),
-    path('teacher/save_attendance', teacher_views.SAVE_ATTENDANCE, name='save_attendance'),
+    path('teacher/take_attendance', teacher_views.TEACHER_TAKE_ATTENDANCE, name='teacher_take_attendance'),
+    path('teacher/save_attendance', teacher_views.TEACHER_SAVE_ATTENDANCE, name='teacher_save_attendance'),
+    path('teacher/view_attendance', teacher_views.TEACHER_VIEW_ATTENDANCE, name='teacher_view_attendance'),
 
 
 
