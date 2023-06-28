@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Attendance, Attendance_Report
 
 # Create your views here.
 
@@ -422,6 +422,65 @@ def DELETE_TEACHER(request, admin):
 
     messages.success(request, teacher.first_name + " " + teacher.last_name + " has been successfully deleted!")
     return redirect('teachers')
+
+
+
+# ATTENDANCES
+@login_required(login_url='/')
+def ATTENDANCES(request):
+    classes = Class.objects.all()
+    sessions = Session.objects.all()
+    subjects = Subject.objects.all()
+
+    action = request.GET.get('action')
+
+    get_class = None
+    get_session = None
+    get_subject = None
+    attendance_reports = None
+
+    if action is not None:
+        if request.method == 'POST':
+            class_id = request.POST.get("class")
+            subject_id = request.POST.get("subject")
+            session_id = request.POST.get("session")
+
+            get_class = Class.objects.get(id=class_id)
+            get_subject = Subject.objects.get(id=subject_id)
+            get_session = Session.objects.get(id=session_id)
+
+            attendance = Attendance.objects.filter(class_id=get_class, subject_id=get_subject, session_id=get_session)
+
+            students = Student.objects.filter(class_id=get_class, session_id=get_session)
+            attendance_reports = []
+            for student in students:
+                total_days = attendance.filter(attendance_report__student_id=student.id).count()
+                present_days = attendance.filter(attendance_report__student_id=student.id, attendance_report__attendance_status=1).count()
+                absent_days = attendance.filter(attendance_report__student_id=student.id, attendance_report__attendance_status=0).count()
+                percentage = (present_days / total_days) * 100 if total_days != 0 else 0
+                
+                attendance_reports.append({
+                    'student': student,
+                    'total_days': total_days,
+                    'present_days': present_days,
+                    'absent_days': absent_days,
+                    'percentage': percentage
+                })
+
+    context = {
+        'classes': classes,
+        'sessions': sessions,
+        'subjects': subjects,
+        'action': action,
+        'attendance_reports': attendance_reports
+    }
+
+    return render(request, 'admin/student_attendance.html', context)
+
+
+
+
+
 
 
 # ALLOT CLASS, SUBJECT, SESSION TO TEACHERS

@@ -85,7 +85,6 @@ def STUDENT_LEAVE_APPLY(request):
 @login_required(login_url='/')
 def ATTENDANCE(request):
     student_id = Student.objects.get(admin=request.user.id)
-    print(student_id)
 
     action = request.GET.get('action')
     get_class = None

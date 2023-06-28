@@ -47,6 +47,8 @@ urlpatterns = [
     path('teachers/edit/<str:id>', admin_views.EDIT_TEACHER, name='edit_teacher'),
     path('teachers/update', admin_views.UPDATE_TEACHER, name='update_teacher'),
     path('teachers/detete/<str:admin>', admin_views.DELETE_TEACHER, name='delete_teacher'),
+    # ATTENDANCES LINKS
+    path('attendances', admin_views.ATTENDANCES, name='attendances'),
     # STAFF MANAGEMENT LINKS
     path('notify_teachers/', admin_views.NOTIFY_TEACHERS, name="notify_teachers"),
     path('notify_teachers/<str:id>', admin_views.SEND_NOTIFICATIONS_TEACHERS, name="send_notifications_teachers"),
@@ -83,6 +85,8 @@ urlpatterns = [
     path('student/leave_application', student_views.STUDENT_LEAVE_APPLICATION, name='student_leave_application'),
     path('student/leave_apply', student_views.STUDENT_LEAVE_APPLY, name='student_leave_apply'),
     path('student/attendance', student_views.ATTENDANCE, name='attendance'),
+
+
 
     # Admin's - MANAGEMENT
     # CLASS

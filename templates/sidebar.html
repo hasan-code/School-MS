@@ -62,6 +62,14 @@
           Teachers
         </a>
       </div>
+
+      <!-- Student's Attendance -->
+      <div class="links {% active_link 'attendances' 'active' %}">
+        <a href="{% url 'attendances' %}">
+          <span class="material-symbols-rounded"> ballot </span>
+          Attendances
+        </a>
+      </div>
     </div>
 
     <!-- Management section -->
@@ -143,10 +151,26 @@
 
       <!-- Settings -->
       <div class="links">
-        <a href="">
+        <div id="settings-menu">
           <span class="material-symbols-rounded"> settings </span>
           Settings
-        </a>
+        </div>
+        <div class="sub-menu" id="sub-menu">
+          <a href="{% url 'add_session' %}">
+            <span class="material-symbols-rounded"> add_circle </span>
+            Add Session
+          </a>
+
+          <a href="{% url 'add_class' %}">
+            <span class="material-symbols-rounded"> add_circle </span>
+            Add Class
+          </a>
+
+          <a href="{% url 'add_subject' %}">
+            <span class="material-symbols-rounded"> add_circle </span>
+            Add Subject
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -352,5 +376,9 @@
   </div>
   {% endif %}
 </nav>
+
+
+<!-- JAVASCRIPT -->
+<script src="{% static 'js/sidebar.js' %}" type="text/javascript"></script>
 
 {% endblock %}

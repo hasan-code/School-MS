@@ -116,6 +116,7 @@ nav .navbar .navbar-group .title {
 }
 
 nav .navbar .navbar-group .links {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -157,6 +158,78 @@ nav .navbar .navbar-group .links.active {
 nav .navbar .navbar-group .links.active a {
   color: #fff;
   font-weight: 500;
+}
+
+nav .navbar .navbar-group .links #settings-menu {
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: left;
+  font-size: 0.791rem;
+  font-weight: 400;
+  color: #919191;
+}
+
+nav .navbar .navbar-group .links #settings-menu:hover {
+  background-color: var(--dark);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+nav .navbar .navbar-group .links .sub-menu {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  padding: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  border-radius: 0.3rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+nav .navbar .navbar-group .links .sub-menu.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+nav .navbar .navbar-group .links .sub-menu a {
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: left;
+  color: #919191;
+}
+
+nav .navbar .navbar-group .links .sub-menu a:link,
+nav .navbar .navbar-group .links .sub-menu a:active,
+nav .navbar .navbar-group .links .sub-menu a:visited,
+nav .navbar .navbar-group .links .sub-menu a:hover {
+  font-size: 0.791rem;
+  font-weight: 400;
+  color: #919191;
+}
+
+nav .navbar .navbar-group .links .sub-menu a:active,
+nav .navbar .navbar-group .links .sub-menu a:hover {
+  background-color: var(--dark);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 0.3rem;
 }
 
 /* Small devices (landscape phones, 576px and up) */

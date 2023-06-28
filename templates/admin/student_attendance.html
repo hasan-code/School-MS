@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/student_attendance.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- ATTENDANCE CONTAINER -->
+<div class="attendance-container">
+  {% if action is None %}
+  <!-- SELECTION FORM -->
+  <form action="?action=view_student_attendance" method="post">
+    {% csrf_token %}
+    <h3>Select categories</h3>
+    <div class="selection">
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="hidden" selected disabled hidden>Select Class</option>
+          {% for class in classes %}
+          <option value="{{ class.id }}">{{ class.class_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Subject -->
+      <div class="input-group">
+        <select name="subject" id="subject" required>
+          <option value="hidden" selected disabled hidden>
+            Select Subject
+          </option>
+          {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <button type="submit">Show Attendance</button>
+  </form>
+
+  {% else %}
+
+  <!-- ATTENDANCE -->
+  <div class="attendance">
+    <h3>Attendances</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Registration No.</th>
+          <th>Name</th>
+          <th>Total Days</th>
+          <th>Total Present</th>
+          <th>Total Absent</th>
+          <th>Present (%)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        {% for report in attendance_reports %}
+        <tr>
+          <td>{{ report.student.registration_no }}</td>
+          <td>{{ report.student.admin.first_name }} {{ report.student.admin.last_name }}</td>
+          <td>{{ report.total_days }}</td>
+          <td>{{ report.present_days }}</td>
+          <td>{{ report.absent_days }}</td>
+          <td>{{ report.percentage|floatformat:2 }} %</td>
+          <td style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        ">
+            <a href="">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+
+
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

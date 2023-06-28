@@ -277,13 +277,13 @@
   .students-card
   .attendance-mark
   .absent {
-  width: 32px;
-  height: 32px;
+  width: 72px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 50%;
+  border-radius: 30px;
 }
 
 .students-attendance-container
@@ -292,8 +292,8 @@
   .students-card
   .attendance-mark
   .present.active {
-  background-color: #65edb7;
-  border-color: #5fd9a8;
+  background-color: #e3fff0;
+  border-color: #88f4c9;
 }
 
 .students-attendance-container
@@ -302,8 +302,8 @@
   .students-card
   .attendance-mark
   .absent.active {
-  background-color: #f15e64;
-  border-color: #d15155;
+  background-color: #ffdfe0;
+  border-color: #f79598;
 }
 
 .students-attendance-container
@@ -320,7 +320,7 @@
   .attendance-mark
   .absent
   p {
-  font-size: 0.931rem;
+  font-size: 0.731rem;
   font-weight: 500;
   text-align: center;
   color: var(--dark-txt);
@@ -340,5 +340,5 @@
   .attendance-mark
   .absent.active
   p {
-  color: #fff;
+  color: var(--dark-txt);
 }
