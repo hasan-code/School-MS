@@ -31,10 +31,7 @@
         alt="Profile picture"
       />
       {% else %}
-      <img
-        src="{{ user.profile_pic }}"
-        alt="Profile picture"
-      />
+      <img src="{{ user.profile_pic }}" alt="Profile picture" />
       {% endif %}
     </div>
   </div>
@@ -45,14 +42,17 @@
   <div class="UserProfile">
     <div class="ProfilePicture">
       {% if user.profile_pic == "" %}
-      <img src="{% static 'assets/images/avatar.svg' %}" alt="Profile picture">
+      <img
+        src="{% static 'assets/images/avatar.svg' %}"
+        alt="Profile picture"
+      />
       {% else %}
       <img src="{{ user.profile_pic }}" alt="Profile picture" />
       {% endif %}
     </div>
 
     <div class="ProfileDetail">
-      <p class="greet">Good Morning!</p>
+      <p class="greet" id="greet"></p>
       <p class="name">{{ user.first_name }} {{ user.last_name }}</p>
       {% if user.user_type == '1' %}
       <p class="UserType">Admin</p>
@@ -66,7 +66,6 @@
     <div id="cross">
       <span class="material-symbols-rounded" id="cross"> close </span>
     </div>
-
   </div>
 
   <div class="action">
@@ -77,5 +76,24 @@
 
 <!-- JAVASCRIPT LINK -->
 <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+<script>
+  // Update Greeting to user dynamically based on time
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+
+  var greet = document.querySelector("#greet");
+
+  if (currentHour < 12) {
+    greet.innerHTML = "Good Morning!";
+  } else if (currentHour == 12) {
+    greet.innerHTML = "Good Noon!";
+  } else if (currentHour > 12 && currentHour < 18) {
+    greet.innerHTML = "Good Afternoon!";
+  } else if (currentHour > 18 && currentHour < 24) {
+    greet.innerHTML = "Good Evening!";
+  } else {
+    greet.innerHTML = "Good Night!";
+  }
+</script>
 
 {% endblock %}
