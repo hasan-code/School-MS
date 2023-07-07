@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/teacher/study_materials.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- STUDY MATERIALS CONTAINER -->
+<div class="study-materials-container">
+  <h3>Upload Study Materials</h3>
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="input-fields">
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="hidden" selected disabled hidden>Select Class</option>
+          {% for class in classes %}
+          <option value="{{ class.id }}">{{ class.class_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Subject -->
+      <div class="input-group">
+        <select name="subject" id="subject" required>
+          <option value="hidden" selected disabled hidden>
+            Select Subject
+          </option>
+          {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select File(s) -->
+      <div class="input-group" style="width: 100%;">
+        <input type="file" name="file" id="file" style="padding: 1rem 0.5rem;" />
+      </div>
+
+      <!-- Text/Information -->
+      <textarea name="description" id="description" placeholder="Description" required></textarea>
+    </div>
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
+{% endblock %}

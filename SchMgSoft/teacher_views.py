@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session, Subject, Teacher_Allotment, Attendance, Attendance_Report
+from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session, Subject, Teacher_Allotment, Attendance, Attendance_Report, Study_Material
 
 # Create your views here.
 
@@ -316,3 +316,42 @@ def TEACHER_VIEW_ATTENDANCE(request):
 
 
     return render(request, 'teacher/view_attendance.html', context)
+
+
+
+
+@login_required(login_url='/')
+def STUDY_MATERIALS(request):
+    classes = Class.objects.all()
+    subjects = Subject.objects.all()
+    sessions = Session.objects.all()
+
+    if request.method == "POST":
+        class_id = request.POST.get("class")
+        subject_id = request.POST.get("subject")
+        session_id = request.POST.get("session")
+        file = request.FILES.get("file")
+        description = request.POST.get("description")
+
+
+        get_class = Class.objects.get(id=class_id)
+        get_subject = Subject.objects.get(id=subject_id)
+        get_session = Session.objects.get(id=session_id)
+
+        study_material = Study_Material (
+            class_id = get_class,
+            subject_id = get_subject,
+            session_id = get_session,
+            file = file,
+            description = description
+        )
+        study_material.save()
+        messages.success(request, "Study Material is uploaded successfully!")
+
+    context = {
+        'classes': classes,
+        'subjects': subjects,
+        'sessions': sessions
+    }
+
+    return render(request, 'teacher/study_materials.html', context)

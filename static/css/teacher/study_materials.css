@@ -1,0 +1,134 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* STUDY MATERIALS CONTAINER */
+.study-materials-container {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.study-materials-container h3 {
+  font-size: 1.131rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: left;
+}
+
+.study-materials-container form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--dark);
+  border-radius: 0.3rem;
+}
+
+.study-materials-container form .input-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.study-materials-container form .input-fields .input-group {
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-materials-container form .input-fields .input-group input,
+.study-materials-container form .input-fields .input-group select {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #eee; */
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.study-materials-container form .input-fields textarea {
+  padding: 0.5rem;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 130px;
+  max-height: 170px;
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  font-family: "Poppins", sans-serif;
+}
+
+.study-materials-container form button {
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  height: 36px;
+  font-size: 0.931rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  background-color: var(--dark);
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.study-materials-container form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}
+
+.study-materials-container
+  form
+  .input-fields
+  .input-group
+  input::file-selector-button {
+  padding: 0.5rem;
+  background: var(--light);
+  border-radius: 0.3rem;
+  outline: none;
+  color: var(--dark-txt);
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.study-materials-container
+  form
+  .input-fields
+  .input-group
+  input::file-selector-button:hover {
+  background: var(--normal);
+  cursor: pointer;
+}

@@ -210,3 +210,18 @@ class Attendance_Report(models.Model):
 
     def __str__(self):
         return self.student_id.admin.first_name + " " + self.student_id.admin.last_name
+    
+
+
+
+# STUDY MATERIALS
+class Study_Material(models.Model):
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+    subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
+    session_id = models.ForeignKey(Session, on_delete=models.DO_NOTHING)
+    file = models.FileField(upload_to='media/study_materials')
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.class_id.class_name + "-" + self.subject_id.subject_name + ": Study Materials"

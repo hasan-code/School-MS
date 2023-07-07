@@ -75,6 +75,7 @@ urlpatterns = [
     path('teacher/take_attendance', teacher_views.TEACHER_TAKE_ATTENDANCE, name='teacher_take_attendance'),
     path('teacher/save_attendance', teacher_views.TEACHER_SAVE_ATTENDANCE, name='teacher_save_attendance'),
     path('teacher/view_attendance', teacher_views.TEACHER_VIEW_ATTENDANCE, name='teacher_view_attendance'),
+    path('teacher/study_materials', teacher_views.STUDY_MATERIALS, name='study_materials'),
 
 
 
