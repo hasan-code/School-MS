@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/student/study_materials.css' %}" />
+
+{% endblock htmlhead %}
+{% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- STUDY MATERIALS CONTAINER -->
+<div class="study-materials-container">
+  <!-- <h3>Study Materials</h3> -->
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="input-fields">
+      <!-- Select Class -->
+      <div class="input-group">
+        <select name="class" id="class" required>
+          <option value="hidden" selected disabled hidden>Select Class</option>
+          {% for class in classes %}
+          <option value="{{ class.id }}">{{ class.class_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <button type="submit">Show Materials</button>
+  </form>
+</div>
+
+<!-- ALL STUDY MATERIALS TABLE -->
+{% if study_materials %}
+<div class="study-materials-table">
+  <h3>Study Materials</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Teacher's name</th>
+        <th>Subject</th>
+        <th>Description</th>
+        <th>Uploaded At</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for i in study_materials %}
+      <tr>
+        <td>
+          {{ i.teacher_id.admin.first_name }} {{ i.teacher_id.admin.last_name }}
+        </td>
+        <td>{{ i.subject_id.subject_name }}</td>
+        <td
+          style="
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          "
+        >
+          {{ i.description }}
+        </td>
+        <td>{{ i.created_at }}</td>
+        <td
+          style="
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <a href="{{ i.file.url }}" download>Download</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

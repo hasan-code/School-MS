@@ -216,6 +216,7 @@ class Attendance_Report(models.Model):
 
 # STUDY MATERIALS
 class Study_Material(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
     subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
     session_id = models.ForeignKey(Session, on_delete=models.DO_NOTHING)

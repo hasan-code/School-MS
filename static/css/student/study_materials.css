@@ -1,0 +1,173 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* STUDY MATERIALS CONTAINER */
+.study-materials-container {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* align-items: center;
+    justify-content: center; */
+}
+
+.study-materials-container form {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--dark);
+  border-radius: 0.3rem;
+}
+
+.study-materials-container form .input-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.study-materials-container form .input-fields .input-group {
+  min-width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-materials-container form .input-fields .input-group input,
+.study-materials-container form .input-fields .input-group select {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #eee; */
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.study-materials-container form button {
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  height: 36px;
+  font-size: 0.931rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  background-color: var(--dark);
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.3rem;
+  -webkit-transition: all 0.3s;
+}
+
+.study-materials-container form button:hover {
+  background-color: var(--normal);
+  color: var(--dark-txt);
+  cursor: pointer;
+}
+
+/* ALL STUDY MATERIALS TABLE */
+.study-materials-table {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.study-materials-table h3 {
+  font-size: 1.131rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: left;
+}
+
+table {
+  width: 100%;
+}
+
+table thead {
+  background-color: var(--lighter);
+}
+
+table thead th {
+  padding: 0.5rem;
+  font-size: 0.931rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 0.3rem;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 0.3rem;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: var(--light-bg);
+}
+
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.3rem;
+}
+
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.3rem;
+}
+
+table tbody tr td {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.891rem;
+  text-align: center;
+}
+
+table tbody tr td a {
+  padding: 0.3rem 1.5rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--dark);
+  border-radius: 0.3rem;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+table tbody tr td a:link,
+table tbody tr td a:visited,
+table tbody tr td a:active,
+table tbody tr td a:hover {
+  color: #fff;
+  font-size: 0.891rem;
+  font-weight: 500;
+}
+
+table tbody tr td a:hover {
+  color: #000;
+  background-color: var(--normal);
+  cursor: pointer;
+}

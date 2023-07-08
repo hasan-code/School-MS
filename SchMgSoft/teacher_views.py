@@ -321,7 +321,8 @@ def TEACHER_VIEW_ATTENDANCE(request):
 
 
 @login_required(login_url='/')
-def STUDY_MATERIALS(request):
+def TEACHER_STUDY_MATERIALS(request):
+    teacher_id = Teacher.objects.get(admin=request.user.id)
     classes = Class.objects.all()
     subjects = Subject.objects.all()
     sessions = Session.objects.all()
@@ -339,6 +340,7 @@ def STUDY_MATERIALS(request):
         get_session = Session.objects.get(id=session_id)
 
         study_material = Study_Material (
+            teacher_id = teacher_id,
             class_id = get_class,
             subject_id = get_subject,
             session_id = get_session,

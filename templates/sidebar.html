@@ -219,8 +219,8 @@
       </div>
 
       <!-- Upload Study Materials -->
-      <div class="links {% active_link 'study_materials' 'active' %}">
-        <a href="{% url 'study_materials' %}">
+      <div class="links {% active_link 'teacher_study_materials' 'active' %}">
+        <a href="{% url 'teacher_study_materials' %}">
           <span class="material-symbols-rounded"> file_present </span>
           Study Materials
         </a>
@@ -315,8 +315,8 @@
       </div>
 
       <!-- Study Materials -->
-      <div class="links">
-        <a href="">
+      <div class="links {% active_link 'student_study_materials' 'active' %}">
+        <a href="{% url 'student_study_materials' %}">
           <span class="material-symbols-rounded"> book </span>
           Study Materials
         </a>

@@ -75,7 +75,7 @@ urlpatterns = [
     path('teacher/take_attendance', teacher_views.TEACHER_TAKE_ATTENDANCE, name='teacher_take_attendance'),
     path('teacher/save_attendance', teacher_views.TEACHER_SAVE_ATTENDANCE, name='teacher_save_attendance'),
     path('teacher/view_attendance', teacher_views.TEACHER_VIEW_ATTENDANCE, name='teacher_view_attendance'),
-    path('teacher/study_materials', teacher_views.STUDY_MATERIALS, name='study_materials'),
+    path('teacher/study_materials', teacher_views.TEACHER_STUDY_MATERIALS, name='teacher_study_materials'),
 
 
 
@@ -86,6 +86,7 @@ urlpatterns = [
     path('student/leave_application', student_views.STUDENT_LEAVE_APPLICATION, name='student_leave_application'),
     path('student/leave_apply', student_views.STUDENT_LEAVE_APPLY, name='student_leave_apply'),
     path('student/attendance', student_views.ATTENDANCE, name='attendance'),
+    path('student/study_materials', student_views.STUDENT_STUDY_MATERIALS, name='student_study_materials'),
 
 
 

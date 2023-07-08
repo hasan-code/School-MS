@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Student, Student_Notification, Student_Leave_Apply, Class, Session, Subject, Attendance, Attendance_Report
+from app.models import Student, Student_Notification, Student_Leave_Apply, Class, Session, Subject, Attendance, Attendance_Report, Study_Material
 
 # Create your views here.
 
@@ -139,3 +139,28 @@ def ATTENDANCE(request):
         'subject_statistics': subject_statistics
     }
     return render(request, 'student/attendance.html', context)
+
+
+
+@login_required(login_url='/')
+def STUDENT_STUDY_MATERIALS(request):
+    classes = Class.objects.all()
+    sessions = Session.objects.all()
+
+    study_materials = None
+
+    if request.method == 'POST':
+        class_id = request.POST.get('class')
+        session_id = request.POST.get('session')
+
+        get_class = Class.objects.get(id=class_id)
+        get_session = Session.objects.get(id=session_id)
+
+        study_materials = Study_Material.objects.filter(class_id=get_class, session_id=get_session)
+
+    context = {
+        'classes': classes,
+        'sessions': sessions,
+        'study_materials': study_materials
+    }
+    return render(request, 'student/study_materials.html', context)
