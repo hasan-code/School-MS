@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session, Subject, Teacher_Allotment, Attendance, Attendance_Report, Study_Material
+from app.models import Teacher, Teacher_Notification, Teacher_Leave_Apply, Student, Class, Session, Subject, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Study_Material
 
 # Create your views here.
 
@@ -225,7 +225,7 @@ def TEACHER_SAVE_ATTENDANCE(request):
         get_subject = Subject.objects.get(id=subject_id)
         get_session = Session.objects.get(id=session_id)
 
-        attendance = Attendance (
+        attendance = Student_Attendance (
             class_id=get_class,
             subject_id=get_subject,
             attendance_date=date,
@@ -238,7 +238,7 @@ def TEACHER_SAVE_ATTENDANCE(request):
             attendance_status = int(request.POST.get(f"attendance{i+1}"))
             attendance_status_list.append(attendance_status)
 
-            attendance_report = Attendance_Report(
+            attendance_report = Student_Attendance_Report(
                 student_id=student,
                 attendance_id=attendance,
                 attendance_status=attendance_status
@@ -291,7 +291,7 @@ def TEACHER_VIEW_ATTENDANCE(request):
             get_subject = Subject.objects.get(id=subject_id)
             get_session = Session.objects.get(id=session_id)
 
-            attendance = Attendance.objects.filter(
+            attendance = Student_Attendance.objects.filter(
                 class_id=get_class,
                 subject_id=get_subject,
                 attendance_date=date,
@@ -300,7 +300,7 @@ def TEACHER_VIEW_ATTENDANCE(request):
             
             for i in attendance:
                 attendance_id = i.id
-                attendance_report = Attendance_Report.objects.filter(attendance_id=attendance_id)
+                attendance_report = Student_Attendance_Report.objects.filter(attendance_id=attendance_id)
 
     students = Student.objects.filter(class_id=get_class)
 

@@ -171,11 +171,11 @@
 <!-- JAVASCRIPT -->
 <script>
   // Get the current date
-  var currentDate = new Date();
+  var todayDate = new Date();
 
   // Store the currently displayed year and month
-  var currentYear = currentDate.getFullYear();
-  var currentMonth = currentDate.getMonth();
+  var currentYear = todayDate.getFullYear();
+  var currentMonth = todayDate.getMonth();
 
   // Function to generate the calendar
   function generateCalendar(year, month) {
@@ -230,7 +230,7 @@
     var daysInMonth = new Date(year, month + 1, 0).getDate();
 
     // Create the calendar cells
-    var currentDate = 1;
+    var todayDate = 1;
     for (var row = 0; row < 6; row++) {
       var calendarRow = document.createElement("tr");
       for (var col = 0; col < 7; col++) {
@@ -238,15 +238,15 @@
           // Create empty cells before the first day of the month
           var emptyCell = document.createElement("td");
           calendarRow.appendChild(emptyCell);
-        } else if (currentDate > daysInMonth) {
+        } else if (todayDate > daysInMonth) {
           // Stop creating cells if we've reached the end of the month
           break;
         } else {
           // Create a cell for each day of the month
           var dayCell = document.createElement("td");
-          dayCell.textContent = currentDate;
+          dayCell.textContent = todayDate;
           calendarRow.appendChild(dayCell);
-          currentDate++;
+          todayDate++;
         }
       }
       tableBody.appendChild(calendarRow);

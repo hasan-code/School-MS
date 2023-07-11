@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Attendance, Attendance_Report
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Salary
 
 # Create your views here.
 
@@ -428,6 +428,19 @@ def DELETE_TEACHER(request, admin):
 # ATTENDANCES
 @login_required(login_url='/')
 def ATTENDANCES(request):
+    return render(request, 'admin/attendances.html')
+
+
+
+@login_required(login_url='/')
+def TAKE_TEACHER_ATTENDANCE(request):
+    return render(request, 'admin/teacher_attendance.html')
+
+
+
+
+@login_required(login_url='/')
+def VIEW_STUDENT_ATTENDANCE(request):
     classes = Class.objects.all()
     sessions = Session.objects.all()
     subjects = Subject.objects.all()
@@ -449,14 +462,14 @@ def ATTENDANCES(request):
             get_subject = Subject.objects.get(id=subject_id)
             get_session = Session.objects.get(id=session_id)
 
-            attendance = Attendance.objects.filter(class_id=get_class, subject_id=get_subject, session_id=get_session)
+            attendance = Student_Attendance.objects.filter(class_id=get_class, subject_id=get_subject, session_id=get_session)
 
             students = Student.objects.filter(class_id=get_class, session_id=get_session)
             attendance_reports = []
             for student in students:
-                total_days = attendance.filter(attendance_report__student_id=student.id).count()
-                present_days = attendance.filter(attendance_report__student_id=student.id, attendance_report__attendance_status=1).count()
-                absent_days = attendance.filter(attendance_report__student_id=student.id, attendance_report__attendance_status=0).count()
+                total_days = attendance.filter(student_attendance_report__student_id=student.id).count()
+                present_days = attendance.filter(student_attendance_report__student_id=student.id, student_attendance_report__attendance_status=1).count()
+                absent_days = attendance.filter(student_attendance_report__student_id=student.id, student_attendance_report__attendance_status=0).count()
                 percentage = (present_days / total_days) * 100 if total_days != 0 else 0
                 
                 attendance_reports.append({
@@ -476,9 +489,6 @@ def ATTENDANCES(request):
     }
 
     return render(request, 'admin/student_attendance.html', context)
-
-
-
 
 
 
@@ -681,6 +691,56 @@ def STUDENT_LEAVE_APPLICATION_DISAPPROVE(request,id):
 
     return redirect('student_leave')
 
+
+# FINANCE SECTIONS
+@login_required(login_url='/')
+def SALARY(request):
+    teachers = Teacher.objects.all()
+
+    context = {
+        'teachers': teachers
+    }
+    return render(request, 'admin/salary.html', context)
+
+
+
+@login_required(login_url='/')
+def ADD_SALARY(request):
+    teachers = Teacher.objects.all()
+
+    if request.method == 'POST':
+        teacher_id = request.POST.get("teacher")
+        salary_type = request.POST.get("salary_type")
+        basic = request.POST.get("basic")
+        hra = request.POST.get("hra")
+        lta = request.POST.get("lta")
+        other_allowance = request.POST.get("other_allowance")
+        bonus = request.POST.get("bonus")
+        pf = request.POST.get("pf")
+        gratuity = request.POST.get("gratuity")
+        other = request.POST.get("other")
+
+        teacher = Teacher.objects.get(id=teacher_id)
+
+        salary = Salary (
+            teacher_id=teacher,
+            salary_type=salary_type,
+            basic=basic,
+            hra=hra,
+            lta=lta,
+            other_allowance=other_allowance,
+            bonus=bonus,
+            pf=pf,
+            gratuity=gratuity,
+            other=other
+        )
+        salary.save()
+        messages.success(request, f"{teacher}\'s salary has been successfully saved!")
+
+    context = {
+        'teachers': teachers
+    }
+    return render(request, 'admin/add_salary.html', context)
 
 # Admin's - MANAGEMENT
 # CLASS

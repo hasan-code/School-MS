@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/attendances.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- ATTENDANCES -->
+<div class="attendances">
+  <a href="{% url 'take_teacher_attendance' %}">
+    <div class="links">
+      <span class="material-symbols-rounded"> rule </span>
+      <p>Take Teacher's Attendance</p>
+    </div>
+  </a>
+
+  <a href="{% url 'view_student_attendance' %}">
+    <div class="links">
+      <span class="material-symbols-rounded"> ballot </span>
+      <p>View Student's Attendance</p>
+    </div>
+  </a>
+</div>
+
+{% endblock %}

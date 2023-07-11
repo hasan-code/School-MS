@@ -52,8 +52,6 @@ class Subject(models.Model):
 # STUDENT MODEL
 class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    # first_name = models.CharField(max_length=200)
-    # last_name = models.CharField(max_length=200)
     father_name = models.CharField(max_length=200)
     mother_name = models.CharField(max_length=200)
     sex = models.CharField(max_length=20)
@@ -189,7 +187,7 @@ class Student_Leave_Apply(models.Model):
 
 
 # STUDENT'S ATTENDANCE
-class Attendance(models.Model):
+class Student_Attendance(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
     subject_id = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
     attendance_date = models.DateField()
@@ -201,9 +199,9 @@ class Attendance(models.Model):
         return self.subject_id.subject_name
     
 
-class Attendance_Report(models.Model):
+class Student_Attendance_Report(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
-    attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
+    attendance_id = models.ForeignKey(Student_Attendance, on_delete=models.CASCADE)
     attendance_status = models.IntegerField(null=True, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -226,3 +224,21 @@ class Study_Material(models.Model):
 
     def __str__(self):
         return self.class_id.class_name + "-" + self.subject_id.subject_name + ": Study Materials"
+    
+
+
+# SALARY
+class Salary(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    salary_type = models.CharField(max_length=10)
+    basic = models.IntegerField()
+    hra = models.IntegerField()
+    lta = models.IntegerField()
+    other_allowance = models.IntegerField()
+    bonus = models.IntegerField()
+    pf = models.IntegerField()
+    gratuity = models.IntegerField()
+    other = models.IntegerField()
+
+    def __str__(self):
+        return f"Salary - {self.teacher_id.admin.first_name} {self.teacher_id.admin.last_name}"

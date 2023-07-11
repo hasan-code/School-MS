@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/salary.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- SALARY PAGE -->
+<div class="salary-container">
+  <div class="actions">
+    <!-- Add Salary -->
+    <a href="{% url 'add_salary' %}" class="links">
+      <span class="material-symbols-rounded"> monetization_on </span>
+      Add Salary
+      <p>Set teacher's salary</p>
+    </a>
+
+    <!-- Add Payment -->
+    <a href="" class="links">
+      <span class="material-symbols-rounded"> payments </span>
+      Add Payment
+      <p>Advance, Salary</p>
+    </a>
+
+    <!-- Salary Slip -->
+    <a href="" class="links">
+      <span class="material-symbols-rounded"> receipt_long </span>
+      Salary Slip
+      <p>Full receipt, Summary</p>
+    </a>
+
+    <!-- Overtime -->
+    <a href="" class="links">
+      <span class="material-symbols-rounded"> more_time </span>
+      Overtime
+    </a>
+
+    <!-- Allowance/Bonus -->
+    <!-- <a href="" class="links">
+      <span class="material-symbols-rounded"> emoji_transportation </span>
+      Allowance/Bonus
+    </a> -->
+
+    <!-- Deductions -->
+    <a href="" class="links">
+      <span class="material-symbols-rounded"> clock_loader_10 </span>
+      Deductions
+      <p>PF, ESI, etc.</p>
+    </a>
+  </div>
+
+  <!-- Salary Status Table -->
+  <div class="salary-status">
+    <h3>Salary Status</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Employment ID</th>
+          <th style="text-align: left">Name of the Teacher</th>
+          <th>Sex</th>
+          <th>Mobile No.</th>
+          <th>Account No.</th>
+          <th>IFSC Code</th>
+          <th>Payment Status</th>
+          <th>Payment History</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for teacher in teachers %}
+        <tr>
+          <td>1111</td>
+          <td style="text-align: left">
+            {{ teacher.admin.first_name }} {{ teacher.admin.last_name }}
+          </td>
+          <td>{{ teacher.sex }}</td>
+          <td>{{ teacher.mobile_no }}</td>
+          <td>{{ teacher.account_no }}</td>
+          <td>{{ teacher.ifsc }}</td>
+          <td>Pending</td>
+          <td
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <a href="">View History</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

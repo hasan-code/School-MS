@@ -1,0 +1,43 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+/* Add styling for the calendar */
+.calendar {
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+.calendar .header {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.calendar .weekdays {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.calendar .weekdays div {
+  flex: 1;
+  text-align: center;
+}
+.calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.calendar .days div {
+  text-align: center;
+  cursor: pointer;
+}

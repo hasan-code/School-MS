@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Student, Student_Notification, Student_Leave_Apply, Class, Session, Subject, Attendance, Attendance_Report, Study_Material
+from app.models import Student, Student_Notification, Student_Leave_Apply, Class, Session, Subject, Student_Attendance, Student_Attendance_Report, Study_Material
 
 # Create your views here.
 
@@ -100,9 +100,9 @@ def ATTENDANCE(request):
             get_class = Class.objects.get(id=class_id)
             get_session = Session.objects.get(id=session_id)
 
-            attendance = Attendance.objects.filter(class_id=get_class, session_id=get_session)
+            attendance = Student_Attendance.objects.filter(class_id=get_class, session_id=get_session)
 
-            attendance_report = Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance)
+            attendance_report = Student_Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance)
 
     if get_class:
         subjects = Subject.objects.filter(class_id=get_class)
@@ -113,9 +113,9 @@ def ATTENDANCE(request):
     # Calculate attendance statistics for each subject
     subject_statistics = []
     for subject in subjects:
-        total_days = Attendance.objects.filter(class_id=get_class, session_id=get_session, subject_id=subject).count()
-        present_days = Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance, attendance_status=1, attendance_id__subject_id=subject).count()
-        absent_days = Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance, attendance_status=0, attendance_id__subject_id=subject).count()
+        total_days = Student_Attendance.objects.filter(class_id=get_class, session_id=get_session, subject_id=subject).count()
+        present_days = Student_Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance, attendance_status=1, attendance_id__subject_id=subject).count()
+        absent_days = Student_Attendance_Report.objects.filter(student_id=student_id, attendance_id__in=attendance, attendance_status=0, attendance_id__subject_id=subject).count()
         if present_days:
             present_percentage = present_days / total_days * 100
         else:

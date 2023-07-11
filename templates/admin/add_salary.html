@@ -1,0 +1,124 @@
+{% extends "base.html" %} {% load static %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/add_salary.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %}
+
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
+
+<!-- SALARY PAGE -->
+<div class="add-salary">
+  <div class="add-salary-form">
+    <h3>Add Salary</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      <!-- Select Teacher -->
+      <div class="input-group">
+        <select name="teacher" id="teacher">
+          <option value="hidden" selected disabled hidden>
+            Select teacher
+          </option>
+          {% for teacher in teachers %}
+          <option value="{{ teacher.id }}">
+            {{ teacher.admin.first_name }} {{ teacher.admin.last_name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Salary Type -->
+      <div class="input-group">
+        <div class="radio-option">
+          <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="salary_type" id="monthly" value="monthly" />
+            <label for="salary_type">Monthly</label>
+          </div>
+
+          <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="salary_type" id="daily" value="daily" />
+            <label for="salary_type">Daily</label>
+          </div>
+
+          <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="salary_type" id="hourly" value="hourly" />
+            <label for="salary_type">Hourly</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Salary -->
+      <div class="input-group">
+        <label for="basic">Basic Salary :</label>
+        <input type="number" name="basic" id="basic" />
+      </div>
+
+      <!-- House Rent Allowance -->
+      <div class="input-group">
+        <label for="hra">House Rent Allowance (HRA) :</label>
+        <input type="number" name="hra" id="hra" />
+      </div>
+
+      <!-- Leave Travel Allowance -->
+      <div class="input-group">
+        <label for="lta">Leave Travel Allowance (LTA) :</label>
+        <input type="number" name="lta" id="lta" />
+      </div>
+
+      <!-- Other Allowance -->
+      <div class="input-group">
+        <label for="other_allowance">Other Allowance :</label>
+        <input type="number" name="other_allowance" id="other_allowance" />
+      </div>
+
+      <!-- Bonus -->
+      <div class="input-group">
+        <label for="bonus">Performance Bonus :</label>
+        <input type="number" name="bonus" id="bonus" />
+      </div>
+
+      <!-- School's contribution to PF -->
+      <div class="input-group">
+        <label for="pf">School's Contribution to PF :</label>
+        <input type="number" name="pf" id="pf" />
+      </div>
+
+      <!-- Gratuity -->
+      <div class="input-group">
+        <label for="gratuity">Gratuity (Payable as per Gratuity Act) :</label>
+        <input type="number" name="gratuity" id="gratuity" />
+      </div>
+
+      <!-- Other -->
+      <div class="input-group">
+        <label for="other">Other(s) :</label>
+        <input type="number" name="other" id="other" />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Select Salary Type
+  function selectOption(option) {
+    var options = document.querySelectorAll(".option");
+    options.forEach(function (opt) {
+      opt.querySelector('input[type="radio"]').checked = false;
+      opt.classList.remove("selected");
+    });
+    var radioButton = option.querySelector('input[type="radio"]');
+    radioButton.checked = true;
+    option.classList.add("selected");
+  }
+
+  
+</script>
+
+{% endblock %}

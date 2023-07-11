@@ -1,0 +1,54 @@
+/* VARIABLES */
+:root {
+  --lightest: #e3f7ae;
+  --lighter: #d5f285;
+  --light: #c7ee5c;
+  --normal: #abe60b;
+  --dark: #8ec009;
+  --darker: #729907;
+  --darkest: #567306;
+  --dark-bg: #222e02;
+  --light-bg: #f8ffe6;
+  --dark-txt: #0c1001;
+  --light-txt: #919191;
+}
+
+.attendances {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.attendances a {
+  padding: 1rem 1.5rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaeaff;
+  border-radius: 0.3rem;
+}
+
+.attendances a .links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendances a .links .material-symbols-rounded {
+  font-size: 1.931rem;
+  color: var(--dark-txt);
+}
+
+.attendances a .links p {
+  color: var(--dark-txt);
+  font-size: 0.891rem;
+  font-weight: 500;
+}
