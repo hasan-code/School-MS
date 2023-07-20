@@ -9,7 +9,84 @@
 <!-- HEADER -->
 {% include "header.html" %}
 
-<!-- TEACHER'S ATTENDANCE -->
+<!-- MESSAGES DIALOG -->
+{% include 'messages.html' %}
 
+<!-- TEACHER'S ATTENDANCE -->
+<div class="teacher-attendance-container">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Take Attendance</h3>
+    <div class="input-group">
+      <label for="date">Choose date:</label>
+      <input type="date" name="date" id="date" />
+    </div>
+
+    <h3>All Teachers</h3>
+    <div class="teacher-card-container">
+        {% for teacher in teachers %}
+        <div class="teacher-card">
+            <input type="hidden" name="teacher_id[]" value="{{ teacher.id }}" />
+            <div class="teacher-detail">
+                <div class="photo">
+                    <img src="{{ teacher.admin.profile_pic.url }}" alt="Teacher's profile picture.">
+                </div>
+                <p class="name">{{ teacher.admin.first_name }} {{ teacher.admin.last_name }}</p>
+            </div>
+            <div class="attendance-mark">
+                <div class="radio-group">
+                  
+                  <input
+                    type="radio"
+                    id="present-{{ teacher.admin.id }}"
+                    name="attendance{{ forloop.counter }}"
+                    class="present"
+                    value="Present"
+                  />
+                  <label for="present-{{ teacher.admin.id }}">Present</label>
+                </div>
+      
+                <div class="radio-group">
+                  
+                  <input
+                    type="radio"
+                    id="absent-{{ teacher.admin.id }}"
+                    name="attendance{{ forloop.counter }}"
+                    class="absent"
+                    value="Absent"
+                  />
+                  <label for="absent-{{ teacher.admin.id }}">Absent</label>
+                </div>
+
+                <div class="radio-group">
+                  
+                    <input
+                      type="radio"
+                      id="halfday-{{ teacher.admin.id }}"
+                      name="attendance{{ forloop.counter }}"
+                      class="halfday"
+                      value="Half Day"
+                    />
+                    <label for="halfday-{{ teacher.admin.id }}">Half Day</label>
+                  </div>
+
+                  <div class="radio-group">
+                  
+                    <input
+                      type="radio"
+                      id="paidleave-{{ teacher.admin.id }}"
+                      name="attendance{{ forloop.counter }}"
+                      class="paidleave"
+                      value="Paid Leave"
+                    />
+                    <label for="paidleave-{{ teacher.admin.id }}">Paid Leave</label>
+                  </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
 
 {% endblock %}

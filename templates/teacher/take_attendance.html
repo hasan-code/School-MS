@@ -123,7 +123,7 @@
     <div class="students-container">
       {% for student in students %}
       <div class="students-card">
-        <!-- <input type="text" name="student_id" id="student_id" value="{{ student.id }}" hidden> -->
+        
         <input type="hidden" name="student_id[]" value="{{ student.id }}" />
         <div class="profile-photo">
           <img
@@ -136,7 +136,7 @@
         </p>
         <div class="attendance-mark">
           <div class="radio-group">
-            <!-- <input type="text" name="status" id="status" value="1" hidden> -->
+            
             <input
               type="radio"
               id="present-{{ student.admin.id }}"
@@ -148,7 +148,7 @@
           </div>
 
           <div class="radio-group">
-            <!-- <input type="text" name="status" id="status" value="0" hidden> -->
+            
             <input
               type="radio"
               id="absent-{{ student.admin.id }}"

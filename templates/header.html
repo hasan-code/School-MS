@@ -31,7 +31,7 @@
         alt="Profile picture"
       />
       {% else %}
-      <img src="{{ user.profile_pic }}" alt="Profile picture" />
+      <img src="{{ user.profile_pic.url }}" alt="Profile picture" />
       {% endif %}
     </div>
   </div>
@@ -47,7 +47,7 @@
         alt="Profile picture"
       />
       {% else %}
-      <img src="{{ user.profile_pic }}" alt="Profile picture" />
+      <img src="{{ user.profile_pic.url }}" alt="Profile picture" />
       {% endif %}
     </div>
 

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Salary
+from datetime import datetime
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Salary, Teacher_Attendance
 
 # Create your views here.
 
@@ -434,7 +435,38 @@ def ATTENDANCES(request):
 
 @login_required(login_url='/')
 def TAKE_TEACHER_ATTENDANCE(request):
-    return render(request, 'admin/teacher_attendance.html')
+    teachers = Teacher.objects.all()
+
+    if request.method == 'POST':
+        date = request.POST.get("date")
+        selected_date = datetime.strptime(date, "%Y-%m-%d")
+        year = selected_date.year
+        month = selected_date.month
+        day = selected_date.day
+        teacher_ids = request.POST.getlist("teacher_id[]")
+        attendance_type_list = []
+
+        for i, teacher_id in enumerate(teacher_ids):
+            teacher = Teacher.objects.get(id=teacher_id)
+            attendance_status = request.POST.get(f"attendance{i+1}")
+            attendance_type_list.append(attendance_status)
+
+            teacher_attendance = Teacher_Attendance (
+                teacher_id=teacher,
+                day=day,
+                month=month,
+                year=year,
+                attendance_type=attendance_status
+            )
+            teacher_attendance.save()
+
+        messages.success(request, "Attendances saved successfully!")
+        return redirect('attendances')
+
+    context = {
+        'teachers': teachers
+    }
+    return render(request, 'admin/teacher_attendance.html', context)
 
 
 
