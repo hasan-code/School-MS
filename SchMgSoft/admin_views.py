@@ -428,12 +428,6 @@ def DELETE_TEACHER(request, admin):
 
 # ATTENDANCES
 @login_required(login_url='/')
-def ATTENDANCES(request):
-    return render(request, 'admin/attendances.html')
-
-
-
-@login_required(login_url='/')
 def TAKE_TEACHER_ATTENDANCE(request):
     teachers = Teacher.objects.all()
 
@@ -461,7 +455,7 @@ def TAKE_TEACHER_ATTENDANCE(request):
             teacher_attendance.save()
 
         messages.success(request, "Attendances saved successfully!")
-        return redirect('attendances')
+        return redirect('take_teacher_attendance')
 
     context = {
         'teachers': teachers
@@ -726,13 +720,13 @@ def STUDENT_LEAVE_APPLICATION_DISAPPROVE(request,id):
 
 # FINANCE SECTIONS
 @login_required(login_url='/')
-def SALARY(request):
+def SALARY_STATUS(request):
     teachers = Teacher.objects.all()
 
     context = {
         'teachers': teachers
     }
-    return render(request, 'admin/salary.html', context)
+    return render(request, 'admin/salary_status.html', context)
 
 
 
@@ -773,6 +767,52 @@ def ADD_SALARY(request):
         'teachers': teachers
     }
     return render(request, 'admin/add_salary.html', context)
+
+
+@login_required(login_url='/')
+def ADD_PAYMENT(request):
+    teachers = Teacher.objects.all()
+    sessions = Session.objects.all()
+
+    months = [
+        {'name': 'January', 'number': 1},
+        {'name': 'February', 'number': 2},
+        {'name': 'March', 'number': 3},
+        {'name': 'April', 'number': 4},
+        {'name': 'May', 'number': 5},
+        {'name': 'June', 'number': 6},
+        {'name': 'July', 'number': 7},
+        {'name': 'August', 'number': 8},
+        {'name': 'September', 'number': 9},
+        {'name': 'October', 'number': 10},
+        {'name': 'November', 'number': 11},
+        {'name': 'December', 'number': 12},
+    ]
+
+
+    action = request.GET.get('action')
+
+    if action is not None:
+        if request.method == 'POST':
+            month = request.POST.get("month")
+            session = request.POST.get("session")
+
+
+            print(month,session)
+
+    context = {
+        'action': action,
+        'teachers': teachers,
+        'sessions': sessions,
+        'months': months,
+    }
+
+    return render(request, 'admin/add_payment.html', context)
+
+
+
+
+
 
 # Admin's - MANAGEMENT
 # CLASS

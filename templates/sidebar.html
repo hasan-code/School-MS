@@ -63,12 +63,26 @@
         </a>
       </div>
 
-      <!-- Student's Attendance -->
-      <div class="links {% active_link 'attendances || view_student_attendance' 'active' %}">
-        <a href="{% url 'attendances' %}">
+      <!-- Attendance -->
+      <div
+        class="links {% active_link 'take_teacher_attendance || view_student_attendance' 'active' %}"
+      >
+        <div id="attendance-menu">
           <span class="material-symbols-rounded"> ballot </span>
           Attendances
-        </a>
+        </div>
+        <div class="sub-menu" id="attendance-sub-menu">
+          <!-- Teacher's Attendance -->
+          <a href="{% url 'take_teacher_attendance' %}">
+            <span class="material-symbols-rounded"> rule </span>
+            Teacher's
+          </a>
+          <!-- Student's Attendance -->
+          <a href="{% url 'view_student_attendance' %}">
+            <span class="material-symbols-rounded"> ballot </span>
+            Student's
+          </a>
+        </div>
       </div>
     </div>
 
@@ -76,36 +90,47 @@
     <div class="navbar-group">
       <p class="title">MANAGEMENT</p>
 
-      <!-- Notify Teachers -->
-      <div class="links {% active_link 'notify_teachers' 'active' %}">
-        <a href="{% url 'notify_teachers' %}">
-          <span class="material-symbols-rounded"> notification_add </span>
-          Notify Teachers
-        </a>
+      <div
+        class="links {% active_link 'notify_teachers || notify_students' 'active' %}"
+      >
+        <div id="notification-menu">
+          <span class="material-symbols-rounded"> circle_notifications </span>
+          Send Notification
+        </div>
+        <div class="sub-menu" id="notification-sub-menu">
+          <!-- Notify Teachers -->
+          <a href="{% url 'notify_teachers' %}">
+            <span class="material-symbols-rounded"> notification_add </span>
+            Notify Teachers
+          </a>
+          <!-- Notify Students -->
+          <a href="{% url 'notify_students' %}">
+            <span class="material-symbols-rounded"> notification_add </span>
+            Notify Students
+          </a>
+        </div>
       </div>
 
-      <!-- Notify Students -->
-      <div class="links {% active_link 'notify_students' 'active' %}">
-        <a href="{% url 'notify_students' %}">
-          <span class="material-symbols-rounded"> notification_add </span>
-          Notify Students
-        </a>
-      </div>
-
-      <!-- Teacher Leave Applications -->
-      <div class="links {% active_link 'teacher_leave' 'active' %}">
-        <a href="{% url 'teacher_leave' %}">
-          <span class="material-symbols-rounded"> feed </span>
-          Teacher's Leave
-        </a>
-      </div>
-
-      <!-- Student Leave Applications -->
-      <div class="links {% active_link 'student_leave' 'active' %}">
-        <a href="{% url 'student_leave' %}">
-          <span class="material-symbols-rounded"> feed </span>
-          Student's Leave
-        </a>
+      <!-- Leave Applications -->
+      <div
+        class="links {% active_link 'teacher_leave || student_leave' 'active' %}"
+      >
+        <div id="application-menu">
+          <span class="material-symbols-rounded"> mark_email_unread </span>
+          Leave Application
+        </div>
+        <div class="sub-menu" id="application-sub-menu">
+          <!-- Teacher's Leave Applications -->
+          <a href="{% url 'teacher_leave' %}">
+            <span class="material-symbols-rounded"> feed </span>
+            Teacher's Leave
+          </a>
+          <!-- Student's Leave Applications -->
+          <a href="{% url 'student_leave' %}">
+            <span class="material-symbols-rounded"> feed </span>
+            Student's Leave
+          </a>
+        </div>
       </div>
     </div>
 
@@ -122,11 +147,35 @@
       </div>
 
       <!-- Salary -->
-      <div class="links {% active_link 'salary' 'active' %}">
-        <a href="{% url 'salary' %}">
-          <span class="material-symbols-rounded"> wallet </span>
+      <div class="links {% active_link 'salary_status || add_salary' 'active' %}">
+        <div id="salary-menu">
+          <span class="material-symbols-rounded"> redeem </span>
           Salary
-        </a>
+        </div>
+        <div class="sub-menu" id="salary-sub-menu">
+          <!-- Salary Status -->
+          <a href="{% url 'salary_status' %}">
+            <span class="material-symbols-rounded"> wallet </span>
+            Salary Status
+          </a>
+          <!-- Add Salary -->
+          <a href="{% url 'add_salary' %}">
+            <span class="material-symbols-rounded"> monetization_on </span>
+            Add Salary
+          </a>
+
+          <!-- Add Payment -->
+          <a href="{% url 'add_payment' %}">
+            <span class="material-symbols-rounded"> payments </span>
+            Add Payment
+          </a>
+
+          <!-- Salary Slip -->
+          <a href="">
+            <span class="material-symbols-rounded"> receipt_long </span>
+            Salary Slip
+          </a>
+        </div>
       </div>
     </div>
 
@@ -155,7 +204,7 @@
           <span class="material-symbols-rounded"> settings </span>
           Settings
         </div>
-        <div class="sub-menu" id="sub-menu">
+        <div class="sub-menu" id="settings-sub-menu">
           <a href="{% url 'add_session' %}">
             <span class="material-symbols-rounded"> add_circle </span>
             Add Session
@@ -376,7 +425,6 @@
   </div>
   {% endif %}
 </nav>
-
 
 <!-- JAVASCRIPT -->
 <script src="{% static 'js/sidebar.js' %}" type="text/javascript"></script>

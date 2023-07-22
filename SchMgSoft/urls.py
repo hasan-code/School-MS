@@ -48,7 +48,6 @@ urlpatterns = [
     path('teachers/update', admin_views.UPDATE_TEACHER, name='update_teacher'),
     path('teachers/detete/<str:admin>', admin_views.DELETE_TEACHER, name='delete_teacher'),
     # ATTENDANCES LINKS
-    path('attendances', admin_views.ATTENDANCES, name='attendances'),
     path('attendances/take_teacher_attendance', admin_views.TAKE_TEACHER_ATTENDANCE, name='take_teacher_attendance'),
     path('attendances/view_student_attendance', admin_views.VIEW_STUDENT_ATTENDANCE, name='view_student_attendance'),
     # STAFF MANAGEMENT LINKS
@@ -68,8 +67,9 @@ urlpatterns = [
     path('student_leave/view/disapprove/<str:id>', admin_views.STUDENT_LEAVE_APPLICATION_DISAPPROVE, name="student_leave_application_disapprove"),
 
     # FINANCE SECTION LINKS
-    path('salary', admin_views.SALARY, name='salary'),
+    path('salary/status', admin_views.SALARY_STATUS, name='salary_status'),
     path('salary/add_salary', admin_views.ADD_SALARY, name='add_salary'),
+    path('salary/add_payment', admin_views.ADD_PAYMENT, name='add_payment'),
 
     # Teacher's Page Links
     path('home', teacher_views.HOME, name='teacher_home'),

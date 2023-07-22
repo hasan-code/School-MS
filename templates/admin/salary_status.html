@@ -2,56 +2,56 @@
 <!-- HTML HEAD CONTENTS -->
 {% block htmlhead %}
 
-<link rel="stylesheet" href="{% static 'css/admin/salary.css' %}" />
+<link rel="stylesheet" href="{% static 'css/admin/salary_status.css' %}" />
 
 {% endblock htmlhead %} {% block content %}
 
 <!-- HEADER -->
 {% include "header.html" %}
 
-<!-- SALARY PAGE -->
+<!-- SALARY STATUS PAGE -->
 <div class="salary-container">
-  <div class="actions">
-    <!-- Add Salary -->
+  <!-- <div class="actions">
+    Add Salary
     <a href="{% url 'add_salary' %}" class="links">
       <span class="material-symbols-rounded"> monetization_on </span>
       Add Salary
       <p>Set teacher's salary</p>
     </a>
 
-    <!-- Add Payment -->
+    Add Payment
     <a href="" class="links">
       <span class="material-symbols-rounded"> payments </span>
       Add Payment
       <p>Advance, Salary</p>
     </a>
 
-    <!-- Salary Slip -->
+    Salary Slip
     <a href="" class="links">
       <span class="material-symbols-rounded"> receipt_long </span>
       Salary Slip
       <p>Full receipt, Summary</p>
     </a>
 
-    <!-- Overtime -->
+    Overtime
     <a href="" class="links">
       <span class="material-symbols-rounded"> more_time </span>
       Overtime
     </a>
 
-    <!-- Allowance/Bonus -->
-    <!-- <a href="" class="links">
+    Allowance/Bonus
+    <a href="" class="links">
       <span class="material-symbols-rounded"> emoji_transportation </span>
       Allowance/Bonus
-    </a> -->
+    </a>
 
-    <!-- Deductions -->
+    Deductions
     <a href="" class="links">
       <span class="material-symbols-rounded"> clock_loader_10 </span>
       Deductions
       <p>PF, ESI, etc.</p>
     </a>
-  </div>
+  </div> -->
 
   <!-- Salary Status Table -->
   <div class="salary-status">

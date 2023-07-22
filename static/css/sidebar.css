@@ -160,7 +160,11 @@ nav .navbar .navbar-group .links.active a {
   font-weight: 500;
 }
 
-nav .navbar .navbar-group .links #settings-menu {
+nav .navbar .navbar-group .links #settings-menu,
+nav .navbar .navbar-group .links #attendance-menu,
+nav .navbar .navbar-group .links #notification-menu,
+nav .navbar .navbar-group .links #application-menu,
+nav .navbar .navbar-group .links #salary-menu {
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
   width: 100%;
   display: flex;
@@ -173,7 +177,20 @@ nav .navbar .navbar-group .links #settings-menu {
   color: #919191;
 }
 
-nav .navbar .navbar-group .links #settings-menu:hover {
+nav .navbar .navbar-group .links.active #settings-menu,
+nav .navbar .navbar-group .links.active #attendance-menu,
+nav .navbar .navbar-group .links.active #notification-menu,
+nav .navbar .navbar-group .links.active #application-menu,
+nav .navbar .navbar-group .links.active #salary-menu {
+  color: #fff;
+  font-weight: 500;
+}
+
+nav .navbar .navbar-group .links #settings-menu:hover,
+nav .navbar .navbar-group .links #attendance-menu:hover,
+nav .navbar .navbar-group .links #notification-menu:hover,
+nav .navbar .navbar-group .links #application-menu:hover,
+nav .navbar .navbar-group .links #salary-menu:hover {
   background-color: var(--dark);
   color: #fff;
   font-weight: 500;
@@ -190,7 +207,8 @@ nav .navbar .navbar-group .links .sub-menu {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   border-radius: 0.3rem;
   opacity: 0;
   visibility: hidden;

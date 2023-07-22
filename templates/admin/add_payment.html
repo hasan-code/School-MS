@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/add_payment.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %} {% if action is None %}
+<!-- ADD PAYMENT CONTAINER -->
+<div class="add-payment-container">
+  <!-- SELECTION FORM -->
+  <div class="selection-form">
+    <form action="?action=get_attendance_data" method="post">
+      {% csrf_token %}
+
+      <!-- Select Teacher -->
+      <!-- <div class="input-group">
+        <select name="teacher" id="teacher" required>
+          <option value="hidden" selected disabled hidden>
+            Select Teacher
+          </option>
+          {% for teacher in teachers %}
+          <option value="{{ teacher.id }}">
+            {{ teacher.admin.first_name }} {{ teacher.admin.last_name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div> -->
+
+      <!-- Select Month -->
+      <div class="input-group">
+        <select name="month" id="month" required>
+          <option value="hidden" selected disabled hidden>Select Month</option>
+          {% for month in months %}
+          <option value="{{ month.number }}">{{ month.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} to {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Get Attendance</button>
+    </form>
+  </div>
+</div>
+
+{% else %}
+<!-- TEACHER'S ATTENDANCE TABLE -->
+<div class="teachers-attendance-table">
+  <h3>Add Payments</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Employee ID.</th>
+        <th>Name of the Teacher</th>
+        <th style="text-align: center">Bank Account No.</th>
+        <th style="text-align: center">IFSC Code</th>
+        <th style="text-align: center">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for teacher in teachers %}
+      <tr>
+        <td style="text-align: center">1111</td>
+        <td>{{ teacher.admin.first_name }} {{ teacher.admin.last_name }}</td>
+        <td style="text-align: center">{{ teacher.account_no }}</td>
+        <td style="text-align: center">{{ teacher.ifsc }}</td>
+        <td
+          style="
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <a href="">Add Payment</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %} {% endblock %}
