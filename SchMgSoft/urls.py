@@ -70,6 +70,7 @@ urlpatterns = [
     path('salary/status', admin_views.SALARY_STATUS, name='salary_status'),
     path('salary/add_salary', admin_views.ADD_SALARY, name='add_salary'),
     path('salary/add_payment', admin_views.ADD_PAYMENT, name='add_payment'),
+    path('salary/add_payment/pay/<str:id>', admin_views.PAY, name='pay'),
 
     # Teacher's Page Links
     path('home', teacher_views.HOME, name='teacher_home'),

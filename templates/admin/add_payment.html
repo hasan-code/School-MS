@@ -7,60 +7,10 @@
 {% endblock htmlhead %} {% block content %}
 
 <!-- HEADER -->
-{% include "header.html" %} {% if action is None %}
-<!-- ADD PAYMENT CONTAINER -->
-<div class="add-payment-container">
-  <!-- SELECTION FORM -->
-  <div class="selection-form">
-    <form action="?action=get_attendance_data" method="post">
-      {% csrf_token %}
+{% include "header.html" %}
 
-      <!-- Select Teacher -->
-      <!-- <div class="input-group">
-        <select name="teacher" id="teacher" required>
-          <option value="hidden" selected disabled hidden>
-            Select Teacher
-          </option>
-          {% for teacher in teachers %}
-          <option value="{{ teacher.id }}">
-            {{ teacher.admin.first_name }} {{ teacher.admin.last_name }}
-          </option>
-          {% endfor %}
-        </select>
-      </div> -->
-
-      <!-- Select Month -->
-      <div class="input-group">
-        <select name="month" id="month" required>
-          <option value="hidden" selected disabled hidden>Select Month</option>
-          {% for month in months %}
-          <option value="{{ month.number }}">{{ month.name }}</option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <!-- Select Session -->
-      <div class="input-group">
-        <select name="session" id="session" required>
-          <option value="hidden" selected disabled hidden>
-            Select Session
-          </option>
-          {% for session in sessions %}
-          <option value="{{ session.id }}">
-            {{ session.start_session }} to {{ session.end_session }}
-          </option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <button type="submit">Get Attendance</button>
-    </form>
-  </div>
-</div>
-
-{% else %}
-<!-- TEACHER'S ATTENDANCE TABLE -->
-<div class="teachers-attendance-table">
+<!-- TEACHER'S ADD PAYMENT TABLE -->
+<div class="teachers-add-payment-table">
   <h3>Add Payments</h3>
   <table>
     <thead>
@@ -89,11 +39,14 @@
             justify-content: center;
           "
         >
-          <a href="">Add Payment</a>
+          <a
+            href="{% url 'pay' teacher.id %}"
+            >Add Payment</a
+          >
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
-{% endif %} {% endblock %}
+{% endblock %}

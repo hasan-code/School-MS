@@ -249,6 +249,18 @@
   border-color: #6a50dc;
 }
 
+.teacher-attendance-container
+  form
+  .teacher-card-container
+  .teacher-card
+  .attendance-mark
+  .radio-group
+  .holiday:checked
+  + label {
+  background-color: #ff0000;
+  border-color: #d40000;
+}
+
 .teacher-attendance-container form button {
   padding: 0.7rem 1.5rem;
   width: fit-content;

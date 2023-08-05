@@ -254,3 +254,17 @@ class Salary(models.Model):
 
     def __str__(self):
         return f"Salary - {self.teacher_id.admin.first_name} {self.teacher_id.admin.last_name}"
+
+
+# PAYMENT
+class Payment(models.Model):
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
+    month = models.IntegerField()
+    basic_salary = models.BigIntegerField()
+    earnings_data = models.JSONField(null=True, blank=True)
+    deductions_data = models.JSONField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Payment: {self.teacher_id.admin.first_name} {self.teacher_id.admin.last_name} - {self.month} ({self.session_id.start_session}-{self.session_id.end_session})"

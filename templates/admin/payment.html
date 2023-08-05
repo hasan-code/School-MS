@@ -1,0 +1,248 @@
+{% extends "base.html" %} {% load static %} {% load active_link_tags %}
+<!-- HTML HEAD CONTENTS -->
+{% block htmlhead %}
+
+<link rel="stylesheet" href="{% static 'css/admin/payment.css' %}" />
+
+{% endblock htmlhead %} {% block content %}
+
+<!-- HEADER -->
+{% include "header.html" %} {% if action is None %}
+<!-- ADD PAYMENT CONTAINER -->
+<div class="add-payment-container">
+  <!-- SELECTION FORM -->
+  <div class="selection-form">
+    <form action="?action=get_attendance_data" method="post">
+      {% csrf_token %}
+
+      <!-- Select Teacher -->
+      <!-- <div class="input-group">
+          <select name="teacher" id="teacher" required>
+            <option value="hidden" selected disabled hidden>
+              Select Teacher
+            </option>
+            {% for teacher in teachers %}
+            <option value="{{ teacher.id }}">
+              {{ teacher.admin.first_name }} {{ teacher.admin.last_name }}
+            </option>
+            {% endfor %}
+          </select>
+        </div> -->
+
+      <!-- Select Month -->
+      <div class="input-group">
+        <select name="month" id="month" required>
+          <option value="hidden" selected disabled hidden>Select Month</option>
+          {% for month in months %}
+          <option value="{{ month.number }}">{{ month.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Select Session -->
+      <div class="input-group">
+        <select name="session" id="session" required>
+          <option value="hidden" selected disabled hidden>
+            Select Session
+          </option>
+          {% for session in sessions %}
+          <option value="{{ session.id }}">
+            {{ session.start_session }} - {{ session.end_session }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Get Attendance</button>
+    </form>
+  </div>
+</div>
+{% else %}
+<div class="attendance-container">
+  <h3>Attendance Data</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Sl. No.</th>
+        <th>Attendance Types</th>
+        <th style="text-align: center">No. of Days</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for attendance_type, count in attendance_types.items %}
+      <tr>
+        <td style="text-align: center">{{ forloop.counter }}</td>
+        <td>{{ attendance_type }}</td>
+        <td style="text-align: center">{{ count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td>
+          <p>Total No. of Days:</p>
+          <p>{{ total_days }}</p>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- PAYMENT FORM -->
+<div class="payment-form">
+  <h3>Generate Payment</h3>
+  <form action="" method="post" id="paymentForm">
+    {% csrf_token %}
+
+    <div class="form-data">
+      <div class="earnings">
+        <h3>Earnings</h3>
+        <div class="basic-salary">
+          <input
+            type="text"
+            name="basic-salary"
+            id="basic-salary"
+            class="input"
+            value="Basic Salary"
+            style="width: 60%"
+            required
+            readonly
+          />
+          <input
+            type="number"
+            name="basic-salary-amount"
+            id="basic-salary-amount"
+            class="input"
+            value="30000"
+            style="width: 30%"
+            required
+            readonly
+          />
+
+          <div class="info">
+            <span class="material-symbols-rounded" id="basic-salary-info-btn"> help </span>
+            <div class="basic-salary-info">
+              <p>This is an auto generated field. It can't be modified!</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-input">
+          <div class="input-group" style="width: 60%">
+            <label>Field name</label>
+            <input type="text" name="earnings_field_name[]" />
+          </div>
+          <div class="input-group" style="width: 30%">
+            <label>Amount</label>
+            <input type="number" name="earnings_amount[]" />
+          </div>
+          <div class="earnings-remove-btn">
+            <span class="material-symbols-rounded"> remove </span>
+          </div>
+        </div>
+        <div class="earnings-add-btn">
+          <span class="material-symbols-rounded"> add </span>
+        </div>
+      </div>
+
+      <div class="deductions">
+        <h3>Deductions</h3>
+        <div class="form-input">
+          <div class="input-group" style="width: 60%">
+            <label>Field name</label>
+            <input type="text" name="deductions_field_name[]" />
+          </div>
+          <div class="input-group" style="width: 30%">
+            <label>Amount</label>
+            <input type="number" name="deductions_amount[]" />
+          </div>
+          <div class="deductions-remove-btn">
+            <span class="material-symbols-rounded"> remove </span>
+          </div>
+        </div>
+        <div class="deductions-add-btn">
+          <span class="material-symbols-rounded"> add </span>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Pay</button>
+  </form>
+</div>
+
+{% endif %}
+<script>
+  // Toggle the Basic Salary info
+  const infoBtn = document.getElementById("basic-salary-info-btn");
+  const basicSalaryInfo = document.querySelector(".basic-salary-info");
+
+  infoBtn.addEventListener("click", () => {
+    basicSalaryInfo.classList.toggle("active");
+  });
+
+
+
+  // Function to add fields in Earnings div
+  function addEarningsFields() {
+    var earningsDiv = document.querySelector(".earnings");
+    var earningsFormInput = earningsDiv.querySelector(".form-input");
+
+    var earningsClonedFields = earningsFormInput.cloneNode(true);
+
+    earningsDiv.insertBefore(
+      earningsClonedFields,
+      earningsDiv.querySelector(".earnings-add-btn")
+    );
+  }
+
+  // Function to add fields in Deductions div
+  function addDeductionsFields() {
+    var deductionsDiv = document.querySelector(".deductions");
+    var deductionsFormInput = deductionsDiv.querySelector(".form-input");
+
+    var deductionsClonedFields = deductionsFormInput.cloneNode(true);
+
+    deductionsDiv.insertBefore(
+      deductionsClonedFields,
+      deductionsDiv.querySelector(".deductions-add-btn")
+    );
+  }
+
+  // Function to remove the parent form-input div
+  function removeFields(event) {
+    var parentFormInput = event.target.closest(".form-input");
+    var allFormInputs = document.querySelectorAll(".form-input");
+    var parentSection = parentFormInput.closest(".earnings, .deductions");
+    var formInputsInSection = parentSection.querySelectorAll(".form-input");
+
+    // Check if there's only one 'form-input' left in the section
+    if (formInputsInSection.length > 1 && allFormInputs.length > 1) {
+      parentFormInput.remove();
+    }
+  }
+
+  // Event listener for adding fields to Earnings div
+  var earningsAddButton = document.querySelector(".earnings-add-btn");
+  earningsAddButton.addEventListener("click", function () {
+    addEarningsFields();
+  });
+
+  // Event listener for adding fields to Deductions div
+  var deductionsAddButton = document.querySelector(".deductions-add-btn");
+  deductionsAddButton.addEventListener("click", function () {
+    addDeductionsFields();
+  });
+
+  // Event delegation for removing fields from Earnings and Deductions divs
+  var paymentForm = document.getElementById("paymentForm");
+  paymentForm.addEventListener("click", function (event) {
+    if (
+      event.target.classList.contains("material-symbols-rounded") &&
+      event.target.textContent.trim().toLowerCase() === "remove"
+    ) {
+      removeFields(event);
+    }
+  });
+</script>
+{% endblock %}

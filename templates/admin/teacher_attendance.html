@@ -81,6 +81,18 @@
                     />
                     <label for="paidleave-{{ teacher.admin.id }}">Paid Leave</label>
                   </div>
+
+                  <div class="radio-group">
+                  
+                    <input
+                      type="radio"
+                      id="holiday-{{ teacher.admin.id }}"
+                      name="attendance{{ forloop.counter }}"
+                      class="holiday"
+                      value="Holiday"
+                    />
+                    <label for="holiday-{{ teacher.admin.id }}">Holiday</label>
+                  </div>
               </div>
         </div>
         {% endfor %}

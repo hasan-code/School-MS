@@ -19,13 +19,15 @@
     {% csrf_token %}
 
     <div class="input-group">
+      <select name="start_session" id="start_session" required></select>
       <label for="start_session">Start session</label>
-      <input type="date" name="start_session" id="start_session" required />
+      <!-- <input type="date" name="start_session" id="start_session" required /> -->
     </div>
 
     <div class="input-group">
+      <select name="end_session" id="end_session" required></select>
       <label for="end_session">End session</label>
-      <input type="date" name="end_session" id="end_session" required />
+      <!-- <input type="date" name="end_session" id="end_session" required /> -->
     </div>
 
     <button type="submit">Add</button>
@@ -75,6 +77,38 @@
   </table>
 </div>
 
-<!-- <script src="{% static 'js/students.js' %}" type="text/javascript"></script> -->
+<!-- JAVASCRIPT -->
+<script>
+  const startSession = document.getElementById("start_session");
+  const endSession = document.getElementById("end_session");
+
+  const currentYear = new Date().getFullYear();
+  const startYear = 1900;
+  const endYear = 2100;
+
+  for (let year = startYear; year <= endYear; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+
+    if (year === currentYear) {
+      option.selected = true;
+    }
+
+    startSession.appendChild(option);
+  }
+
+  for (let year = startYear; year <= endYear; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+
+    if (year === currentYear + 1) {
+      option.selected = true;
+    }
+
+    endSession.appendChild(option);
+  }
+</script>
 
 {% endblock %}

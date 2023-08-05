@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from collections import Counter
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import json
 from datetime import datetime
-from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Salary, Teacher_Attendance
+from app.models import Class, Session, Subject, CustomUser, Student, Teacher, Teacher_Notification, Student_Notification, Teacher_Leave_Apply, Student_Leave_Apply, Teacher_Allotment, Student_Attendance, Student_Attendance_Report, Salary, Teacher_Attendance, Payment
 
 # Create your views here.
 
@@ -772,7 +774,21 @@ def ADD_SALARY(request):
 @login_required(login_url='/')
 def ADD_PAYMENT(request):
     teachers = Teacher.objects.all()
+
+    context = {
+        'teachers': teachers,
+    }
+
+    return render(request, 'admin/add_payment.html', context)
+
+
+
+@login_required(login_url='/')
+def PAY(request, id):
+    teacher_id = get_object_or_404(Teacher, id=id)
     sessions = Session.objects.all()
+
+    action = request.GET.get("action")
 
     months = [
         {'name': 'January', 'number': 1},
@@ -789,27 +805,112 @@ def ADD_PAYMENT(request):
         {'name': 'December', 'number': 12},
     ]
 
-
-    action = request.GET.get('action')
+    attendances = None
+    attendance_counts = {}
+    basic_salary_amount = None
 
     if action is not None:
-        if request.method == 'POST':
+        if request.method == "POST":
             month = request.POST.get("month")
             session = request.POST.get("session")
 
+            # Convert the month and session values to integers
+            month = int(month) if month else None
+            session = int(session) if session else None
 
-            print(month,session)
+            # Filter attendances based on teacher_id, month, and year (session)
+            attendances = Teacher_Attendance.objects.filter(teacher_id=teacher_id, month=month)
 
-    context = {
-        'action': action,
-        'teachers': teachers,
-        'sessions': sessions,
-        'months': months,
+            # Calculate the counts of each attendance type
+            attendance_counts = Counter(attendance.attendance_type for attendance in attendances)
+
+    # Create an attendance types dictionary with count for each attendance type
+    present_count = attendance_counts.get('Present', 0)
+    absent_count = attendance_counts.get('Absent', 0)
+    half_day_count = attendance_counts.get('Half Day', 0)
+    paid_leave_count = attendance_counts.get('Paid Leave', 0)
+    holiday_count = attendance_counts.get('Holiday', 0)
+
+    
+    attendance_types = {
+        'Present': present_count,
+        'Absent': absent_count,
+        'Half Day': half_day_count,
+        'Paid Leave': paid_leave_count,
+        'Holiday': holiday_count,
     }
 
-    return render(request, 'admin/add_payment.html', context)
+    # Calculate the total number of days by adding all the count values of attendance_types
+    total_days = sum(attendance_types.values())
+
+    salary = Salary.objects.get(teacher_id=teacher_id)
+
+    basic_salary_amount = salary.basic
+
+    # amount_per_day = basic_salary_amount / total_days
+    if total_days != 0:
+        amount_per_day = basic_salary_amount / total_days
+    else:
+        amount_per_day = 0
 
 
+    calculated_basic_salary_amount = ((present_count + paid_leave_count + holiday_count) * amount_per_day) + (half_day_count * amount_per_day / 2) - (absent_count * amount_per_day)
+
+    # Formatting the value with two digits after the decimal point
+    formatted_calculated_basic_salary_amount = float("{:.2f}".format(calculated_basic_salary_amount))
+
+
+    # Save the Payment data to the database
+    if request.method == "POST":
+        earnings_field_names = request.POST.getlist("earnings_field_name[]")
+        earnings_amounts = request.POST.getlist("earnings_amount[]")
+
+        deductions_field_names = request.POST.getlist("deductions_field_name[]")
+        deductions_amounts = request.POST.getlist("deductions_amount[]")
+
+        # Create a list of dictionaries for earnings_data and deductions_data
+        earnings_data_list = []
+        for name, amount in zip(earnings_field_names, earnings_amounts):
+            earnings_data_list.append({"name": name, "amount": amount})
+
+        deductions_data_list = []
+        for name, amount in zip(deductions_field_names, deductions_amounts):
+            deductions_data_list.append({"name": name, "amount": amount})
+
+        # Convert the lists to JSON format
+        earnings_data_json = json.dumps(earnings_data_list)
+        deductions_data_json = json.dumps(deductions_data_list)
+
+        # Get the Session instance based on the session_id
+        session_id = request.POST.get("session")
+        session = get_object_or_404(Session, id=session_id)
+
+        # Get the month from the form
+        month = request.POST.get("month")
+        month = int(month) if month else None
+
+        # Save the Payment data
+        payment = Payment(
+            teacher_id=teacher_id,
+            session_id=session,
+            month=month,
+            basic_salary=formatted_calculated_basic_salary_amount,
+            earnings_data=earnings_data_json,
+            deductions_data=deductions_data_json,
+        )
+        payment.save()
+        messages.success(request, f"Payment of {teacher_id.admin.first_name} {teacher_id.admin.last_name} is saved successfully!")
+   
+    context = {
+        'action': action,
+        'sessions': sessions,
+        'months': months,
+        'attendances': attendances,
+        'attendance_types': attendance_types,
+        'total_days': total_days,
+    }
+
+    return render(request, 'admin/payment.html', context)
 
 
 

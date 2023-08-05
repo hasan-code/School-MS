@@ -13,81 +13,8 @@
   --light-txt: #919191;
 }
 
-/* ADD PAYMENT CONATINER */
-.add-payment-container {
-  padding: 0.5rem;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  align-items: start;
-  justify-content: space-between;
-}
-
-/* SELECTION FORM */
-.add-payment-container .selection-form {
-  padding: 1.5rem;
-  width: 100%;
-  border: 1px solid var(--dark);
-  border-radius: 0.3rem;
-}
-
-.add-payment-container .selection-form form {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  row-gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.add-payment-container .selection-form form .input-group {
-  min-width: 30%;
-  height: 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.add-payment-container .selection-form form .input-group input,
-.add-payment-container .selection-form form .input-group select {
-  padding: 0.5rem;
-  width: 100%;
-  height: 100%;
-  /* border: 1px solid #eee; */
-  border: none;
-  border-radius: 0.3rem;
-  outline: none;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-
-.add-payment-container .selection-form form button {
-  padding: 0.5rem 1.5rem;
-  width: fit-content;
-  height: 36px;
-  font-size: 0.931rem;
-  font-weight: 500;
-
-  color: #fff;
-  text-align: center;
-  background-color: var(--dark);
-
-  border: none;
-  border-radius: 0.3rem;
-  transition: all 0.3rem;
-  -webkit-transition: all 0.3s;
-}
-
-.add-payment-container .selection-form form button:hover {
-  background-color: var(--normal);
-  color: var(--dark-txt);
-  cursor: pointer;
-}
-
-/* TEACHER'S ATTENDANCE TABLE */
-.teachers-attendance-table {
+/* TEACHER'S ADD PAYMENT TABLE */
+.teachers-add-payment-table {
   padding: 0.5rem;
   width: 100%;
   display: flex;
@@ -95,7 +22,7 @@
   gap: 1rem;
 }
 
-.teachers-attendance-table h3 {
+.teachers-add-payment-table h3 {
   font-size: 1.131rem;
   font-weight: 600;
   color: var(--dark-txt);
